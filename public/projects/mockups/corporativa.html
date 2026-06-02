@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mora & Asociados — Abogados</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: #fafafa; color: #1a1a1a; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: #fff; border-bottom: 1px solid #eee; }
+    nav .logo { font-size: 18px; font-weight: 600; letter-spacing: 0.04em; }
+    nav ul { display: flex; gap: 32px; list-style: none; font-family: system-ui, sans-serif; font-size: 13px; color: #666; }
+    nav button { font-family: system-ui, sans-serif; font-size: 13px; padding: 10px 22px; border: 1px solid #1a1a1a; background: #1a1a1a; color: #fff; border-radius: 4px; cursor: pointer; }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .hero-text { padding: 64px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .hero-text p.label { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #0891b2; margin-bottom: 20px; }
+    .hero-text h1 { font-size: 42px; line-height: 1.15; font-weight: 400; margin-bottom: 20px; }
+    .hero-text p.desc { font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.7; color: #666; max-width: 400px; margin-bottom: 32px; }
+    .hero-text a { font-family: system-ui, sans-serif; font-size: 14px; color: #0891b2; text-decoration: none; }
+    .hero-img { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-img::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/></svg>'); }
+    .hero-img .stat { text-align: center; color: #fff; z-index: 1; }
+    .hero-img .stat .num { font-size: 64px; font-weight: 300; }
+    .hero-img .stat .lbl { font-family: system-ui, sans-serif; font-size: 13px; opacity: 0.7; margin-top: 8px; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #eee; border-top: 1px solid #eee; }
+    .services div { background: #fff; padding: 28px 32px; font-family: system-ui, sans-serif; }
+    .services div h3 { font-size: 14px; margin-bottom: 8px; }
+    .services div p { font-size: 12px; color: #888; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Mora & Asociados</div>
+    <ul><li>Servicios</li><li>Equipo</li><li>Casos</li><li>Contacto</li></ul>
+    <button>Consulta gratis</button>
+  </nav>
+  <div class="hero">
+    <div class="hero-text">
+      <p class="label">Consultora legal · Costa Rica</p>
+      <h1>Asesoría jurídica con visión estratégica</h1>
+      <p class="desc">Más de 20 años representando empresas y personas en derecho corporativo, laboral y civil.</p>
+      <a href="#">Conocer nuestros servicios →</a>
+    </div>
+    <div class="hero-img">
+      <div class="stat">
+        <div class="num">+350</div>
+        <div class="lbl">Casos resueltos</div>
+      </div>
+    </div>
+  </div>
+  <div class="services">
+    <div><h3>Derecho corporativo</h3><p>Contratos, fusiones y cumplimiento normativo.</p></div>
+    <div><h3>Derecho laboral</h3><p>Relaciones laborales y resolución de conflictos.</p></div>
+    <div><h3>Propiedad intelectual</h3><p>Registro de marcas y protección de activos.</p></div>
+  </div>
+</body>
+</html>

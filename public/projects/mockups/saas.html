@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StockFlow — Panel</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f4f6f8; color: #1a1a1a; display: flex; min-height: 100vh; }
+    aside { width: 220px; background: #0f172a; color: #94a3b8; padding: 24px 0; flex-shrink: 0; }
+    aside .brand { padding: 0 20px 24px; font-size: 16px; font-weight: 600; color: #fff; border-bottom: 1px solid #1e293b; margin-bottom: 16px; }
+    aside .brand span { color: #22d3ee; }
+    aside nav div { padding: 10px 20px; font-size: 13px; cursor: pointer; }
+    aside nav div.active { background: #1e293b; color: #fff; border-left: 3px solid #0891b2; }
+    main { flex: 1; padding: 28px 32px; }
+    .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+    .top h1 { font-size: 22px; font-weight: 600; }
+    .top .user { font-size: 13px; color: #666; background: #fff; padding: 8px 16px; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb; }
+    .stat .label { font-size: 12px; color: #888; margin-bottom: 8px; }
+    .stat .value { font-size: 28px; font-weight: 600; }
+    .stat .change { font-size: 12px; color: #059669; margin-top: 6px; }
+    .stat .change.down { color: #dc2626; }
+    .panels { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+    .panel { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb; }
+    .panel h2 { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+    .chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; }
+    .bar { flex: 1; background: #ecfeff; border-radius: 4px 4px 0 0; position: relative; }
+    .bar.fill { background: #0891b2; }
+    .bar:nth-child(1) { height: 45%; } .bar:nth-child(2) { height: 65%; } .bar:nth-child(3) { height: 55%; }
+    .bar:nth-child(4) { height: 80%; } .bar:nth-child(5) { height: 70%; } .bar:nth-child(6) { height: 90%; }
+    .bar:nth-child(7) { height: 75%; }
+    table { width: 100%; font-size: 12px; }
+    table th { text-align: left; color: #888; font-weight: 500; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+    table td { padding: 10px 0; border-bottom: 1px solid #f8f8f8; }
+    .badge { background: #ecfeff; color: #0891b2; padding: 3px 8px; border-radius: 999px; font-size: 11px; }
+    .badge.warn { background: #fef3c7; color: #d97706; }
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="brand">Stock<span>Flow</span></div>
+    <nav>
+      <div class="active">Dashboard</div>
+      <div>Inventario</div>
+      <div>Productos</div>
+      <div>Proveedores</div>
+      <div>Reportes</div>
+    </nav>
+  </aside>
+  <main>
+    <div class="top">
+      <h1>Panel de inventario</h1>
+      <div class="user">Admin · San José</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="label">Productos activos</div><div class="value">1,284</div><div class="change">↑ 12% este mes</div></div>
+      <div class="stat"><div class="label">Stock bajo</div><div class="value">23</div><div class="change down">↓ Revisar</div></div>
+      <div class="stat"><div class="label">Ventas hoy</div><div class="value">₡847K</div><div class="change">↑ 8%</div></div>
+      <div class="stat"><div class="label">Pedidos pendientes</div><div class="value">14</div><div class="change">3 urgentes</div></div>
+    </div>
+    <div class="panels">
+      <div class="panel">
+        <h2>Ventas semanales</h2>
+        <div class="chart">
+          <div class="bar"></div><div class="bar fill"></div><div class="bar"></div>
+          <div class="bar fill"></div><div class="bar fill"></div><div class="bar fill"></div><div class="bar"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Alertas recientes</h2>
+        <table>
+          <tr><th>Producto</th><th>Estado</th></tr>
+          <tr><td>Café Tarrazú 500g</td><td><span class="badge warn">Stock bajo</span></td></tr>
+          <tr><td>Arroz 1kg</td><td><span class="badge">OK</span></td></tr>
+          <tr><td>Aceite 900ml</td><td><span class="badge warn">Agotado</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

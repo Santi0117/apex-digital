@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raíces CR — Artesanías</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; border-bottom: 1px solid #f0f0f0; }
+    nav .logo { font-size: 20px; font-weight: 600; }
+    nav .logo span { color: #0891b2; }
+    nav .links { display: flex; gap: 28px; font-size: 13px; color: #666; }
+    nav .cart { font-size: 13px; background: #0891b2; color: #fff; padding: 8px 18px; border-radius: 999px; }
+    .banner { background: linear-gradient(to right, #ecfeff, #f0fdfa); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .banner h1 { font-size: 36px; font-weight: 600; line-height: 1.2; max-width: 400px; }
+    .banner p { font-size: 14px; color: #666; margin-top: 12px; max-width: 340px; line-height: 1.6; }
+    .banner .cta { margin-top: 24px; display: inline-block; background: #0891b2; color: #fff; padding: 12px 28px; border-radius: 999px; font-size: 14px; font-weight: 500; text-decoration: none; }
+    .banner .circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, #0891b2, #06b6d4); opacity: 0.15; }
+    .grid-label { padding: 32px 48px 16px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 48px 40px; }
+    .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; }
+    .card .img { height: 140px; }
+    .card .img.a { background: linear-gradient(135deg, #d97706, #fbbf24); }
+    .card .img.b { background: linear-gradient(135deg, #0891b2, #22d3ee); }
+    .card .img.c { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+    .card .img.d { background: linear-gradient(135deg, #059669, #34d399); }
+    .card .info { padding: 14px; }
+    .card .info h3 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+    .card .info p { font-size: 14px; font-weight: 600; color: #0891b2; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Raíces<span>CR</span></div>
+    <div class="links"><span>Tienda</span><span>Artesanos</span><span>Nosotros</span></div>
+    <div class="cart">Carrito (2)</div>
+  </nav>
+  <div class="banner">
+    <div>
+      <h1>Artesanías hechas a mano en Costa Rica</h1>
+      <p>Cerámica, textiles y joyería de artesanos locales. Envíos a todo el país.</p>
+      <a class="cta" href="#">Ver colección</a>
+    </div>
+    <div class="circle"></div>
+  </div>
+  <div class="grid-label">Productos destacados</div>
+  <div class="grid">
+    <div class="card"><div class="img a"></div><div class="info"><h3>Canasta chorotega</h3><p>₡12,500</p></div></div>
+    <div class="card"><div class="img b"></div><div class="info"><h3>Jarrón de cerámica</h3><p>₡18,900</p></div></div>
+    <div class="card"><div class="img c"></div><div class="info"><h3>Collar de jade</h3><p>₡24,000</p></div></div>
+    <div class="card"><div class="img d"></div><div class="info"><h3>Hamaca tejida</h3><p>₡35,000</p></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudio Vértice — Arquitectura</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; }
+    nav { position: absolute; top: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; }
+    nav .logo { font-size: 14px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: #fff; }
+    nav .links { display: flex; gap: 32px; font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 0.05em; }
+    .hero { position: relative; height: 480px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55)), linear-gradient(135deg, #78716c 0%, #44403c 40%, #292524 100%); }
+    .hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to top, #fff, transparent); }
+    .hero-content { position: absolute; bottom: 48px; left: 48px; z-index: 1; color: #fff; }
+    .hero-content p { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 12px; }
+    .hero-content h1 { font-size: 48px; font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; }
+    .hero-content h1 em { font-style: normal; opacity: 0.6; }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 48px; margin-top: -40px; position: relative; z-index: 1; }
+    .proj { border-radius: 8px; overflow: hidden; }
+    .proj .thumb { height: 160px; }
+    .proj .thumb.a { background: linear-gradient(135deg, #d6d3d1, #a8a29e); }
+    .proj .thumb.b { background: linear-gradient(135deg, #57534e, #292524); }
+    .proj .thumb.c { background: linear-gradient(135deg, #ecfdf5, #6ee7b7); }
+    .proj .meta { padding: 14px 0; }
+    .proj .meta h3 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+    .proj .meta p { font-size: 12px; color: #999; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Vértice</div>
+    <div class="links"><span>Proyectos</span><span>Estudio</span><span>Contacto</span></div>
+  </nav>
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p>Arquitectura · San José</p>
+      <h1>Diseño que dialoga<br/>con el <em>entorno</em></h1>
+    </div>
+  </div>
+  <div class="projects">
+    <div class="proj"><div class="thumb a"></div><div class="meta"><h3>Casa Bosque</h3><p>Escazú · 2024</p></div></div>
+    <div class="proj"><div class="thumb b"></div><div class="meta"><h3>Oficinas Nexus</h3><p>Curridabat · 2023</p></div></div>
+    <div class="proj"><div class="thumb c"></div><div class="meta"><h3>Residencial Verde</h3><p>Heredia · 2025</p></div></div>
+  </div>
+</body>
+</html>

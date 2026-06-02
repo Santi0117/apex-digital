@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupo Horizonte — Constructora & Bienes Raíces</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; border-bottom: 1px solid #f0f0f0; }
+    nav .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+    nav .logo span { color: #0891b2; font-weight: 500; font-size: 12px; display: block; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; }
+    nav .links { display: flex; gap: 28px; font-size: 13px; color: #666; }
+    nav .cta { background: #0891b2; color: #fff; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+    .hero { position: relative; height: 340px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.55) 55%, rgba(8,145,178,0.35) 100%), linear-gradient(135deg, #64748b 0%, #334155 50%, #1e293b 100%); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+    .hero-content { position: relative; z-index: 1; padding: 56px 48px; color: #fff; max-width: 560px; }
+    .hero-content .tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #67e8f9; margin-bottom: 14px; }
+    .hero-content h1 { font-size: 38px; font-weight: 600; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .hero-content p { font-size: 14px; line-height: 1.65; opacity: 0.8; margin-bottom: 24px; }
+    .hero-btns { display: flex; gap: 12px; }
+    .hero-btns a { font-size: 13px; padding: 11px 22px; border-radius: 6px; text-decoration: none; font-weight: 500; }
+    .hero-btns .primary { background: #0891b2; color: #fff; }
+    .hero-btns .secondary { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); background: #0f172a; color: #fff; }
+    .stats div { padding: 22px 32px; border-right: 1px solid #1e293b; text-align: center; }
+    .stats div:last-child { border-right: none; }
+    .stats .num { font-size: 26px; font-weight: 600; color: #67e8f9; }
+    .stats .lbl { font-size: 11px; opacity: 0.6; margin-top: 4px; }
+    .section-head { padding: 28px 48px 16px; display: flex; justify-content: space-between; align-items: baseline; }
+    .section-head h2 { font-size: 18px; font-weight: 600; }
+    .section-head a { font-size: 12px; color: #0891b2; text-decoration: none; }
+    .properties { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 48px 32px; }
+    .prop { border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+    .prop .img { height: 130px; position: relative; }
+    .prop .img.a { background: linear-gradient(135deg, #94a3b8, #475569); }
+    .prop .img.b { background: linear-gradient(135deg, #0891b2, #164e63); }
+    .prop .img.c { background: linear-gradient(135deg, #78716c, #44403c); }
+    .prop .badge { position: absolute; top: 10px; left: 10px; background: #0891b2; color: #fff; font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 500; }
+    .prop .badge.sold { background: #64748b; }
+    .prop .info { padding: 14px 16px; }
+    .prop .info h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .prop .info .loc { font-size: 12px; color: #888; margin-bottom: 8px; }
+    .prop .info .price { font-size: 16px; font-weight: 700; color: #0891b2; }
+    .prop .info .meta { font-size: 11px; color: #aaa; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Grupo Horizonte<span>Constructora · Bienes Raíces</span></div>
+    <div class="links"><span>Proyectos</span><span>Propiedades</span><span>Nosotros</span><span>Contacto</span></div>
+    <div class="cta">Agendar visita</div>
+  </nav>
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="tag">Costa Rica · Desde 2008</div>
+      <h1>Construimos y vendemos espacios que transforman vidas</h1>
+      <p>Desarrollos residenciales, proyectos comerciales y asesoría inmobiliaria integral en todo el país.</p>
+      <div class="hero-btns">
+        <a class="primary" href="#">Ver propiedades</a>
+        <a class="secondary" href="#">Proyectos en construcción</a>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div><div class="num">+120</div><div class="lbl">Proyectos entregados</div></div>
+    <div><div class="num">18</div><div class="lbl">Años de experiencia</div></div>
+    <div><div class="num">340</div><div class="lbl">Propiedades vendidas</div></div>
+    <div><div class="num">7</div><div class="lbl">Provincias activas</div></div>
+  </div>
+  <div class="section-head">
+    <h2>Propiedades destacadas</h2>
+    <a href="#">Ver catálogo completo →</a>
+  </div>
+  <div class="properties">
+    <div class="prop">
+      <div class="img a"><span class="badge">Nuevo</span></div>
+      <div class="info">
+        <h3>Residencial Altavista</h3>
+        <div class="loc">Escazú, San José</div>
+        <div class="price">Desde $185,000</div>
+        <div class="meta">3 hab · 2 ba · 120 m²</div>
+      </div>
+    </div>
+    <div class="prop">
+      <div class="img b"><span class="badge">En construcción</span></div>
+      <div class="info">
+        <h3>Torres del Río</h3>
+        <div class="loc">Heredia Centro</div>
+        <div class="price">Desde $98,000</div>
+        <div class="meta">Apartamentos · Entrega 2026</div>
+      </div>
+    </div>
+    <div class="prop">
+      <div class="img c"><span class="badge sold">Vendido</span></div>
+      <div class="info">
+        <h3>Lotes Playa Hermosa</h3>
+        <div class="loc">Guanacaste</div>
+        <div class="price">Desde $65,000</div>
+        <div class="meta">Terrenos · 500–800 m²</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
