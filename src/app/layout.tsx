@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CR",
     url: siteUrl,
-    siteName: site.name,
-    title: `${site.name} — Desarrollo web a medida`,
+    siteName: "Onvision Digital",
+    title: "Onvision Digital — Desarrollo web a medida",
     description:
       "Sitios web, e-commerce y apps SaaS con Next.js para negocios en Latinoamérica.",
   },
   twitter: {
     card: "summary_large_image",
-    title: site.name,
+    title: "Onvision Digital — Desarrollo web a medida",
     description:
       "Sitios web, e-commerce y apps SaaS con Next.js para negocios en Latinoamérica.",
   },
