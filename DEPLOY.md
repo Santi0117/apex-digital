@@ -1,4 +1,4 @@
-# Publicar Apex Digital en Vercel
+# Publicar Onvision Digital en Vercel
 
 ## 1. Subir el código a GitHub
 
@@ -10,10 +10,10 @@ git add .
 git commit -m "Sitio listo para producción"
 ```
 
-Creá un repo en [github.com/new](https://github.com/new) (ej. `apex-digital`). Luego:
+Creá un repo en [github.com/new](https://github.com/new) (ej. `onvision-digital`). Luego:
 
 ```bash
-git remote add origin https://github.com/TU-USUARIO/apex-digital.git
+git remote add origin https://github.com/TU-USUARIO/onvision-digital.git
 git branch -M main
 git push -u origin main
 ```
@@ -22,7 +22,7 @@ git push -u origin main
 
 1. Entrá a [vercel.com](https://vercel.com) e iniciá sesión (con GitHub)
 2. **Add New… → Project**
-3. Importá el repo `apex-digital`
+3. Importá el repo `onvision-digital`
 4. Vercel detecta Next.js solo — no cambies nada en Build Settings
 5. Antes de **Deploy**, abrí **Environment Variables** y agregá:
 
@@ -31,13 +31,13 @@ git push -u origin main
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://ophafuwqkvqjjptwwchb.supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | tu `sb_secret_...` |
 | `OPENAI_API_KEY` | tu key (opcional, para chat IA) |
-| `NEXT_PUBLIC_SITE_URL` | la URL que te dé Vercel (ej. `https://apex-digital.vercel.app`) |
+| `NEXT_PUBLIC_SITE_URL` | la URL que te dé Vercel (ej. `https://onvision-digital.vercel.app`) |
 
 6. **Deploy** y esperá 1–2 minutos
 
 ## 3. Después del primer deploy
 
-1. Copiá la URL de producción (ej. `https://apex-digital-xxx.vercel.app`)
+1. Copiá la URL de producción (ej. `https://onvision-digital-xxx.vercel.app`)
 2. Vercel → Project → **Settings → Environment Variables**
 3. Editá `NEXT_PUBLIC_SITE_URL` con esa URL
 4. **Deployments → Redeploy** (para actualizar SEO/sitemap)
