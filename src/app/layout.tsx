@@ -47,9 +47,6 @@ export const metadata: Metadata = {
     description:
       "Sitios web, e-commerce y apps SaaS con Next.js para negocios en Latinoamérica.",
   },
-  icons: {
-    icon: "/logo-icon.svg",
-  },
 };
 
 export default function RootLayout({
