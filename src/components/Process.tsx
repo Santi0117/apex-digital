@@ -86,7 +86,7 @@ export default function Process() {
               href="#cotizar"
               className="text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors"
             >
-              Escribime
+              Escríbeme
             </a>
           </p>
         </ScrollReveal>

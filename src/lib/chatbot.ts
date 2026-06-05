@@ -9,7 +9,7 @@ const rules: ReplyRule[] = [
   {
     keywords: ["cuesta", "precio", "costo", "cuanto", "cuánto", "presupuesto", "tarifa"],
     reply:
-      "Los proyectos van desde $400 (sitio corporativo) hasta $1,500+ (app SaaS). E-commerce desde $800. Mantenimiento desde $20/mes. Cada cotización es a medida según alcance — escribime a " +
+      "Los proyectos van desde $400 (sitio corporativo) hasta $1,500+ (app SaaS). E-commerce desde $800. Mantenimiento desde $20/mes. Cada cotización es a medida según alcance — escríbeme a " +
       site.email +
       " y te preparo una propuesta sin compromiso.",
   },

@@ -212,7 +212,7 @@ export default function Assistant() {
             href={`mailto:${site.email}`}
             className="text-sm text-neutral-400 hover:text-accent transition-colors duration-200"
           >
-            o escribime directo → {site.email}
+            o escríbeme directo → {site.email}
           </a>
         </ScrollReveal>
       </div>
