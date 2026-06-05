@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -46,6 +46,15 @@ export const metadata: Metadata = {
     title: "Onvision Digital — Desarrollo web a medida",
     description:
       "Sitios web, e-commerce y apps SaaS con Next.js para negocios en Latinoamérica.",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logo-icon.svg", type: "image/svg+xml" },
+      { url: "/icon", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/apple-icon",
+    shortcut: "/favicon.ico",
   },
 };
 
