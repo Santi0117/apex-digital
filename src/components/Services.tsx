@@ -2,105 +2,8 @@
 
 import type { ReactNode } from "react";
 import ScrollReveal from "./ScrollReveal";
-
-type Service = {
-  code: string;
-  icon: string;
-  tier: string;
-  badge?: string;
-  title: string;
-  description: string;
-  features: string[];
-  result: string;
-  cta: string;
-  ctaHref?: string;
-};
-
-const mainServices: Service[] = [
-  {
-    code: "SVC-01",
-    icon: "globe",
-    tier: "Servicio principal",
-    badge: "Más solicitado",
-    title: "Sitio web para negocio",
-    description:
-      "Página profesional que transmite confianza, aparece en Google y da formalidad digital a tu marca.",
-    features: [
-      "Landing pages y sitios corporativos",
-      "Diseño responsive para móvil y desktop",
-      "Optimización SEO on-page",
-      "Formularios y captación de leads",
-      "Integración con WhatsApp y redes",
-      "Hosting y dominio configurados",
-    ],
-    result:
-      "Presencia profesional que genera confianza y posiciona tu negocio en buscadores.",
-    cta: "Ver planes →",
-    ctaHref: "#planes",
-  },
-  {
-    code: "SVC-02",
-    icon: "cart",
-    tier: "Servicio principal",
-    title: "Tienda online (e-commerce)",
-    description:
-      "Catálogo, carrito, pagos online y panel admin para que gestionés tus ventas vos mismo.",
-    features: [
-      "Catálogo de productos con filtros",
-      "Carrito y checkout con pagos online",
-      "Panel admin para gestionar pedidos",
-      "Integración Stripe / SINPE / transferencia",
-      "Inventario y variantes de producto",
-      "Notificaciones de venta por email",
-    ],
-    result:
-      "Ventas online automatizadas con control total de catálogo, pedidos y pagos.",
-    cta: "Ver planes →",
-    ctaHref: "#planes",
-  },
-];
-
-const customServices: Service[] = [
-  {
-    code: "SVC-03",
-    icon: "monitor",
-    tier: "Bajo cotización",
-    title: "App web (SaaS)",
-    description:
-      "Software con login, roles de usuario, base de datos y funcionalidades específicas para tu operación.",
-    features: [
-      "Login, registro y roles de usuario",
-      "Dashboard y flujos personalizados",
-      "Base de datos y API REST",
-      "Integraciones con servicios externos",
-      "Reportes y exportación de datos",
-      "Arquitectura escalable según tu crecimiento",
-    ],
-    result:
-      "Software propio que automatiza procesos internos y se adapta a tu negocio.",
-    cta: "Solicitar cotización →",
-  },
-  {
-    code: "SVC-04",
-    icon: "mobile",
-    tier: "Bajo cotización",
-    title: "App móvil",
-    description:
-      "Aplicación completa para iOS y Android con diseño personalizado, backend integrado y publicación en tiendas.",
-    features: [
-      "App cross-platform (iOS + Android)",
-      "Diseño UI/UX mobile-first",
-      "Login, registro y notificaciones push",
-      "Integración con API / backend",
-      "Modo offline y sincronización de datos",
-      "Publicación asistida en App Store y Google Play",
-    ],
-    result:
-      "Tu producto en el bolsillo de tus usuarios, listo para escalar en las tiendas de apps.",
-    cta: "Ver planes →",
-    ctaHref: "#planes",
-  },
-];
+import { useLanguage } from "@/lib/i18n/language-provider";
+import type { ServiceCardCopy } from "@/lib/i18n/translations";
 
 function ServiceIcon({ type }: { type: string }) {
   const paths: Record<string, ReactNode> = {
@@ -134,6 +37,9 @@ function ServiceIcon({ type }: { type: string }) {
     ),
   };
 
+  const icons = ["globe", "cart", "monitor", "mobile"];
+  const icon = icons.includes(type) ? type : "globe";
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +49,7 @@ function ServiceIcon({ type }: { type: string }) {
       stroke="currentColor"
       className="w-5 h-5"
     >
-      {paths[type]}
+      {paths[icon]}
     </svg>
   );
 }
@@ -162,13 +68,27 @@ function SparkleIcon() {
   );
 }
 
-function ServiceCard({ service, delay }: { service: Service; delay: number }) {
+const serviceIcons = ["globe", "cart", "monitor", "mobile"] as const;
+
+function ServiceCard({
+  service,
+  icon,
+  delay,
+  resultLabel,
+  ctaHref,
+}: {
+  service: ServiceCardCopy;
+  icon: string;
+  delay: number;
+  resultLabel: string;
+  ctaHref?: string;
+}) {
   return (
     <ScrollReveal delay={delay} className="h-full">
-      <article className="group flex flex-col h-full rounded-2xl border border-neutral-200 bg-white/80 backdrop-blur-sm p-7 md:p-8 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_20px_50px_-20px_rgba(8,145,178,0.18)]">
+      <article className="group flex flex-col h-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-7 md:p-8 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_20px_50px_-20px_rgba(8,145,178,0.18)] dark:hover:shadow-[0_20px_50px_-20px_rgba(8,145,178,0.25)]">
         <div className="flex items-start justify-between gap-4 mb-5">
-          <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-accent/20 bg-accent-soft text-accent">
-            <ServiceIcon type={service.icon} />
+          <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-accent/20 bg-accent-soft dark:bg-cyan-950/40 text-accent">
+            <ServiceIcon type={icon} />
           </div>
           <span className="font-mono text-[10px] tracking-wider text-neutral-400 pt-1">
             {service.code}
@@ -176,20 +96,20 @@ function ServiceCard({ service, delay }: { service: Service; delay: number }) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 mb-4">
-          <span className="text-[10px] font-medium tracking-[0.15em] uppercase px-2.5 py-1 rounded-full bg-accent-soft text-accent border border-accent/15">
+          <span className="text-[10px] font-medium tracking-[0.15em] uppercase px-2.5 py-1 rounded-full bg-accent-soft dark:bg-cyan-950/40 text-accent border border-accent/15">
             {service.tier}
           </span>
           {service.badge && (
-            <span className="text-[10px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-neutral-900 text-white">
+            <span className="text-[10px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900">
               {service.badge}
             </span>
           )}
         </div>
 
-        <h3 className="text-xl md:text-2xl font-medium text-neutral-900 mb-3 tracking-tight leading-snug">
+        <h3 className="text-xl md:text-2xl font-medium text-neutral-900 dark:text-neutral-100 mb-3 tracking-tight leading-snug">
           {service.title}
         </h3>
-        <p className="text-sm md:text-[15px] text-neutral-500 leading-relaxed mb-6">
+        <p className="text-sm md:text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed mb-6">
           {service.description}
         </p>
 
@@ -197,7 +117,7 @@ function ServiceCard({ service, delay }: { service: Service; delay: number }) {
           {service.features.map((feature) => (
             <li
               key={feature}
-              className="flex items-start gap-2.5 text-sm text-neutral-600"
+              className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-neutral-300"
             >
               <span className="mt-0.5 text-accent font-medium shrink-0">✓</span>
               {feature}
@@ -205,16 +125,16 @@ function ServiceCard({ service, delay }: { service: Service; delay: number }) {
           ))}
         </ul>
 
-        <div className="flex items-start gap-2.5 rounded-xl bg-accent-soft/60 border border-accent/10 px-4 py-3.5 mb-6">
+        <div className="flex items-start gap-2.5 rounded-xl bg-accent-soft/60 dark:bg-cyan-950/30 border border-accent/10 px-4 py-3.5 mb-6">
           <SparkleIcon />
-          <p className="text-sm text-neutral-700 leading-relaxed">
-            <span className="font-medium text-neutral-900">Resultado: </span>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            <span className="font-medium text-neutral-900 dark:text-neutral-100">{resultLabel} </span>
             {service.result}
           </p>
         </div>
 
         <a
-          href={service.ctaHref ?? "#cotizar"}
+          href={ctaHref ?? "#cotizar"}
           className="inline-flex items-center text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-200"
         >
           {service.cta}
@@ -224,80 +144,75 @@ function ServiceCard({ service, delay }: { service: Service; delay: number }) {
   );
 }
 
-function ServiceGroup({
-  label,
-  title,
-  description,
-  items,
-  baseDelay,
-}: {
-  label: string;
-  title: string;
-  description?: string;
-  items: Service[];
-  baseDelay: number;
-}) {
-  return (
-    <div className="mb-16 md:mb-20 last:mb-0">
-      <ScrollReveal>
-        <div className="mb-8 md:mb-10">
-          <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
-            {label}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-neutral-900 mb-3 text-balance">
-            {title}
-          </h2>
-          {description && (
-            <p className="text-neutral-500 text-base md:text-lg leading-relaxed max-w-2xl">
-              {description}
-            </p>
-          )}
-        </div>
-      </ScrollReveal>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
-        {items.map((service, i) => (
-          <ServiceCard
-            key={service.code}
-            service={service}
-            delay={baseDelay + i * 100}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function Services() {
+  const { copy } = useLanguage();
+  const s = copy.services;
+
   return (
     <section id="servicios" className="pt-16 md:pt-24 pb-10 md:pb-12">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <ServiceGroup
-          label="Lo que hacemos · servicios principales"
-          title="Soluciones web listas para impulsar tu negocio"
-          description="Cada proyecto es a medida — no usamos plantillas genéricas. Código limpio, rápido y fácil de mantener."
-          items={mainServices}
-          baseDelay={0}
-        />
+        <ScrollReveal>
+          <div className="mb-8 md:mb-10">
+            <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+              {s.main.label}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 mb-3 text-balance">
+              {s.main.title}
+            </h2>
+            <p className="text-neutral-500 dark:text-neutral-400 text-base md:text-lg leading-relaxed max-w-2xl">
+              {s.main.description}
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 mb-16 md:mb-20">
+          {s.main.cards.map((service, i) => (
+            <ServiceCard
+              key={service.code}
+              service={service}
+              icon={serviceIcons[i] ?? "globe"}
+              delay={i * 100}
+              resultLabel={s.resultLabel}
+              ctaHref="#planes"
+            />
+          ))}
+        </div>
 
         <ScrollReveal delay={80}>
-          <p className="text-center text-[11px] font-medium tracking-[0.22em] uppercase text-neutral-400 mb-10 md:mb-12">
-            Especialidades a la medida · bajo cotización
+          <p className="text-center text-[11px] font-medium tracking-[0.22em] uppercase text-neutral-400 dark:text-neutral-500 mb-10 md:mb-12">
+            {s.divider}
           </p>
         </ScrollReveal>
 
-        <ServiceGroup
-          label="Proyectos personalizados"
-          title="Software a medida y apps móviles"
-          items={customServices}
-          baseDelay={200}
-        />
+        <ScrollReveal>
+          <div className="mb-8 md:mb-10">
+            <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+              {s.custom.label}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 mb-3 text-balance">
+              {s.custom.title}
+            </h2>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+          {s.custom.cards.map((service, i) => (
+            <ServiceCard
+              key={service.code}
+              service={service}
+              icon={serviceIcons[i + 2] ?? "monitor"}
+              delay={200 + i * 100}
+              resultLabel={s.resultLabel}
+              ctaHref={service.code === "SVC-04" ? "#planes" : "#cotizar"}
+            />
+          ))}
+        </div>
 
         <ScrollReveal delay={500} className="flex justify-center mt-4">
           <a
             href="#portafolio"
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 bg-white/80 text-neutral-400 hover:border-accent hover:bg-accent-soft hover:text-accent transition-all duration-200 hover:scale-110"
-            aria-label="Ver portafolio"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 dark:border-neutral-700 bg-white/80 dark:bg-neutral-900/80 text-neutral-400 hover:border-accent hover:bg-accent-soft dark:hover:bg-cyan-950/40 hover:text-accent transition-all duration-200 hover:scale-110"
+            aria-label={s.portfolioScroll}
           >
             ↓
           </a>

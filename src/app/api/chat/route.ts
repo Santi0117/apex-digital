@@ -57,6 +57,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const message = typeof body.message === "string" ? body.message.trim() : "";
     const history = parseHistory(body.history);
+    const locale = body.locale === "en" ? "en" : "es";
 
     if (!message) {
       return NextResponse.json(
@@ -72,7 +73,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { reply, provider } = await getAssistantReply(message, history);
+    const { reply, provider } = await getAssistantReply(message, history, locale);
 
     return NextResponse.json({ reply, provider });
   } catch {

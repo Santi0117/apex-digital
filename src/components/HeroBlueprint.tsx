@@ -2,50 +2,24 @@
 
 import {
   useEffect,
+  useMemo,
   useRef,
   useState,
   useSyncExternalStore,
   type SVGProps,
 } from "react";
+import { useLanguage } from "@/lib/i18n/language-provider";
+
+type LayerId = "ui" | "pay" | "admin" | "data";
 
 type Layer = {
-  id: string;
+  id: LayerId;
   label: string;
   code: string;
   detail: string;
   metric: string;
+  svgLabel: string;
 };
-
-const layers: Layer[] = [
-  {
-    id: "ui",
-    label: "Interfaz",
-    code: "LYR-01",
-    detail: "Layout, tipografía y experiencia de usuario",
-    metric: "marca · confianza",
-  },
-  {
-    id: "pay",
-    label: "Pagos",
-    code: "LYR-02",
-    detail: "Checkout, carrito y pasarela segura",
-    metric: "ventas · conversión",
-  },
-  {
-    id: "admin",
-    label: "Panel",
-    code: "LYR-03",
-    detail: "Admin, roles y flujos de negocio",
-    metric: "control · operación",
-  },
-  {
-    id: "data",
-    label: "Datos",
-    code: "LYR-04",
-    detail: "Base de datos, API y sincronización",
-    metric: "escala · estabilidad",
-  },
-];
 
 type DrawPathProps = SVGProps<SVGPathElement> & {
   active: boolean;
@@ -143,16 +117,18 @@ function DrawRect({
 function BlueprintCanvas({
   layerId,
   reducedMotion,
+  svgLabels,
 }: {
-  layerId: string;
+  layerId: LayerId;
   reducedMotion: boolean;
+  svgLabels: Record<LayerId, string>;
 }) {
   const stroke = "rgba(165,243,252,0.85)";
   const strokeDim = "rgba(255,255,255,0.18)";
   const strokeMuted = "rgba(255,255,255,0.28)";
 
-  const is = (id: string) => layerId === id;
-  const dim = (id: string) => (layerId === id ? 1 : 0.22);
+  const is = (id: LayerId) => layerId === id;
+  const dim = (id: LayerId) => (layerId === id ? 1 : 0.22);
 
   return (
     <svg
@@ -338,7 +314,7 @@ function BlueprintCanvas({
           opacity={is("ui") ? 1 : 0}
           style={{ transition: "opacity 0.35s ease" }}
         >
-          hero · CTA · media
+          {svgLabels.ui}
         </text>
       </g>
 
@@ -445,7 +421,7 @@ function BlueprintCanvas({
           opacity={is("pay") ? 1 : 0}
           style={{ transition: "opacity 0.35s ease" }}
         >
-          catálogo · checkout · carrito
+          {svgLabels.pay}
         </text>
       </g>
 
@@ -527,7 +503,7 @@ function BlueprintCanvas({
           opacity={is("admin") ? 1 : 0}
           style={{ transition: "opacity 0.35s ease" }}
         >
-          sidebar · tablas · roles
+          {svgLabels.admin}
         </text>
       </g>
 
@@ -636,7 +612,7 @@ function BlueprintCanvas({
           opacity={is("data") ? 1 : 0}
           style={{ transition: "opacity 0.35s ease" }}
         >
-          postgres · sync · backups
+          {svgLabels.data}
         </text>
       </g>
 
@@ -664,15 +640,38 @@ function BlueprintCanvas({
 }
 
 export default function HeroBlueprint() {
+  const { copy } = useLanguage();
+  const bp = copy.blueprint;
+
+  const layers = useMemo<Layer[]>(
+    () => [
+      { id: "ui", ...bp.layers.ui },
+      { id: "pay", ...bp.layers.pay },
+      { id: "admin", ...bp.layers.admin },
+      { id: "data", ...bp.layers.data },
+    ],
+    [bp.layers]
+  );
+
+  const svgLabels = useMemo(
+    () => ({
+      ui: bp.layers.ui.svgLabel,
+      pay: bp.layers.pay.svgLabel,
+      admin: bp.layers.admin.svgLabel,
+      data: bp.layers.data.svgLabel,
+    }),
+    [bp.layers]
+  );
+
   const reducedMotion = useReducedMotion();
-  const [activeId, setActiveId] = useState(layers[0].id);
-  const [hoverId, setHoverId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<LayerId>("ui");
+  const [hoverId, setHoverId] = useState<LayerId | null>(null);
   const [userPicked, setUserPicked] = useState(false);
 
   const highlightId = hoverId ?? activeId;
   const active = layers.find((l) => l.id === highlightId) ?? layers[0];
 
-  const selectLayer = (id: string) => {
+  const selectLayer = (id: LayerId) => {
     setActiveId(id);
     setUserPicked(true);
   };
@@ -691,24 +690,28 @@ export default function HeroBlueprint() {
   return (
     <div
       className="relative w-full max-w-[440px] ml-auto select-none"
-      aria-label="Blueprint interactivo de capas del proyecto"
+      aria-label={bp.ariaLabel}
     >
       <div className="rounded-2xl border border-white/20 bg-white/[0.07] backdrop-blur-xl shadow-[0_24px_80px_-20px_rgba(8,145,178,0.35)] overflow-hidden">
         <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
           <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/45">
-            Blueprint · en vivo
+            {bp.header}
           </span>
           <span className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-accent-muted">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-muted opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-muted" />
             </span>
-            Trazando
+            {bp.status}
           </span>
         </div>
 
         <div className="relative px-4 pt-4 pb-3 bg-[#071018]/50">
-          <BlueprintCanvas layerId={highlightId} reducedMotion={reducedMotion} />
+          <BlueprintCanvas
+            layerId={highlightId}
+            reducedMotion={reducedMotion}
+            svgLabels={svgLabels}
+          />
 
           <div
             key={active.id}
@@ -751,7 +754,7 @@ export default function HeroBlueprint() {
                 </span>
                 <span className="mt-1 block font-mono text-[9px] tracking-wider text-white/30">
                   {layer.code}
-                  {isOn ? " · activa" : " · ver capa →"}
+                  {isOn ? bp.activeLabel : bp.exploreLabel}
                 </span>
               </button>
             );
@@ -759,8 +762,8 @@ export default function HeroBlueprint() {
         </div>
 
         <div className="flex items-center justify-between px-4 py-2.5 font-mono text-[9px] tracking-wider text-white/30 border-t border-white/5">
-          <span>Next.js · PostgreSQL · Stripe</span>
-          <span className="text-accent-muted/60">plano maestro</span>
+          <span>{bp.footerLeft}</span>
+          <span className="text-accent-muted/60">{bp.footerRight}</span>
         </div>
       </div>
     </div>

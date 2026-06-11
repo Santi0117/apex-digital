@@ -3,17 +3,11 @@
 import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
-
-const budgetOptions = [
-  "Menos de $500",
-  "$500 – $1,000",
-  "$1,000 – $2,500",
-  "$2,500 – $5,000",
-  "Más de $5,000",
-  "Aún no lo sé",
-];
+import { useLanguage } from "@/lib/i18n/language-provider";
 
 export default function ContactForm() {
+  const { copy } = useLanguage();
+  const c = copy.contact;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [interest, setInterest] = useState("");
@@ -39,7 +33,7 @@ export default function ContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error ?? "No se pudo enviar el formulario.");
+        throw new Error(data.error ?? c.errorSubmit);
       }
 
       setSuccess(data.message);
@@ -48,32 +42,27 @@ export default function ContactForm() {
       setInterest("");
       setBudget("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Error de conexión.");
+      setError(err instanceof Error ? err.message : c.errorConnection);
     } finally {
       setLoading(false);
     }
   };
 
   const inputClass =
-    "w-full text-sm px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 transition-all duration-200";
+    "w-full text-sm px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 transition-all duration-200";
 
   return (
     <section id="cotizar" className="px-6 md:px-12 py-16 md:py-24">
       <div className="max-w-xl mx-auto">
         <ScrollReveal>
-          <SectionHeader
-            label="Contacto"
-            title="Contanos sobre tu proyecto"
-            description="Completá el formulario y te respondemos con una propuesta a medida."
-          />
+          <SectionHeader label={c.label} title={c.title} description={c.description} />
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
           <form
             onSubmit={handleSubmit}
-            className="relative rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 space-y-5 shadow-sm"
+            className="relative rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 md:p-8 space-y-5 shadow-sm"
           >
-            {/* Honeypot — oculto para usuarios, visible para bots */}
             <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
               <label htmlFor="contact-website">Website</label>
               <input
@@ -87,8 +76,11 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label htmlFor="contact-email" className="block text-xs font-medium text-neutral-500 mb-1.5">
-                Correo electrónico
+              <label
+                htmlFor="contact-email"
+                className="block text-xs font-medium text-neutral-500 mb-1.5"
+              >
+                {c.emailLabel}
               </label>
               <input
                 id="contact-email"
@@ -96,14 +88,17 @@ export default function ContactForm() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@empresa.com"
+                placeholder={c.emailPlaceholder}
                 className={inputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="contact-name" className="block text-xs font-medium text-neutral-500 mb-1.5">
-                Nombre o empresa
+              <label
+                htmlFor="contact-name"
+                className="block text-xs font-medium text-neutral-500 mb-1.5"
+              >
+                {c.nameLabel}
               </label>
               <input
                 id="contact-name"
@@ -111,14 +106,17 @@ export default function ContactForm() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Tu nombre o nombre de la empresa"
+                placeholder={c.namePlaceholder}
                 className={inputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="contact-interest" className="block text-xs font-medium text-neutral-500 mb-1.5">
-                Motivo o interés
+              <label
+                htmlFor="contact-interest"
+                className="block text-xs font-medium text-neutral-500 mb-1.5"
+              >
+                {c.interestLabel}
               </label>
               <textarea
                 id="contact-interest"
@@ -126,14 +124,17 @@ export default function ContactForm() {
                 rows={3}
                 value={interest}
                 onChange={(e) => setInterest(e.target.value)}
-                placeholder="Ej: Necesito una tienda online para vender productos artesanales..."
+                placeholder={c.interestPlaceholder}
                 className={`${inputClass} resize-none`}
               />
             </div>
 
             <div>
-              <label htmlFor="contact-budget" className="block text-xs font-medium text-neutral-500 mb-1.5">
-                Presupuesto estimado
+              <label
+                htmlFor="contact-budget"
+                className="block text-xs font-medium text-neutral-500 mb-1.5"
+              >
+                {c.budgetLabel}
               </label>
               <select
                 id="contact-budget"
@@ -143,9 +144,9 @@ export default function ContactForm() {
                 className={`${inputClass} appearance-none cursor-pointer`}
               >
                 <option value="" disabled>
-                  Seleccioná un rango
+                  {c.budgetPlaceholder}
                 </option>
-                {budgetOptions.map((opt) => (
+                {c.budgetOptions.map((opt) => (
                   <option key={opt} value={opt}>
                     {opt}
                   </option>
@@ -160,7 +161,10 @@ export default function ContactForm() {
             )}
 
             {success && (
-              <p role="status" className="text-sm text-accent-hover text-center bg-accent-soft px-4 py-3 rounded-xl">
+              <p
+                role="status"
+                className="text-sm text-accent-hover text-center bg-accent-soft dark:bg-cyan-950/40 px-4 py-3 rounded-xl"
+              >
                 {success}
               </p>
             )}
@@ -170,7 +174,7 @@ export default function ContactForm() {
               disabled={loading}
               className="appearance-none w-full text-sm font-medium py-3.5 rounded-xl bg-accent text-white hover:bg-accent-hover disabled:opacity-50 transition-colors duration-200"
             >
-              {loading ? "Enviando..." : "Enviar consulta"}
+              {loading ? c.loadingButton : c.submitButton}
             </button>
           </form>
         </ScrollReveal>

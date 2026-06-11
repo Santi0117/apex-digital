@@ -1,12 +1,17 @@
+"use client";
+
 import { site } from "@/lib/site";
+import { useLanguage } from "@/lib/i18n/language-provider";
 
 export default function WhatsAppFloat() {
+  const { copy } = useLanguage();
+
   return (
     <a
       href={`https://wa.me/${site.whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escribinos por WhatsApp"
+      aria-label={copy.whatsapp.ariaLabel}
       className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/15 transition-transform duration-200 hover:scale-110 active:scale-95 md:bottom-6 md:right-6"
     >
       <svg

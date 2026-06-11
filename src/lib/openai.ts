@@ -1,5 +1,6 @@
 import { assistantContext, type ChatMessage } from "./assistant-context";
 import { getChatResponse } from "./chatbot";
+import type { Locale } from "./i18n/translations";
 
 export function isOpenAIConfigured(): boolean {
   return Boolean(process.env.OPENAI_API_KEY?.trim());
@@ -7,13 +8,14 @@ export function isOpenAIConfigured(): boolean {
 
 export async function getAssistantReply(
   message: string,
-  history: ChatMessage[] = []
+  history: ChatMessage[] = [],
+  locale: Locale = "es"
 ): Promise<{ reply: string; provider: "openai" | "fallback" }> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
 
   if (!apiKey) {
     return {
-      reply: getChatResponse(message),
+      reply: getChatResponse(message, locale),
       provider: "fallback",
     };
   }
@@ -46,7 +48,7 @@ export async function getAssistantReply(
       const err = await res.text();
       console.error("OpenAI error:", err);
       return {
-        reply: getChatResponse(message),
+        reply: getChatResponse(message, locale),
         provider: "fallback",
       };
     }
@@ -56,7 +58,7 @@ export async function getAssistantReply(
 
     if (!reply) {
       return {
-        reply: getChatResponse(message),
+        reply: getChatResponse(message, locale),
         provider: "fallback",
       };
     }
@@ -65,7 +67,7 @@ export async function getAssistantReply(
   } catch (error) {
     console.error("OpenAI fetch failed:", error);
     return {
-      reply: getChatResponse(message),
+      reply: getChatResponse(message, locale),
       provider: "fallback",
     };
   }
