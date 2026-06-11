@@ -39,12 +39,17 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/65" />
 
-      <nav className="relative z-10 flex justify-between items-center px-6 sm:px-10 lg:px-14 py-5 shrink-0">
-        <a href="#" className="hover:opacity-90 transition-opacity">
-          <Logo variant="light" size="lg" />
+      <nav className="relative z-10 flex items-center justify-between gap-3 px-4 sm:px-6 md:px-10 lg:px-14 py-4 sm:py-5 shrink-0">
+        <a href="#" className="hover:opacity-90 transition-opacity shrink-0">
+          <span className="md:hidden">
+            <Logo variant="light" size="sm" showName={false} />
+          </span>
+          <span className="hidden md:inline-flex">
+            <Logo variant="light" size="lg" />
+          </span>
         </a>
 
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 flex-1 justify-center">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -56,7 +61,7 @@ export default function Hero() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <ThemeToggle variant="dark" />
           <LanguageToggle variant="dark" />
           <a
@@ -67,7 +72,7 @@ export default function Hero() {
           </a>
           <button
             type="button"
-            className="flex flex-col gap-1.5 md:hidden"
+            className="flex flex-col justify-center gap-1.5 md:hidden p-1 -mr-1"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? copy.hero.menuClose : copy.hero.menuOpen}
             aria-expanded={menuOpen}

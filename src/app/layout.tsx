@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
@@ -73,14 +74,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var r=document.documentElement,t=localStorage.getItem("onvision-theme");if(t==="dark"){r.classList.add("dark");r.style.colorScheme="dark"}else{r.classList.remove("dark");r.style.colorScheme="light"}}catch(e){}})();`,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var r=document.documentElement,t=localStorage.getItem("onvision-theme");if(t==="dark"){r.classList.add("dark");r.style.colorScheme="dark"}else{r.classList.remove("dark");r.style.colorScheme="light"}}catch(e){}})();`}
+        </Script>
         <Providers>{children}</Providers>
       </body>
     </html>

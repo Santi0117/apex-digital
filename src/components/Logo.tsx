@@ -34,7 +34,7 @@ export default function Logo({
       />
       {showName && (
         <span
-          className={`font-medium tracking-wide ${s.text} ${
+          className={`hidden sm:inline font-medium tracking-wide ${s.text} ${
             isLight ? "text-white" : "text-neutral-900"
           }`}
         >

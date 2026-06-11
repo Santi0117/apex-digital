@@ -13,7 +13,7 @@ export default function LanguageToggle({ variant = "dark" }: LanguageToggleProps
   const isDark = variant === "dark";
 
   const base =
-    "appearance-none text-[11px] font-medium tracking-wide px-2.5 py-1 rounded-full transition-all duration-200";
+    "appearance-none text-[10px] sm:text-[11px] font-medium tracking-wide px-2 sm:px-2.5 py-1 rounded-full transition-all duration-200";
   const active = isDark
     ? "bg-white text-neutral-900"
     : "bg-accent text-white";

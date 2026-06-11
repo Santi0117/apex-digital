@@ -48,7 +48,7 @@ export default function ThemeToggle({ variant = "dark" }: ThemeToggleProps) {
   const isDark = variant === "dark";
 
   const base =
-    "appearance-none inline-flex items-center justify-center px-2.5 py-1 rounded-full transition-all duration-200";
+    "appearance-none inline-flex items-center justify-center px-2 sm:px-2.5 py-1 rounded-full transition-all duration-200";
   const active = isDark
     ? "bg-white text-neutral-900"
     : "bg-accent text-white";
@@ -79,11 +79,11 @@ export default function ThemeToggle({ variant = "dark" }: ThemeToggleProps) {
       role="group"
       aria-label="Theme"
     >
-      {item("light", <SunIcon className="h-3.5 w-3.5" />)}
+      {item("light", <SunIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />)}
       <span className={`text-[10px] ${isDark ? "text-white/25" : "text-neutral-300"}`}>
         |
       </span>
-      {item("dark", <MoonIcon className="h-3.5 w-3.5" />)}
+      {item("dark", <MoonIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />)}
     </div>
   );
 }

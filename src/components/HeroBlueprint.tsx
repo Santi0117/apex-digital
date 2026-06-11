@@ -685,7 +685,7 @@ export default function HeroBlueprint() {
       });
     }, 4800);
     return () => clearInterval(interval);
-  }, [userPicked]);
+  }, [userPicked, layers]);
 
   return (
     <div

@@ -64,6 +64,10 @@ export type SiteCopy = {
     menuClose: string;
     bgAlt: string;
   };
+  marquee: {
+    ariaLabel: string;
+    items: string[];
+  };
   blueprint: {
     ariaLabel: string;
     header: string;
@@ -286,6 +290,21 @@ const es: SiteCopy = {
     menuOpen: "Abrir menú",
     menuClose: "Cerrar menú",
     bgAlt: "Fondo hero",
+  },
+  marquee: {
+    ariaLabel: "Servicios de Onvision Digital",
+    items: [
+      "Sitios web",
+      "E-commerce",
+      "Software SaaS",
+      "App móvil",
+      "Mantenimiento",
+      "Landing pages",
+      "SEO & posicionamiento",
+      "Pasarelas de pago",
+      "Panel admin",
+      "Integraciones API",
+    ],
   },
   blueprint: {
     ariaLabel: "Blueprint interactivo de capas del proyecto",
@@ -907,6 +926,21 @@ const en: SiteCopy = {
     menuOpen: "Open menu",
     menuClose: "Close menu",
     bgAlt: "Hero background",
+  },
+  marquee: {
+    ariaLabel: "Onvision Digital services",
+    items: [
+      "Websites",
+      "E-commerce",
+      "SaaS software",
+      "Mobile apps",
+      "Maintenance",
+      "Landing pages",
+      "SEO & ranking",
+      "Payment gateways",
+      "Admin dashboards",
+      "API integrations",
+    ],
   },
   blueprint: {
     ariaLabel: "Interactive project layer blueprint",

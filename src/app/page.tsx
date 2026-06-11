@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ServicesMarquee from "@/components/ServicesMarquee";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Plans from "@/components/Plans";
@@ -15,6 +16,7 @@ export default function Home() {
     <>
       <main className="bg-page">
         <Hero />
+        <ServicesMarquee />
         <Services />
         <Portfolio />
         <Plans />
