@@ -82,22 +82,23 @@ const customServices: Service[] = [
   },
   {
     code: "SVC-04",
-    icon: "refresh",
+    icon: "mobile",
     tier: "Bajo cotización",
-    title: "Mantenimiento y soporte",
+    title: "App móvil",
     description:
-      "Actualizaciones, backups y soporte continuo para que tu sitio funcione perfecto siempre.",
+      "Aplicación completa para iOS y Android con diseño personalizado, backend integrado y publicación en tiendas.",
     features: [
-      "Hosting y monitoreo de uptime",
-      "Backups automáticos periódicos",
-      "Actualizaciones de seguridad",
-      "Soporte técnico por WhatsApp y email",
-      "Mejoras y ajustes mensuales",
-      "Informes de rendimiento y SEO",
+      "App cross-platform (iOS + Android)",
+      "Diseño UI/UX mobile-first",
+      "Login, registro y notificaciones push",
+      "Integración con API / backend",
+      "Modo offline y sincronización de datos",
+      "Publicación asistida en App Store y Google Play",
     ],
     result:
-      "Tu sitio siempre activo, seguro y evolucionando sin que tengas que preocuparte.",
-    cta: "Solicitar cotización →",
+      "Tu producto en el bolsillo de tus usuarios, listo para escalar en las tiendas de apps.",
+    cta: "Ver planes →",
+    ctaHref: "#planes",
   },
 ];
 
@@ -124,11 +125,11 @@ function ServiceIcon({ type }: { type: string }) {
         d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
       />
     ),
-    refresh: (
+    mobile: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"
+        d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
       />
     ),
   };
@@ -287,7 +288,7 @@ export default function Services() {
 
         <ServiceGroup
           label="Proyectos personalizados"
-          title="Software y soporte para operaciones complejas"
+          title="Software a medida y apps móviles"
           items={customServices}
           baseDelay={200}
         />
