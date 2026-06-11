@@ -32,7 +32,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="proceso" className="bg-neutral-50 py-16 md:py-24">
+    <section id="proceso" className="py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-6 md:px-12">
         <ScrollReveal>
           <SectionHeader

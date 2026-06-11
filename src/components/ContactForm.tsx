@@ -58,7 +58,7 @@ export default function ContactForm() {
     "w-full text-sm px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 transition-all duration-200";
 
   return (
-    <section id="cotizar" className="px-6 md:px-12 py-16 md:py-24 bg-neutral-50">
+    <section id="cotizar" className="px-6 md:px-12 py-16 md:py-24">
       <div className="max-w-xl mx-auto">
         <ScrollReveal>
           <SectionHeader

@@ -92,7 +92,7 @@ export default function Assistant() {
   };
 
   return (
-    <section id="contacto" className="px-6 md:px-12 py-16 md:py-24 bg-white">
+    <section id="contacto" className="px-6 md:px-12 py-16 md:py-24">
       <div className="max-w-2xl mx-auto">
         <ScrollReveal>
           <SectionHeader

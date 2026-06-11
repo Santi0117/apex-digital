@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "./Logo";
+import HeroBlueprint from "./HeroBlueprint";
 
 const navItems = [
   { label: "Servicios", href: "#servicios" },
   { label: "Portafolio", href: "#portafolio" },
+  { label: "Planes", href: "#planes" },
   { label: "Proceso", href: "#proceso" },
   { label: "Contacto", href: "#cotizar" },
 ];
@@ -89,11 +91,12 @@ export default function Hero() {
       )}
 
       <div className="relative z-10 flex-1 flex items-center px-6 sm:px-10 lg:px-14 pb-20 pt-4">
-        <div
-          className={`w-full max-w-3xl transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_minmax(300px,440px)] gap-10 lg:gap-12 xl:gap-16 items-center">
+          <div
+            className={`max-w-3xl transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
           <div className="inline-flex items-center gap-2 text-xs px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-white/85 mb-6 sm:mb-8 backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-muted animate-pulse" />
             Disponible para proyectos
@@ -102,7 +105,7 @@ export default function Hero() {
           <h1 className="text-[2rem] leading-[1.12] sm:text-5xl sm:leading-[1.1] lg:text-[3.25rem] lg:leading-[1.08] font-medium text-white mb-5 sm:mb-6 tracking-tight text-balance">
             Digitalización estratégica{" "}
             <span className="block mt-1 sm:mt-2 text-white/55 font-normal">
-              en Latinoamérica
+              a medida
             </span>
           </h1>
 
@@ -136,6 +139,15 @@ export default function Hero() {
             >
               Ver portafolio →
             </a>
+          </div>
+          </div>
+
+          <div
+            className={`hidden lg:block transition-all duration-1000 delay-200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              ready ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+            }`}
+          >
+            <HeroBlueprint />
           </div>
         </div>
       </div>

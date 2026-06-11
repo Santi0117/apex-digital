@@ -16,7 +16,7 @@ export default function CoverageMap() {
   const display = hovered ?? active;
 
   return (
-    <section id="cobertura" className="bg-white py-16 md:py-24">
+    <section id="cobertura" className="py-16 md:py-24">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <ScrollReveal>
           <SectionHeader

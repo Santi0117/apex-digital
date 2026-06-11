@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="px-6 md:px-12 py-10 border-t border-neutral-200 bg-white">
+    <footer className="px-6 md:px-12 py-10 border-t border-neutral-200/80 bg-white/70 backdrop-blur-sm">
       <ScrollReveal>
         <div className="max-w-5xl mx-auto flex flex-col gap-8 md:flex-row md:justify-between md:items-start">
           <div>

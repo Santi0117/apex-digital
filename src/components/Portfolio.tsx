@@ -39,7 +39,7 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portafolio" className="bg-white pt-8 md:pt-10 pb-16 md:pb-24">
+    <section id="portafolio" className="pt-8 md:pt-10 pb-16 md:pb-24">
       <ScrollReveal className="max-w-5xl mx-auto px-6 md:px-12 mb-8 md:mb-10">
         <SectionHeader
           label="Portafolio"
