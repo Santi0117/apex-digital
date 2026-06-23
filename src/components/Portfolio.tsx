@@ -6,14 +6,9 @@ import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 const projectAssets = [
-  { image: "/projects/consultora-legal.jpg", stack: "React · Tailwind · Vercel" },
-  { image: "/projects/santi.jpg", stack: "Next.js · PostgreSQL · Stripe" },
-  { image: "/projects/panel-inventario.jpg", stack: "NestJS · React · Node.js" },
-  {
-    image: "/projects/constructora-inmobiliaria.jpg",
-    stack: "Next.js · CMS · SEO local",
-  },
-  { image: "/projects/diente.jpg", stack: "Next.js · Framer Motion · CMS" },
+  { image: "/projects/firstdown.jpg", stack: "Next.js · Tailwind · E-commerce" },
+  { image: "/projects/dafesa.jpg", stack: "Next.js · Three.js · Framer Motion" },
+  { image: "/projects/tappy.jpg", stack: "Next.js · Tailwind · i18n" },
 ];
 
 export default function Portfolio() {

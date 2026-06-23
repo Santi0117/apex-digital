@@ -445,11 +445,9 @@ const es: SiteCopy = {
     hint: "Deslizá para ver más →",
     screenshotAlt: "Captura del proyecto ",
     projects: [
-      { category: "Sitio corporativo", title: "Bufete de abogados" },
-      { category: "E-commerce", title: "Tienda de retail" },
-      { category: "App SaaS", title: "Panel de Inventario" },
-      { category: "Sitio corporativo", title: "Bienes raíces" },
-      { category: "Landing page", title: "Clínica dental" },
+      { category: "E-commerce", title: "FirstDown — Jerseys NFL & NBA" },
+      { category: "Sitio corporativo", title: "DAFESA — Electrodomésticos CR" },
+      { category: "Landing page", title: "Tappy — Stickers NFC inteligentes" },
     ],
   },
   plans: {
@@ -1081,11 +1079,9 @@ const en: SiteCopy = {
     hint: "Swipe to see more →",
     screenshotAlt: "Project screenshot ",
     projects: [
-      { category: "Corporate website", title: "Law firm" },
-      { category: "E-commerce", title: "Retail store" },
-      { category: "SaaS app", title: "Inventory Dashboard" },
-      { category: "Corporate website", title: "Real estate" },
-      { category: "Landing page", title: "Dental clinic" },
+      { category: "E-commerce", title: "FirstDown — NFL & NBA Jerseys" },
+      { category: "Corporate website", title: "DAFESA — Home Appliances CR" },
+      { category: "Landing page", title: "Tappy — Smart NFC Stickers" },
     ],
   },
   plans: {
