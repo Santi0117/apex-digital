@@ -2,15 +2,9 @@ import type { ProvinceId } from "@/lib/costa-rica-provinces";
 
 export type Locale = "es" | "en";
 
-export type ServiceCardCopy = {
-  code: string;
-  tier: string;
-  badge?: string;
+export type ShowcaseCardCopy = {
   title: string;
   description: string;
-  features: string[];
-  result: string;
-  cta: string;
 };
 
 export type PlanCardCopy = {
@@ -111,18 +105,12 @@ export type SiteCopy = {
     main: {
       label: string;
       title: string;
-      description: string;
-      cards: ServiceCardCopy[];
+      examplesLabel: string;
+      cards: ShowcaseCardCopy[];
+      carouselPrev: string;
+      carouselNext: string;
+      carouselHint: string;
     };
-    divider: string;
-    custom: {
-      label: string;
-      title: string;
-      cards: ServiceCardCopy[];
-    };
-    resultLabel: string;
-    ctaPlans: string;
-    ctaQuote: string;
     portfolioScroll: string;
   };
   portfolio: {
@@ -348,96 +336,35 @@ const es: SiteCopy = {
   services: {
     main: {
       label: "Lo que hacemos · servicios principales",
-      title: "Soluciones web listas para impulsar tu negocio",
-      description:
-        "Cada proyecto es a medida — no usamos plantillas genéricas. Código limpio, rápido y fácil de mantener.",
+      title: "Todo lo que te imagines para tu negocio, lo podemos hacer realidad",
+      examplesLabel: "Algunos ejemplos:",
+      carouselPrev: "Imagen anterior",
+      carouselNext: "Imagen siguiente",
+      carouselHint: "Tocá para ver más capturas →",
       cards: [
         {
-          code: "SVC-01",
-          tier: "Servicio principal",
-          badge: "Más solicitado",
-          title: "Sitio web para negocio",
+          title: "Software de gestión de inventario y facturación electrónica a medida según tu negocio",
           description:
-            "Página profesional que transmite confianza, aparece en Google y da formalidad digital a tu marca.",
-          features: [
-            "Landing pages y sitios corporativos",
-            "Diseño responsive para móvil y desktop",
-            "Optimización SEO on-page",
-            "Formularios y captación de leads",
-            "Integración con WhatsApp y redes",
-            "Hosting y dominio configurados",
-          ],
-          result:
-            "Presencia profesional que genera confianza y posiciona tu negocio en buscadores.",
-          cta: "Ver planes →",
+            "Panel de control con ventas, inventario, clientes y comprobantes listos para Hacienda. También incluye manejo de rutas de distribución, analíticas y todo lo que tu operación necesite.",
         },
         {
-          code: "SVC-02",
-          tier: "Servicio principal",
           title: "Tienda online (e-commerce)",
           description:
-            "Catálogo, carrito, pagos online y panel admin para que gestionés tus ventas vos mismo.",
-          features: [
-            "Catálogo de productos con filtros",
-            "Carrito y checkout con pagos online",
-            "Panel admin para gestionar pedidos",
-            "Integración Stripe / SINPE / transferencia",
-            "Inventario y variantes de producto",
-            "Notificaciones de venta por email",
-          ],
-          result:
-            "Ventas online automatizadas con control total de catálogo, pedidos y pagos.",
-          cta: "Ver planes →",
+            "Catálogo, carrito, pagos online y panel admin. Con utilidades que las hacen únicas y personalizables: filtros por equipo, armador de outfits, jerseys a medida y más.",
+        },
+        {
+          title: "Páginas web modernas que hacen que tu negocio destaque digitalmente",
+          description:
+            "Incluye chatbots 100% inteligentes con IA, mapas interactivos, formularios con base de datos, calendarios y todo lo que necesitás para convertir visitas en clientes.",
+        },
+        {
+          title: "App móvil a medida compatible con iOS y Android",
+          description:
+            "Apps de salud y bienestar, cuidado de mascotas, registro de usuarios, notificaciones push, diseño UI/UX personalizado y publicación en App Store y Google Play.",
         },
       ],
     },
-    divider: "Especialidades a la medida · bajo cotización",
-    custom: {
-      label: "Proyectos personalizados",
-      title: "Software a medida y apps móviles",
-      cards: [
-        {
-          code: "SVC-03",
-          tier: "Bajo cotización",
-          title: "App web (SaaS)",
-          description:
-            "Software con login, roles de usuario, base de datos y funcionalidades específicas para tu operación.",
-          features: [
-            "Login, registro y roles de usuario",
-            "Dashboard y flujos personalizados",
-            "Base de datos y API REST",
-            "Integraciones con servicios externos",
-            "Reportes y exportación de datos",
-            "Arquitectura escalable según tu crecimiento",
-          ],
-          result:
-            "Software propio que automatiza procesos internos y se adapta a tu negocio.",
-          cta: "Solicitar cotización →",
-        },
-        {
-          code: "SVC-04",
-          tier: "Bajo cotización",
-          title: "App móvil",
-          description:
-            "Aplicación completa para iOS y Android con diseño personalizado, backend integrado y publicación en tiendas.",
-          features: [
-            "App cross-platform (iOS + Android)",
-            "Diseño UI/UX mobile-first",
-            "Login, registro y notificaciones push",
-            "Integración con API / backend",
-            "Modo offline y sincronización de datos",
-            "Publicación asistida en App Store y Google Play",
-          ],
-          result:
-            "Tu producto en el bolsillo de tus usuarios, listo para escalar en las tiendas de apps.",
-          cta: "Ver planes →",
-        },
-      ],
-    },
-    resultLabel: "Resultado: ",
-    ctaPlans: "Ver planes →",
-    ctaQuote: "Solicitar cotización →",
-    portfolioScroll: "Ver portafolio",
+    portfolioScroll: "Ver planes",
   },
   portfolio: {
     label: "Portafolio",
@@ -982,96 +909,35 @@ const en: SiteCopy = {
   services: {
     main: {
       label: "What we do · core services",
-      title: "Web solutions ready to grow your business",
-      description:
-        "Every project is custom — we don't use generic templates. Clean, fast code that's easy to maintain.",
+      title: "Whatever you imagine for your business, we can make it real",
+      examplesLabel: "Some examples:",
+      carouselPrev: "Previous image",
+      carouselNext: "Next image",
+      carouselHint: "Tap to browse more screenshots →",
       cards: [
         {
-          code: "SVC-01",
-          tier: "Core service",
-          badge: "Most requested",
-          title: "Business website",
+          title: "Custom inventory management and electronic invoicing software for your business",
           description:
-            "A professional site that builds trust, ranks on Google, and gives your brand a solid digital presence.",
-          features: [
-            "Landing pages and corporate websites",
-            "Responsive design for mobile and desktop",
-            "On-page SEO optimization",
-            "Forms and lead capture",
-            "WhatsApp and social media integration",
-            "Hosting and domain setup included",
-          ],
-          result:
-            "A professional presence that builds trust and positions your business in search engines.",
-          cta: "View plans →",
+            "Control panel with sales, inventory, clients, and tax-compliant invoicing. Also includes distribution route management, analytics, and everything your operation needs.",
         },
         {
-          code: "SVC-02",
-          tier: "Core service",
           title: "Online store (e-commerce)",
           description:
-            "Catalog, cart, online payments, and an admin panel so you can manage sales yourself.",
-          features: [
-            "Product catalog with filters",
-            "Cart and checkout with online payments",
-            "Admin panel to manage orders",
-            "Stripe / SINPE / bank transfer integration",
-            "Inventory and product variants",
-            "Sale notifications by email",
-          ],
-          result:
-            "Automated online sales with full control of catalog, orders, and payments.",
-          cta: "View plans →",
+            "Catalog, cart, online payments, and admin panel. With unique, customizable features: team filters, outfit builder, custom jerseys, and more.",
+        },
+        {
+          title: "Modern websites that make your business stand out digitally",
+          description:
+            "Includes fully intelligent AI chatbots, interactive maps, database-backed forms, calendars, and everything you need to turn visitors into customers.",
+        },
+        {
+          title: "Custom mobile app compatible with iOS and Android",
+          description:
+            "Health and wellness apps, pet care, user registration, push notifications, custom UI/UX design, and publishing on the App Store and Google Play.",
         },
       ],
     },
-    divider: "Custom specialties · quote-based",
-    custom: {
-      label: "Custom projects",
-      title: "Custom software and mobile apps",
-      cards: [
-        {
-          code: "SVC-03",
-          tier: "Quote-based",
-          title: "Web app (SaaS)",
-          description:
-            "Software with login, user roles, database, and features tailored to your operations.",
-          features: [
-            "Login, registration, and user roles",
-            "Custom dashboards and workflows",
-            "Database and REST API",
-            "Third-party service integrations",
-            "Reports and data export",
-            "Scalable architecture as you grow",
-          ],
-          result:
-            "Your own software that automates internal processes and adapts to your business.",
-          cta: "Request a quote →",
-        },
-        {
-          code: "SVC-04",
-          tier: "Quote-based",
-          title: "Mobile app",
-          description:
-            "Full iOS and Android app with custom design, integrated backend, and store publishing.",
-          features: [
-            "Cross-platform app (iOS + Android)",
-            "Mobile-first UI/UX design",
-            "Login, registration, and push notifications",
-            "API / backend integration",
-            "Offline mode and data sync",
-            "Assisted publishing on App Store and Google Play",
-          ],
-          result:
-            "Your product in your users' pockets, ready to scale on app stores.",
-          cta: "View plans →",
-        },
-      ],
-    },
-    resultLabel: "Outcome: ",
-    ctaPlans: "View plans →",
-    ctaQuote: "Request a quote →",
-    portfolioScroll: "View portfolio",
+    portfolioScroll: "View plans",
   },
   portfolio: {
     label: "Portfolio",

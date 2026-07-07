@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import ServicesMarquee from "@/components/ServicesMarquee";
 import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
 import Plans from "@/components/Plans";
 import Process from "@/components/Process";
 import CoverageMap from "@/components/CoverageMap";
@@ -18,7 +17,6 @@ export default function Home() {
         <Hero />
         <ServicesMarquee />
         <Services />
-        <Portfolio />
         <Plans />
         <Process />
         <CoverageMap />

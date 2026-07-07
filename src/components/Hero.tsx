@@ -15,7 +15,6 @@ export default function Hero() {
 
   const navItems = [
     { label: copy.nav.services, href: "#servicios" },
-    { label: copy.nav.portfolio, href: "#portafolio" },
     { label: copy.nav.plans, href: "#planes" },
     { label: copy.nav.schedule, href: "#agendar" },
     { label: copy.nav.process, href: "#proceso" },
