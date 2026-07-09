@@ -5,7 +5,7 @@ import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
-const groupKeys = ["web", "shop", "mobile", "maintenance"] as const;
+const groupKeys = ["web", "software", "shop", "mobile", "maintenance"] as const;
 type GroupKey = (typeof groupKeys)[number];
 
 function CheckIcon() {
@@ -32,7 +32,8 @@ export default function Plans() {
   const [activeGroup, setActiveGroup] = useState<GroupKey>("web");
 
   const group = p.groups[activeGroup];
-  const singleColumn = activeGroup === "mobile" || activeGroup === "maintenance";
+  const singleColumn =
+    activeGroup === "software" || activeGroup === "mobile" || activeGroup === "maintenance";
 
   return (
     <section id="planes" className="py-16 md:py-24">
@@ -109,6 +110,16 @@ export default function Plans() {
                   <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
                     {plan.price}
                   </p>
+                  {plan.priceAlt && (
+                    <>
+                      <p className="text-sm text-neutral-400 dark:text-neutral-500 mt-2">
+                        {plan.priceOr ?? "o"}
+                      </p>
+                      <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 mt-1">
+                        {plan.priceAlt}
+                      </p>
+                    </>
+                  )}
                   <p className="text-xs text-neutral-400 mt-1">{plan.unit}</p>
                 </div>
 
@@ -132,7 +143,7 @@ export default function Plans() {
                       : "border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 hover:border-accent hover:text-accent-hover bg-white dark:bg-neutral-900"
                   }`}
                 >
-                  {p.requestPlan}
+                  {activeGroup === "software" ? p.quoteCta : p.requestPlan}
                 </a>
               </article>
             </ScrollReveal>

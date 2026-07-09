@@ -25,8 +25,8 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function readStoredTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  return localStorage.getItem(STORAGE_KEY) === "dark" ? "dark" : "light";
+  if (typeof window === "undefined") return "dark";
+  return localStorage.getItem(STORAGE_KEY) === "light" ? "light" : "dark";
 }
 
 function applyTheme(theme: Theme) {
@@ -45,7 +45,7 @@ function subscribe(callback: () => void) {
 }
 
 function getServerSnapshot(): Theme {
-  return "light";
+  return "dark";
 }
 
 function notifyThemeChange() {

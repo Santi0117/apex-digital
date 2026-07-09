@@ -5,6 +5,8 @@ export type Locale = "es" | "en";
 export type ShowcaseCardCopy = {
   title: string;
   description: string;
+  tabLabel: string;
+  exampleUrl?: string;
 };
 
 export type PlanCardCopy = {
@@ -12,6 +14,8 @@ export type PlanCardCopy = {
   tagline: string;
   price: string;
   unit: string;
+  priceOr?: string;
+  priceAlt?: string;
   features: string[];
   highlighted?: boolean;
 };
@@ -110,6 +114,8 @@ export type SiteCopy = {
       carouselPrev: string;
       carouselNext: string;
       carouselHint: string;
+      viewExample: string;
+      videoHint: string;
     };
     portfolioScroll: string;
   };
@@ -129,18 +135,21 @@ export type SiteCopy = {
     description: string;
     tabs: {
       web: string;
+      software: string;
       shop: string;
       mobile: string;
       maintenance: string;
     };
     groups: {
       web: PlanGroupCopy;
+      software: PlanGroupCopy;
       shop: PlanGroupCopy;
       mobile: PlanGroupCopy;
       maintenance: PlanGroupCopy;
     };
     mostChosen: string;
     requestPlan: string;
+    quoteCta: string;
     customQuotePrefix: string;
     customQuoteLink: string;
   };
@@ -341,23 +350,30 @@ const es: SiteCopy = {
       carouselPrev: "Imagen anterior",
       carouselNext: "Imagen siguiente",
       carouselHint: "Tocá para ver más capturas →",
+      viewExample: "Ver ejemplo en vivo",
+      videoHint: "Tocá para ampliar el demo en video →",
       cards: [
         {
-          title: "Software de gestión de inventario y facturación electrónica a medida según tu negocio",
+          tabLabel: "Software a medida",
+          title: "Software de gestión de empresa a medida.",
           description:
             "Panel de control con ventas, inventario, clientes y comprobantes listos para Hacienda. También incluye manejo de rutas de distribución, analíticas y todo lo que tu operación necesite.",
         },
         {
+          tabLabel: "E-commerce",
           title: "Tienda online (e-commerce)",
           description:
             "Catálogo, carrito, pagos online y panel admin. Con utilidades que las hacen únicas y personalizables: filtros por equipo, armador de outfits, jerseys a medida y más.",
         },
         {
+          tabLabel: "Sitios web",
           title: "Páginas web modernas que hacen que tu negocio destaque digitalmente",
           description:
             "Incluye chatbots 100% inteligentes con IA, mapas interactivos, formularios con base de datos, calendarios y todo lo que necesitás para convertir visitas en clientes.",
+          exampleUrl: "https://onvisiondigital.com",
         },
         {
+          tabLabel: "App móvil",
           title: "App móvil a medida compatible con iOS y Android",
           description:
             "Apps de salud y bienestar, cuidado de mascotas, registro de usuarios, notificaciones push, diseño UI/UX personalizado y publicación en App Store y Google Play.",
@@ -381,9 +397,10 @@ const es: SiteCopy = {
     label: "Planes y precios",
     title: "Planes base claros, adaptados a tu necesidad",
     description:
-      "Paquetes de referencia para web, e-commerce, apps móviles y mantenimiento. El precio final se ajusta después de la reunión de descubrimiento según alcance y complejidad.",
+      "Paquetes de referencia para web, software a medida, e-commerce, apps móviles y mantenimiento. El precio final se ajusta después de la reunión de descubrimiento según alcance y complejidad.",
     tabs: {
       web: "Sitios web",
+      software: "Software",
       shop: "Tienda online",
       mobile: "App móvil",
       maintenance: "Mantenimiento",
@@ -396,7 +413,7 @@ const es: SiteCopy = {
           {
             name: "Estandar",
             tagline: "Presencia profesional lista para vender.",
-            price: "$425",
+            price: "$400",
             unit: "USD · pago único",
             features: [
               "Landing page de una sección",
@@ -413,7 +430,7 @@ const es: SiteCopy = {
           {
             name: "Profesional",
             tagline: "El estándar para empresas en crecimiento.",
-            price: "$650",
+            price: "$600",
             unit: "USD · pago único",
             highlighted: true,
             features: [
@@ -432,8 +449,10 @@ const es: SiteCopy = {
           {
             name: "Plataforma Saas",
             tagline: "Aplicaciones web con lógica de negocio.",
-            price: "$1,250",
-            unit: "USD · desde",
+            price: "Desde $1,350",
+            priceOr: "o",
+            priceAlt: "$80",
+            unit: "USD · por mes",
             features: [
               "App web con autenticación y base de datos",
               "Panel de administrador personalizado",
@@ -449,6 +468,33 @@ const es: SiteCopy = {
           },
         ],
       },
+      software: {
+        description:
+          "Sistemas de gestión a medida como facturación electrónica, inventario, rutas y analíticas. El precio final depende de módulos, integraciones y complejidad de tu operación.",
+        plans: [
+          {
+            name: "Software a medida",
+            tagline: "Infraestructura completa de gestión según tu negocio.",
+            price: "Desde $2,000",
+            unit: "USD · desde",
+            highlighted: true,
+            features: [
+              "Panel de control con métricas y analíticas en tiempo real",
+              "Facturación electrónica y comprobantes listos para Hacienda",
+              "Gestión de inventario, stock y movimientos con alertas",
+              "Módulos de ventas, compras, clientes y productos",
+              "Gestión de rutas de distribución y asignación de conductores",
+              "Roles de usuario y permisos (admin, vendedor, bodega, etc.)",
+              "Base de datos PostgreSQL con respaldos automáticos",
+              "API REST e integraciones con servicios externos",
+              "Dashboards y reportes exportables (ventas, IVA, créditos)",
+              "Hosting, SSL e infraestructura escalable en la nube",
+              "Autenticación segura, cifrado y monitoreo de uptime",
+              "Capacitación, documentación técnica y soporte de lanzamiento",
+            ],
+          },
+        ],
+      },
       shop: {
         description:
           "Planes base para e-commerce y catálogos digitales. Integraciones avanzadas se cotizan según complejidad.",
@@ -456,7 +502,7 @@ const es: SiteCopy = {
           {
             name: "Starter",
             tagline: "Tu primera tienda online operativa.",
-            price: "$800",
+            price: "$650",
             unit: "USD · pago único",
             features: [
               "Catálogo de hasta 50 productos",
@@ -473,7 +519,7 @@ const es: SiteCopy = {
           {
             name: "Profesional",
             tagline: "E-commerce completo para escalar ventas.",
-            price: "$1,100",
+            price: "$850",
             unit: "USD · pago único",
             highlighted: true,
             features: [
@@ -492,7 +538,7 @@ const es: SiteCopy = {
           {
             name: "Avanzada",
             tagline: "Tiendas con lógica de negocio compleja.",
-            price: "$1,500",
+            price: "$1,000",
             unit: "USD · desde",
             features: [
               "Multi-vendedor o multi-sucursal",
@@ -565,6 +611,7 @@ const es: SiteCopy = {
     },
     mostChosen: "Más elegido",
     requestPlan: "Solicitar este plan",
+    quoteCta: "Cotizar",
     customQuotePrefix:
       "¿Necesitás un SaaS a medida o un proyecto con integraciones complejas? ",
     customQuoteLink: "Solicitá cotización personalizada →",
@@ -914,23 +961,30 @@ const en: SiteCopy = {
       carouselPrev: "Previous image",
       carouselNext: "Next image",
       carouselHint: "Tap to browse more screenshots →",
+      viewExample: "View live example",
+      videoHint: "Tap to expand the video demo →",
       cards: [
         {
+          tabLabel: "Custom software",
           title: "Custom inventory management and electronic invoicing software for your business",
           description:
             "Control panel with sales, inventory, clients, and tax-compliant invoicing. Also includes distribution route management, analytics, and everything your operation needs.",
         },
         {
+          tabLabel: "E-commerce",
           title: "Online store (e-commerce)",
           description:
             "Catalog, cart, online payments, and admin panel. With unique, customizable features: team filters, outfit builder, custom jerseys, and more.",
         },
         {
+          tabLabel: "Websites",
           title: "Modern websites that make your business stand out digitally",
           description:
             "Includes fully intelligent AI chatbots, interactive maps, database-backed forms, calendars, and everything you need to turn visitors into customers.",
+          exampleUrl: "https://onvisiondigital.com",
         },
         {
+          tabLabel: "Mobile app",
           title: "Custom mobile app compatible with iOS and Android",
           description:
             "Health and wellness apps, pet care, user registration, push notifications, custom UI/UX design, and publishing on the App Store and Google Play.",
@@ -954,9 +1008,10 @@ const en: SiteCopy = {
     label: "Plans & pricing",
     title: "Clear base plans tailored to your needs",
     description:
-      "Reference packages for web, e-commerce, mobile apps, and maintenance. Final pricing is adjusted after the discovery call based on scope and complexity.",
+      "Reference packages for web, custom software, e-commerce, mobile apps, and maintenance. Final pricing is adjusted after the discovery call based on scope and complexity.",
     tabs: {
       web: "Websites",
+      software: "Software",
       shop: "Online store",
       mobile: "Mobile app",
       maintenance: "Maintenance",
@@ -969,7 +1024,7 @@ const en: SiteCopy = {
           {
             name: "Standard",
             tagline: "Professional presence ready to sell.",
-            price: "$425",
+            price: "$400",
             unit: "USD · one-time",
             features: [
               "Single-section landing page",
@@ -986,7 +1041,7 @@ const en: SiteCopy = {
           {
             name: "Professional",
             tagline: "The standard for growing companies.",
-            price: "$650",
+            price: "$600",
             unit: "USD · one-time",
             highlighted: true,
             features: [
@@ -1005,8 +1060,10 @@ const en: SiteCopy = {
           {
             name: "SaaS Platform",
             tagline: "Web applications with business logic.",
-            price: "$1,250",
-            unit: "USD · starting at",
+            price: "From $1,350",
+            priceOr: "or",
+            priceAlt: "$80",
+            unit: "USD · per month",
             features: [
               "Web app with authentication and database",
               "Custom admin panel",
@@ -1022,6 +1079,33 @@ const en: SiteCopy = {
           },
         ],
       },
+      software: {
+        description:
+          "Custom management systems such as electronic invoicing, inventory, routes, and analytics. Final pricing depends on modules, integrations, and operational complexity.",
+        plans: [
+          {
+            name: "Custom software",
+            tagline: "Full management infrastructure tailored to your business.",
+            price: "From $2,000",
+            unit: "USD · starting at",
+            highlighted: true,
+            features: [
+              "Control panel with real-time metrics and analytics",
+              "Electronic invoicing and tax-compliant receipts",
+              "Inventory, stock, and movement management with alerts",
+              "Sales, purchases, clients, and products modules",
+              "Distribution route management and driver assignment",
+              "User roles and permissions (admin, seller, warehouse, etc.)",
+              "PostgreSQL database with automatic backups",
+              "REST API and third-party service integrations",
+              "Exportable dashboards and reports (sales, VAT, credits)",
+              "Hosting, SSL, and scalable cloud infrastructure",
+              "Secure authentication, encryption, and uptime monitoring",
+              "Training, technical documentation, and launch support",
+            ],
+          },
+        ],
+      },
       shop: {
         description:
           "Base plans for e-commerce and digital catalogs. Advanced integrations are quoted based on complexity.",
@@ -1029,7 +1113,7 @@ const en: SiteCopy = {
           {
             name: "Starter",
             tagline: "Your first online store up and running.",
-            price: "$800",
+            price: "$650",
             unit: "USD · one-time",
             features: [
               "Catalog of up to 50 products",
@@ -1046,7 +1130,7 @@ const en: SiteCopy = {
           {
             name: "Professional",
             tagline: "Full e-commerce to scale sales.",
-            price: "$1,100",
+            price: "$850",
             unit: "USD · one-time",
             highlighted: true,
             features: [
@@ -1065,7 +1149,7 @@ const en: SiteCopy = {
           {
             name: "Advanced",
             tagline: "Stores with complex business logic.",
-            price: "$1,500",
+            price: "$1,000",
             unit: "USD · starting at",
             features: [
               "Multi-vendor or multi-branch",
@@ -1138,6 +1222,7 @@ const en: SiteCopy = {
     },
     mostChosen: "Most popular",
     requestPlan: "Request this plan",
+    quoteCta: "Get a quote",
     customQuotePrefix:
       "Need a custom SaaS or a project with complex integrations? ",
     customQuoteLink: "Request a custom quote →",
