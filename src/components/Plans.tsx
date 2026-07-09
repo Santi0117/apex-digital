@@ -107,26 +107,34 @@ export default function Plans() {
                 </div>
 
                 <div className="mb-7 pb-7 border-b border-neutral-100 dark:border-neutral-800">
-                  <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
-                    {plan.price}
-                  </p>
-                  {plan.priceAlt && (
+                  {plan.priceAlt ? (
                     <>
-                      <p className="text-sm text-neutral-400 dark:text-neutral-500 mt-2">
-                        {plan.priceOr ?? "o"}
-                      </p>
-                      <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 mt-1">
-                        {plan.priceAlt}
-                      </p>
+                      <div className="flex items-baseline gap-2 md:gap-3 flex-wrap">
+                        <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+                          {plan.price}
+                        </p>
+                        <span className="text-3xl font-light text-neutral-400 dark:text-neutral-500">
+                          {plan.priceOr ?? "/"}
+                        </span>
+                        <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+                          {plan.priceAlt}
+                        </p>
+                      </div>
                       {plan.unitAlt && (
-                        <p className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-700 dark:text-neutral-200 mt-1">
+                        <p className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-700 dark:text-neutral-200 mt-2">
                           {plan.unitAlt}
                         </p>
                       )}
                     </>
-                  )}
-                  {plan.unit && !plan.unitAlt && (
-                    <p className="text-xs text-neutral-400 mt-1">{plan.unit}</p>
+                  ) : (
+                    <>
+                      <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+                        {plan.price}
+                      </p>
+                      {plan.unit && (
+                        <p className="text-xs text-neutral-400 mt-1">{plan.unit}</p>
+                      )}
+                    </>
                   )}
                 </div>
 

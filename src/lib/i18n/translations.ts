@@ -450,11 +450,11 @@ const es: SiteCopy = {
           {
             name: "Plataforma Saas",
             tagline: "Aplicaciones web con lógica de negocio.",
-            price: "Desde $1,350",
-            priceOr: "o",
+            price: "$1,350",
+            priceOr: "/",
             priceAlt: "$80",
             unit: "",
-            unitAlt: "USD · por mes",
+            unitAlt: "USD · pago único / por mes",
             features: [
               "App web con autenticación y base de datos",
               "Panel de administrador personalizado",
@@ -1062,11 +1062,11 @@ const en: SiteCopy = {
           {
             name: "SaaS Platform",
             tagline: "Web applications with business logic.",
-            price: "From $1,350",
-            priceOr: "or",
+            price: "$1,350",
+            priceOr: "/",
             priceAlt: "$80",
             unit: "",
-            unitAlt: "USD · per month",
+            unitAlt: "USD · one-time / per month",
             features: [
               "Web app with authentication and database",
               "Custom admin panel",
