@@ -16,6 +16,7 @@ export type PlanCardCopy = {
   unit: string;
   priceOr?: string;
   priceAlt?: string;
+  unitAlt?: string;
   features: string[];
   highlighted?: boolean;
 };
@@ -452,7 +453,8 @@ const es: SiteCopy = {
             price: "Desde $1,350",
             priceOr: "o",
             priceAlt: "$80",
-            unit: "USD · por mes",
+            unit: "",
+            unitAlt: "USD · por mes",
             features: [
               "App web con autenticación y base de datos",
               "Panel de administrador personalizado",
@@ -1063,7 +1065,8 @@ const en: SiteCopy = {
             price: "From $1,350",
             priceOr: "or",
             priceAlt: "$80",
-            unit: "USD · per month",
+            unit: "",
+            unitAlt: "USD · per month",
             features: [
               "Web app with authentication and database",
               "Custom admin panel",

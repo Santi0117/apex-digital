@@ -118,9 +118,16 @@ export default function Plans() {
                       <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 mt-1">
                         {plan.priceAlt}
                       </p>
+                      {plan.unitAlt && (
+                        <p className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-700 dark:text-neutral-200 mt-1">
+                          {plan.unitAlt}
+                        </p>
+                      )}
                     </>
                   )}
-                  <p className="text-xs text-neutral-400 mt-1">{plan.unit}</p>
+                  {plan.unit && !plan.unitAlt && (
+                    <p className="text-xs text-neutral-400 mt-1">{plan.unit}</p>
+                  )}
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-1">
