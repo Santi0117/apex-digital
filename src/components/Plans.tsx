@@ -122,12 +122,12 @@ export default function Plans() {
                         <p className="text-4xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
                           {plan.priceAlt}
                         </p>
+                        {plan.unitAlt && (
+                          <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                            {plan.unitAlt}
+                          </span>
+                        )}
                       </div>
-                      {plan.unitAlt && (
-                        <p className="text-xs text-neutral-400 mt-1">
-                          {plan.unitAlt}
-                        </p>
-                      )}
                     </>
                   ) : (
                     <>
