@@ -35,6 +35,8 @@ export default function BookAppointment() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [notes, setNotes] = useState("");
+  const [modality, setModality] = useState<"virtual" | "in_person">("virtual");
+  const [location, setLocation] = useState("");
   const [website, setWebsite] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -135,6 +137,8 @@ export default function BookAppointment() {
           hour: selectedTime.hour,
           minute: selectedTime.minute,
           notes,
+          modality,
+          location: modality === "in_person" ? location : "",
           website,
         }),
       });
@@ -146,6 +150,8 @@ export default function BookAppointment() {
       setName("");
       setEmail("");
       setNotes("");
+      setModality("virtual");
+      setLocation("");
       setSelectedTime(null);
       await reloadBooked();
     } catch (err) {
@@ -340,6 +346,56 @@ export default function BookAppointment() {
                           placeholder={b.emailPlaceholder}
                           className={inputClass}
                         />
+
+                        <fieldset className="space-y-2">
+                          <legend className="text-xs font-medium text-neutral-500 mb-1.5">
+                            {b.modalityLabel}
+                          </legend>
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setModality("virtual");
+                                setLocation("");
+                              }}
+                              className={`appearance-none rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                                modality === "virtual"
+                                  ? "border-accent bg-accent text-white"
+                                  : "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-accent/50"
+                              }`}
+                            >
+                              {b.modalityVirtual}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setModality("in_person")}
+                              className={`appearance-none rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                                modality === "in_person"
+                                  ? "border-accent bg-accent text-white"
+                                  : "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-accent/50"
+                              }`}
+                            >
+                              {b.modalityInPerson}
+                            </button>
+                          </div>
+                        </fieldset>
+
+                        {modality === "in_person" && (
+                          <div>
+                            <label className="block text-xs font-medium text-neutral-500 mb-1.5">
+                              {b.locationLabel}
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={location}
+                              onChange={(e) => setLocation(e.target.value)}
+                              placeholder={b.locationPlaceholder}
+                              className={inputClass}
+                            />
+                          </div>
+                        )}
+
                         <textarea
                           value={notes}
                           onChange={(e) => setNotes(e.target.value)}

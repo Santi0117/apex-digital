@@ -108,6 +108,10 @@ export async function POST(request: Request) {
     const minute = Number(body.minute);
     const notes =
       typeof body.notes === "string" ? body.notes.trim().slice(0, 500) : "";
+    const modality =
+      body.modality === "in_person" ? "in_person" : "virtual";
+    const location =
+      typeof body.location === "string" ? body.location.trim().slice(0, 300) : "";
 
     if (!email || !isValidEmail(email)) {
       return NextResponse.json({ error: "Ingresá un correo válido." }, { status: 400 });
@@ -116,6 +120,13 @@ export async function POST(request: Request) {
     if (!name || name.length < 2) {
       return NextResponse.json(
         { error: "Ingresá tu nombre o el de tu empresa." },
+        { status: 400 }
+      );
+    }
+
+    if (modality === "in_person" && location.length < 3) {
+      return NextResponse.json(
+        { error: "Indicá dónde te gustaría la reunión presencial." },
         { status: 400 }
       );
     }
@@ -147,12 +158,33 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Error de configuración." }, { status: 503 });
     }
 
-    const { error: dbError } = await supabase.from("appointments").insert({
+    const modalityNote =
+      modality === "in_person"
+        ? `Modalidad: Presencial · Lugar: ${location}`
+        : "Modalidad: Virtual";
+    const combinedNotes = notes
+      ? `${modalityNote}\n${notes}`
+      : modalityNote;
+
+    let { error: dbError } = await supabase.from("appointments").insert({
       email,
       name,
       scheduled_at: scheduledAt,
-      notes: notes || null,
+      notes: combinedNotes,
+      modality,
+      location: modality === "in_person" ? location : null,
     });
+
+    // Fallback si aún no existen las columnas modality/location
+    if (dbError?.message?.includes("modality") || dbError?.message?.includes("location")) {
+      const retry = await supabase.from("appointments").insert({
+        email,
+        name,
+        scheduled_at: scheduledAt,
+        notes: combinedNotes,
+      });
+      dbError = retry.error;
+    }
 
     if (dbError) {
       if (dbError.code === "23505") {

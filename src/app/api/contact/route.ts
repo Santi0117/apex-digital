@@ -4,6 +4,7 @@ import { getSupabaseAdmin, isDatabaseConfigured } from "@/lib/supabase";
 export type ContactPayload = {
   email: string;
   name: string;
+  service: string;
   interest: string;
   budget: string;
 };
@@ -15,6 +16,7 @@ const RATE_WINDOW_MS = 60_000;
 const LIMITS = {
   email: 254,
   name: 200,
+  service: 120,
   interest: 2000,
   budget: 100,
 } as const;
@@ -85,6 +87,10 @@ export async function POST(request: Request) {
       typeof body.name === "string" ? body.name.trim() : "",
       LIMITS.name
     );
+    const service = truncate(
+      typeof body.service === "string" ? body.service.trim() : "",
+      LIMITS.service
+    );
     const interest = truncate(
       typeof body.interest === "string" ? body.interest.trim() : "",
       LIMITS.interest
@@ -104,6 +110,13 @@ export async function POST(request: Request) {
     if (!name || name.length < 2) {
       return NextResponse.json(
         { error: "Ingresá tu nombre o el de tu empresa." },
+        { status: 400 }
+      );
+    }
+
+    if (!service) {
+      return NextResponse.json(
+        { error: "Seleccioná el servicio que te interesa." },
         { status: 400 }
       );
     }
@@ -130,12 +143,24 @@ export async function POST(request: Request) {
       );
     }
 
-    const { error: dbError } = await supabase.from("contact_submissions").insert({
+    let { error: dbError } = await supabase.from("contact_submissions").insert({
       email,
       name,
+      service,
       interest,
       budget,
     });
+
+    // Fallback si aún no existe la columna service
+    if (dbError?.message?.includes("service")) {
+      const retry = await supabase.from("contact_submissions").insert({
+        email,
+        name,
+        interest: `[Servicio: ${service}]\n${interest}`,
+        budget,
+      });
+      dbError = retry.error;
+    }
 
     if (dbError) {
       console.error("[contact-form] DB error:", dbError.message);

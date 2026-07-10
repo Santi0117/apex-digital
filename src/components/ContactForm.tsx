@@ -10,6 +10,7 @@ export default function ContactForm() {
   const c = copy.contact;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [service, setService] = useState("");
   const [interest, setInterest] = useState("");
   const [budget, setBudget] = useState("");
   const [website, setWebsite] = useState("");
@@ -27,7 +28,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, interest, budget, website }),
+        body: JSON.stringify({ email, name, service, interest, budget, website }),
       });
 
       const data = await res.json();
@@ -39,6 +40,7 @@ export default function ContactForm() {
       setSuccess(data.message);
       setEmail("");
       setName("");
+      setService("");
       setInterest("");
       setBudget("");
     } catch (err) {
@@ -109,6 +111,31 @@ export default function ContactForm() {
                 placeholder={c.namePlaceholder}
                 className={inputClass}
               />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-service"
+                className="block text-xs font-medium text-neutral-500 mb-1.5"
+              >
+                {c.serviceLabel}
+              </label>
+              <select
+                id="contact-service"
+                required
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                className={`${inputClass} appearance-none cursor-pointer`}
+              >
+                <option value="" disabled>
+                  {c.servicePlaceholder}
+                </option>
+                {c.serviceOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>

@@ -205,6 +205,11 @@ export type SiteCopy = {
     namePlaceholder: string;
     emailPlaceholder: string;
     notesPlaceholder: string;
+    modalityLabel: string;
+    modalityVirtual: string;
+    modalityInPerson: string;
+    locationLabel: string;
+    locationPlaceholder: string;
     confirmButton: string;
     loadingButton: string;
     errorBooking: string;
@@ -218,6 +223,9 @@ export type SiteCopy = {
     emailPlaceholder: string;
     nameLabel: string;
     namePlaceholder: string;
+    serviceLabel: string;
+    servicePlaceholder: string;
+    serviceOptions: string[];
     interestLabel: string;
     interestPlaceholder: string;
     budgetLabel: string;
@@ -716,6 +724,11 @@ const es: SiteCopy = {
     namePlaceholder: "Nombre o empresa",
     emailPlaceholder: "Correo electrónico",
     notesPlaceholder: "Notas opcionales (tema de la reunión)",
+    modalityLabel: "Modalidad de la reunión",
+    modalityVirtual: "Virtual",
+    modalityInPerson: "Presencial",
+    locationLabel: "¿Dónde te gustaría reunirnos?",
+    locationPlaceholder: "Ej: San José, Heredia, tu oficina...",
     confirmButton: "Confirmar cita",
     loadingButton: "Agendando...",
     errorBooking: "No se pudo agendar.",
@@ -730,6 +743,16 @@ const es: SiteCopy = {
     emailPlaceholder: "tu@empresa.com",
     nameLabel: "Nombre o empresa",
     namePlaceholder: "Tu nombre o nombre de la empresa",
+    serviceLabel: "¿Qué servicio te interesa?",
+    servicePlaceholder: "Seleccioná un servicio",
+    serviceOptions: [
+      "Sitios web",
+      "Software a medida",
+      "Tienda online (e-commerce)",
+      "App móvil",
+      "Mantenimiento",
+      "Otro / aún no lo sé",
+    ],
     interestLabel: "Motivo o interés",
     interestPlaceholder:
       "Ej: Necesito una tienda online para vender productos artesanales...",
@@ -1327,6 +1350,11 @@ const en: SiteCopy = {
     namePlaceholder: "Name or company",
     emailPlaceholder: "Email address",
     notesPlaceholder: "Optional notes (meeting topic)",
+    modalityLabel: "Meeting format",
+    modalityVirtual: "Virtual",
+    modalityInPerson: "In person",
+    locationLabel: "Where would you like to meet?",
+    locationPlaceholder: "E.g.: San José, Heredia, your office...",
     confirmButton: "Confirm appointment",
     loadingButton: "Booking...",
     errorBooking: "Could not book the appointment.",
@@ -1341,6 +1369,16 @@ const en: SiteCopy = {
     emailPlaceholder: "you@company.com",
     nameLabel: "Name or company",
     namePlaceholder: "Your name or company name",
+    serviceLabel: "Which service are you interested in?",
+    servicePlaceholder: "Select a service",
+    serviceOptions: [
+      "Websites",
+      "Custom software",
+      "Online store (e-commerce)",
+      "Mobile app",
+      "Maintenance",
+      "Other / not sure yet",
+    ],
     interestLabel: "Reason or interest",
     interestPlaceholder:
       "E.g.: I need an online store to sell handmade products...",
