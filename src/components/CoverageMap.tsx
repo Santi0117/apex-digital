@@ -5,6 +5,7 @@ import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
 import {
   americasCountries,
+  americasDecorCountries,
   defaultCountry,
   type CountryInfo,
 } from "@/lib/americas-countries";
@@ -32,16 +33,27 @@ export default function CoverageMap() {
 
         <ScrollReveal delay={120}>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start">
-            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/50 p-4 sm:p-6 md:p-8">
+            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#ebe6dc] dark:bg-[#1a1f24] p-4 sm:p-6 md:p-8">
               <svg
                 viewBox="0 0 520 720"
                 className="w-full h-auto max-h-[560px] mx-auto"
                 role="img"
                 aria-label={c.mapAria}
               >
+                {americasDecorCountries.map((country) => (
+                  <path
+                    key={country.id}
+                    d={country.path}
+                    className="fill-[#1f4d5c] dark:fill-neutral-600 pointer-events-none"
+                    stroke="rgba(235,230,220,0.85)"
+                    strokeWidth={0.6}
+                  />
+                ))}
+
                 {americasCountries.map((country) => {
                   const isActive = active.id === country.id;
                   const isHovered = hovered?.id === country.id;
+                  const highlighted = isActive || isHovered;
 
                   return (
                     <path
@@ -54,24 +66,25 @@ export default function CoverageMap() {
                       onBlur={() => setHovered(null)}
                       tabIndex={0}
                       role="button"
-                      aria-label={`${c.countryAriaPrefix}${countryCopy?.name ?? country.name}`}
+                      aria-label={`${c.countryAriaPrefix}${c.countries[country.id]?.name ?? country.name}`}
                       aria-pressed={isActive}
-                      className={`cursor-pointer outline-none transition-all duration-300 ease-out stroke-white dark:stroke-neutral-900 stroke-[1.5] focus-visible:fill-accent focus-visible:stroke-accent ${
-                        isActive || isHovered
-                          ? "fill-accent stroke-accent-hover"
-                          : "fill-neutral-200 dark:fill-neutral-700 hover:fill-accent-muted/60"
+                      className={`cursor-pointer outline-none transition-[fill,filter] duration-300 ease-out focus-visible:fill-accent ${
+                        highlighted
+                          ? "fill-accent"
+                          : "fill-[#1f4d5c] dark:fill-neutral-600 hover:fill-[#2a6a7d] dark:hover:fill-neutral-500"
                       }`}
+                      stroke={highlighted ? "rgb(8 145 178)" : "rgba(235,230,220,0.9)"}
+                      strokeWidth={highlighted ? 1.1 : 0.55}
                       style={{
-                        filter:
-                          isActive || isHovered
-                            ? "drop-shadow(0 4px 12px rgb(8 145 178 / 0.25))"
-                            : "none",
+                        filter: highlighted
+                          ? "drop-shadow(0 4px 14px rgb(8 145 178 / 0.35))"
+                          : "none",
                       }}
                     />
                   );
                 })}
               </svg>
-              <p className="text-xs text-neutral-400 mt-4 text-center lg:text-left">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4 text-center lg:text-left">
                 {c.mapHint}
               </p>
             </div>
