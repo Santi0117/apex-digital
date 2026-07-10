@@ -217,6 +217,11 @@ export type SiteCopy = {
     locationPlaceholder: string;
     confirmButton: string;
     loadingButton: string;
+    successTitle: string;
+    successMessage: string;
+    successDateLabel: string;
+    successTimeLabel: string;
+    successModalityLabel: string;
     errorBooking: string;
     errorConnection: string;
   };
@@ -743,6 +748,11 @@ const es: SiteCopy = {
     locationPlaceholder: "Ej: San José, Heredia, tu oficina...",
     confirmButton: "Confirmar cita",
     loadingButton: "Agendando...",
+    successTitle: "¡Cita confirmada!",
+    successMessage: "Recibimos tu solicitud. Te contactamos pronto para confirmar los detalles.",
+    successDateLabel: "Fecha",
+    successTimeLabel: "Hora",
+    successModalityLabel: "Modalidad",
     errorBooking: "No se pudo agendar.",
     errorConnection: "Error de conexión.",
   },
@@ -1376,6 +1386,11 @@ const en: SiteCopy = {
     locationPlaceholder: "E.g.: San José, Heredia, your office...",
     confirmButton: "Confirm appointment",
     loadingButton: "Booking...",
+    successTitle: "Appointment confirmed!",
+    successMessage: "We received your request. We'll contact you soon to confirm the details.",
+    successDateLabel: "Date",
+    successTimeLabel: "Time",
+    successModalityLabel: "Format",
     errorBooking: "Could not book the appointment.",
     errorConnection: "Connection error.",
   },

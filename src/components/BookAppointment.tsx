@@ -24,6 +24,14 @@ function slotKey(dateKey: string, hour: number, minute: number) {
   return localCostaRicaToISO(dateKey, hour, minute);
 }
 
+type ConfirmedAppointment = {
+  date: string;
+  hour: number;
+  minute: number;
+  modality: "virtual" | "in_person";
+  location: string | null;
+};
+
 export default function BookAppointment() {
   const { locale, copy } = useLanguage();
   const b = copy.booking;
@@ -47,7 +55,8 @@ export default function BookAppointment() {
   const [website, setWebsite] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [confirmedAppointment, setConfirmedAppointment] =
+    useState<ConfirmedAppointment | null>(null);
 
   const timeSlots = useMemo(() => buildTimeSlots(locale), [locale]);
   const timeSlotsByPeriod = useMemo(() => groupTimeSlotsByPeriod(timeSlots), [timeSlots]);
@@ -106,6 +115,7 @@ export default function BookAppointment() {
     setSelectedDate(null);
     setSelectedTime(null);
     setTimePeriod("morning");
+    setConfirmedAppointment(null);
   };
 
   const goNextMonth = () => {
@@ -118,6 +128,7 @@ export default function BookAppointment() {
     setSelectedDate(null);
     setSelectedTime(null);
     setTimePeriod("morning");
+    setConfirmedAppointment(null);
   };
 
   const isSlotTaken = (dateKey: string, hour: number, minute: number) =>
@@ -159,7 +170,6 @@ export default function BookAppointment() {
 
     setLoading(true);
     setError(null);
-    setSuccess(null);
 
     try {
       const res = await fetch("/api/booking", {
@@ -184,7 +194,13 @@ export default function BookAppointment() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? b.errorBooking);
 
-      setSuccess(data.message);
+      setConfirmedAppointment({
+        date: selectedDate,
+        hour: selectedTime.hour,
+        minute: selectedTime.minute,
+        modality,
+        location: modality === "in_person" ? location : null,
+      });
       setName("");
       setEmail("");
       setPhone("");
@@ -265,7 +281,7 @@ export default function BookAppointment() {
                           setSelectedTime(null);
                           setTimePeriod(pickDefaultPeriod(cell.iso));
                           setError(null);
-                          setSuccess(null);
+                          setConfirmedAppointment(null);
                         }}
                         className={`aspect-square rounded-xl text-sm font-medium transition-all duration-200 ${
                           !cell.inMonth
@@ -329,7 +345,7 @@ export default function BookAppointment() {
                                 setTimePeriod(period.id);
                                 setSelectedTime(null);
                                 setError(null);
-                                setSuccess(null);
+                                setConfirmedAppointment(null);
                               }}
                               className={`appearance-none rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200 ${
                                 timePeriod === period.id
@@ -366,7 +382,7 @@ export default function BookAppointment() {
                               onClick={() => {
                                 setSelectedTime({ hour, minute });
                                 setError(null);
-                                setSuccess(null);
+                                setConfirmedAppointment(null);
                               }}
                               className={`appearance-none rounded-xl border px-2 py-2.5 text-xs font-medium transition-all duration-200 ${
                                 disabled
@@ -383,7 +399,54 @@ export default function BookAppointment() {
                       </div>
                     </div>
 
-                    {selectedTime && (
+                    {confirmedAppointment && (
+                      <div
+                        role="status"
+                        className="rounded-2xl border border-accent/25 bg-accent-soft/70 dark:bg-cyan-950/35 px-5 py-6 text-center"
+                      >
+                        <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white text-lg font-semibold">
+                          ✓
+                        </div>
+                        <h4 className="text-base font-medium text-neutral-900 dark:text-neutral-100">
+                          {b.successTitle}
+                        </h4>
+                        <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400">
+                          {b.successMessage}
+                        </p>
+                        <dl className="mt-4 space-y-2 rounded-xl border border-accent/15 bg-white/70 dark:bg-neutral-900/50 px-4 py-3 text-left text-sm">
+                          <div className="flex items-start justify-between gap-4">
+                            <dt className="text-neutral-500">{b.successDateLabel}</dt>
+                            <dd className="font-medium text-neutral-900 dark:text-neutral-100 capitalize text-right">
+                              {formatSelectedDate(confirmedAppointment.date, locale)}
+                            </dd>
+                          </div>
+                          <div className="flex items-start justify-between gap-4">
+                            <dt className="text-neutral-500">{b.successTimeLabel}</dt>
+                            <dd className="font-medium text-neutral-900 dark:text-neutral-100">
+                              {formatSlotLabel(
+                                confirmedAppointment.hour,
+                                confirmedAppointment.minute,
+                                locale
+                              )}
+                            </dd>
+                          </div>
+                          <div className="flex items-start justify-between gap-4">
+                            <dt className="text-neutral-500">{b.successModalityLabel}</dt>
+                            <dd className="font-medium text-neutral-900 dark:text-neutral-100 text-right">
+                              {confirmedAppointment.modality === "in_person"
+                                ? `${b.modalityInPerson}${
+                                    confirmedAppointment.location
+                                      ? ` · ${confirmedAppointment.location}`
+                                      : ""
+                                  }`
+                                : b.modalityVirtual}
+                            </dd>
+                          </div>
+                        </dl>
+                      </div>
+                    )}
+
+                    {selectedTime && !confirmedAppointment && (
                       <form
                         onSubmit={handleSubmit}
                         className="space-y-4 pt-2 border-t border-neutral-200 dark:border-neutral-800"
@@ -497,14 +560,6 @@ export default function BookAppointment() {
                         {error && (
                           <p role="alert" className="text-sm text-red-500">
                             {error}
-                          </p>
-                        )}
-                        {success && (
-                          <p
-                            role="status"
-                            className="text-sm text-accent-hover bg-accent-soft dark:bg-cyan-950/40 px-4 py-3 rounded-xl"
-                          >
-                            {success}
                           </p>
                         )}
 
