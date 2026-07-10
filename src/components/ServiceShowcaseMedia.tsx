@@ -85,7 +85,7 @@ export default function ServiceShowcaseMedia({
               </button>
 
               <div
-                className="relative mx-auto w-[min(92vw,960px)] h-[min(75vh,600px)]"
+                className="relative mx-auto w-[min(96vw,960px)] h-[min(88vh,720px)] sm:h-[min(75vh,600px)]"
                 onClick={(e) => e.stopPropagation()}
               >
                 <video
@@ -105,29 +105,35 @@ export default function ServiceShowcaseMedia({
 
     return (
       <>
-        <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-neutral-800">
+        <div>
+          <div className="relative w-full h-[min(62vw,340px)] sm:h-auto sm:min-h-0 sm:aspect-video rounded-none sm:rounded-xl overflow-hidden bg-black border-y sm:border border-neutral-800">
+            <button
+              type="button"
+              className="absolute inset-0 w-full h-full cursor-zoom-in"
+              onClick={() => setExpanded(true)}
+              aria-label={videoHint}
+            >
+              <video
+                ref={videoRef}
+                poster={poster}
+                muted
+                loop
+                playsInline
+                preload={isActive ? "metadata" : "none"}
+                src={isActive ? videoSrc : undefined}
+                onError={() => setVideoFailed(true)}
+                className="w-full h-full object-contain object-center sm:p-1 pointer-events-none"
+              />
+            </button>
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none" />
+          </div>
           <button
             type="button"
-            className="absolute inset-0 w-full h-full cursor-zoom-in"
             onClick={() => setExpanded(true)}
-            aria-label={videoHint}
+            className="w-full px-4 py-3.5 sm:py-2.5 text-center text-sm sm:text-xs font-medium text-accent hover:text-accent-hover transition-colors"
           >
-            <video
-              ref={videoRef}
-              poster={poster}
-              muted
-              loop
-              playsInline
-              preload={isActive ? "metadata" : "none"}
-              src={isActive ? videoSrc : undefined}
-              onError={() => setVideoFailed(true)}
-              className="w-full h-full object-contain object-center p-1 pointer-events-none"
-            />
+            {videoHint}
           </button>
-          <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
-            <p className="text-[11px] text-white/90 text-center">{videoHint}</p>
-          </div>
         </div>
         {lightbox}
       </>

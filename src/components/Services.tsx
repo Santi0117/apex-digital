@@ -87,7 +87,7 @@ export default function Services() {
         </ScrollReveal>
 
         <ScrollReveal delay={80}>
-          <div className="bg-stars rounded-3xl border border-neutral-200/80 dark:border-neutral-800 p-4 md:p-6 lg:p-8">
+          <div className="bg-stars rounded-3xl border border-neutral-200/80 dark:border-neutral-800 p-3 md:p-6 lg:p-8">
             <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
               <nav
                 className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0 lg:w-[240px] shrink-0 snap-x snap-mandatory lg:snap-none"
@@ -128,8 +128,8 @@ export default function Services() {
                 })}
               </nav>
 
-              <article className="flex-1 min-w-0 rounded-2xl border border-neutral-200/80 dark:border-neutral-800 bg-white/85 dark:bg-neutral-900/85 backdrop-blur-sm overflow-hidden">
-                <div className="p-5 md:p-6 lg:p-7 border-b border-neutral-100 dark:border-neutral-800">
+              <article className="flex-1 min-w-0 rounded-2xl border border-neutral-200/80 dark:border-neutral-800 bg-white/85 dark:bg-neutral-900/85 backdrop-blur-sm overflow-hidden flex flex-col">
+                <div className="order-2 lg:order-1 p-4 md:p-6 lg:p-7 lg:border-b border-neutral-100 dark:border-neutral-800">
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <span className="font-mono text-[10px] tracking-wider text-accent">
                       {showcaseCodes[activeIndex]}
@@ -154,7 +154,7 @@ export default function Services() {
                   </p>
                 </div>
 
-                <div className="p-5 md:p-6 lg:p-7">
+                <div className="order-1 lg:order-2 px-0 py-0 border-b border-neutral-100 dark:border-neutral-800 lg:border-b-0 md:px-6 md:py-6 lg:px-7 lg:py-7">
                   <ServiceShowcaseMedia
                     key={activeIndex}
                     videoSrc={activeVideo ?? undefined}

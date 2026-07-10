@@ -163,7 +163,7 @@ export default function ServiceImageCarousel({
 
   return (
     <>
-      <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-neutral-800 group/carousel transition-shadow duration-300 hover:ring-1 hover:ring-accent/25">
+      <div className="relative w-full h-[min(62vw,340px)] sm:h-auto sm:min-h-0 sm:aspect-video rounded-none sm:rounded-xl overflow-hidden bg-black border-y sm:border border-neutral-800 group/carousel transition-shadow duration-300 hover:ring-1 hover:ring-accent/25">
         <button
           type="button"
           className="absolute inset-0 w-full h-full cursor-zoom-in"
@@ -174,7 +174,7 @@ export default function ServiceImageCarousel({
             src={images[index]}
             alt={`${alt} ${index + 1}`}
             fill
-            className="object-contain object-center p-2 pointer-events-none"
+            className="object-contain object-center sm:p-2 pointer-events-none"
             sizes="(max-width: 768px) 100vw, 480px"
             quality={90}
           />
