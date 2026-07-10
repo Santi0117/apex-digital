@@ -1,4 +1,4 @@
-import type { ProvinceId } from "@/lib/costa-rica-provinces";
+import type { CountryId } from "@/lib/americas-countries";
 
 export type Locale = "es" | "en";
 
@@ -173,8 +173,8 @@ export type SiteCopy = {
     description: string;
     mapAria: string;
     mapHint: string;
-    provinceLabel: string;
-    provinceAriaPrefix: string;
+    countryLabel: string;
+    countryAriaPrefix: string;
     capitalPrefix: string;
     stats: {
       businessesLabel: string;
@@ -183,9 +183,11 @@ export type SiteCopy = {
       servicesLabel: string;
     };
     consultCta: string;
-    provinces: Record<
-      ProvinceId,
+    countries: Record<
+      CountryId,
       {
+        name: string;
+        capital: string;
         highlight: string;
         services: string;
       }
@@ -674,49 +676,177 @@ const es: SiteCopy = {
   },
   coverage: {
     label: "Cobertura",
-    title: "Trabajamos en todo Costa Rica",
+    title: "Trabajamos en toda América",
     description:
-      "Seleccioná una provincia en el mapa para conocer más sobre la cobertura y servicios disponibles en cada zona.",
-    mapAria: "Mapa interactivo de Costa Rica por provincias",
-    mapHint: "Tocá o pasá el cursor sobre una provincia",
-    provinceLabel: "Provincia",
-    provinceAriaPrefix: "Provincia de ",
+      "Seleccioná un país en el mapa para conocer más sobre la cobertura y servicios disponibles en cada región.",
+    mapAria: "Mapa interactivo de América por países",
+    mapHint: "Tocá o pasá el cursor sobre un país",
+    countryLabel: "País",
+    countryAriaPrefix: "País: ",
     capitalPrefix: "Capital: ",
     stats: {
-      businessesLabel: "Negocios sin digitalización.",
-      pymesSuffix: "pymes.",
+      businessesLabel: "Mercado estimado",
+      pymesSuffix: "habitantes.",
       zoneLabel: "Zona",
       servicesLabel: "Servicios frecuentes",
     },
     consultCta: "Consultar disponibilidad →",
-    provinces: {
-      CRA: {
-        highlight: "Zona norte y Arenal",
-        services: "E-commerce, sitios corporativos",
+    countries: {
+      CA: {
+        name: "Canadá",
+        capital: "Ottawa",
+        highlight: "Norteamérica · inglés y francés",
+        services: "Sitios corporativos, SaaS",
       },
-      CRG: {
-        highlight: "Pacífico norte, turismo",
-        services: "Tiendas online, reservas",
+      US: {
+        name: "Estados Unidos",
+        capital: "Washington D.C.",
+        highlight: "Mercado digital maduro",
+        services: "E-commerce, software a medida",
       },
-      CRL: {
-        highlight: "Caribe costero",
-        services: "Sitios web, logística digital",
+      MX: {
+        name: "México",
+        capital: "Ciudad de México",
+        highlight: "Hub de LatAm norte",
+        services: "Tiendas online, apps web",
       },
-      CRP: {
-        highlight: "Pacífico central y sur",
-        services: "E-commerce, portafolios",
+      GT: {
+        name: "Guatemala",
+        capital: "Ciudad de Guatemala",
+        highlight: "Centroamérica",
+        services: "Sitios web, e-commerce",
       },
-      CRH: {
-        highlight: "Hub tecnológico",
+      BZ: {
+        name: "Belice",
+        capital: "Belmopán",
+        highlight: "Caribe centroamericano",
+        services: "Landing pages, reservas",
+      },
+      HN: {
+        name: "Honduras",
+        capital: "Tegucigalpa",
+        highlight: "Centroamérica",
+        services: "Sitios corporativos, catálogos",
+      },
+      SV: {
+        name: "El Salvador",
+        capital: "San Salvador",
+        highlight: "Centroamérica",
+        services: "E-commerce, landing pages",
+      },
+      NI: {
+        name: "Nicaragua",
+        capital: "Managua",
+        highlight: "Centroamérica",
+        services: "Sitios web, formularios",
+      },
+      CR: {
+        name: "Costa Rica",
+        capital: "San José",
+        highlight: "Base de operaciones · Valle Central",
+        services: "Proyectos full-stack, SaaS, e-commerce",
+      },
+      PA: {
+        name: "Panamá",
+        capital: "Ciudad de Panamá",
+        highlight: "Hub logístico y financiero",
+        services: "Sitios corporativos, software",
+      },
+      CU: {
+        name: "Cuba",
+        capital: "La Habana",
+        highlight: "Caribe",
+        services: "Sitios web, portafolios",
+      },
+      DO: {
+        name: "Rep. Dominicana",
+        capital: "Santo Domingo",
+        highlight: "Caribe",
+        services: "E-commerce, turismo digital",
+      },
+      HT: {
+        name: "Haití",
+        capital: "Puerto Príncipe",
+        highlight: "Caribe",
+        services: "Sitios web, landing pages",
+      },
+      JM: {
+        name: "Jamaica",
+        capital: "Kingston",
+        highlight: "Caribe anglófono",
+        services: "Sitios web, reservas",
+      },
+      CO: {
+        name: "Colombia",
+        capital: "Bogotá",
+        highlight: "Andes · mercado en crecimiento",
+        services: "E-commerce, apps SaaS",
+      },
+      VE: {
+        name: "Venezuela",
+        capital: "Caracas",
+        highlight: "Norte de Sudamérica",
+        services: "Sitios web, catálogos",
+      },
+      GY: {
+        name: "Guyana",
+        capital: "Georgetown",
+        highlight: "Escudo guayanés",
+        services: "Landing pages, sitios corporativos",
+      },
+      SR: {
+        name: "Surinam",
+        capital: "Paramaribo",
+        highlight: "Escudo guayanés",
+        services: "Sitios web, portafolios",
+      },
+      EC: {
+        name: "Ecuador",
+        capital: "Quito",
+        highlight: "Pacífico andino",
+        services: "E-commerce, sitios web",
+      },
+      PE: {
+        name: "Perú",
+        capital: "Lima",
+        highlight: "Andes · costa pacífica",
+        services: "Tiendas online, software",
+      },
+      BR: {
+        name: "Brasil",
+        capital: "Brasilia",
+        highlight: "Mayor mercado de LatAm",
+        services: "E-commerce, SaaS, apps",
+      },
+      BO: {
+        name: "Bolivia",
+        capital: "Sucre",
+        highlight: "Andes centrales",
+        services: "Sitios web, catálogos",
+      },
+      PY: {
+        name: "Paraguay",
+        capital: "Asunción",
+        highlight: "Cono Sur",
+        services: "Sitios corporativos, e-commerce",
+      },
+      UY: {
+        name: "Uruguay",
+        capital: "Montevideo",
+        highlight: "Cono Sur · tech hub",
         services: "Software a medida, SaaS",
       },
-      CRSJ: {
-        highlight: "Capital, centro económico",
-        services: "Proyectos full-stack, E-commerce",
+      AR: {
+        name: "Argentina",
+        capital: "Buenos Aires",
+        highlight: "Cono Sur · talento tech",
+        services: "Apps, e-commerce, SaaS",
       },
-      CRC: {
-        highlight: "Valle Central oriental",
-        services: "Apps SaaS, landing pages",
+      CL: {
+        name: "Chile",
+        capital: "Santiago",
+        highlight: "Pacífico sur",
+        services: "Sitios corporativos, software",
       },
     },
   },
@@ -1312,49 +1442,177 @@ const en: SiteCopy = {
   },
   coverage: {
     label: "Coverage",
-    title: "We work across all of Costa Rica",
+    title: "We work across the Americas",
     description:
-      "Select a province on the map to learn more about coverage and available services in each area.",
-    mapAria: "Interactive map of Costa Rica by province",
-    mapHint: "Tap or hover over a province",
-    provinceLabel: "Province",
-    provinceAriaPrefix: "Province of ",
+      "Select a country on the map to learn more about coverage and available services in each region.",
+    mapAria: "Interactive map of the Americas by country",
+    mapHint: "Tap or hover over a country",
+    countryLabel: "Country",
+    countryAriaPrefix: "Country: ",
     capitalPrefix: "Capital: ",
     stats: {
-      businessesLabel: "Businesses without digitalization.",
-      pymesSuffix: "SMBs.",
+      businessesLabel: "Estimated market",
+      pymesSuffix: "people.",
       zoneLabel: "Area",
       servicesLabel: "Common services",
     },
     consultCta: "Check availability →",
-    provinces: {
-      CRA: {
-        highlight: "Northern zone and Arenal",
-        services: "E-commerce, corporate websites",
+    countries: {
+      CA: {
+        name: "Canada",
+        capital: "Ottawa",
+        highlight: "North America · English & French",
+        services: "Corporate sites, SaaS",
       },
-      CRG: {
-        highlight: "Northern Pacific, tourism",
-        services: "Online stores, booking systems",
+      US: {
+        name: "United States",
+        capital: "Washington D.C.",
+        highlight: "Mature digital market",
+        services: "E-commerce, custom software",
       },
-      CRL: {
-        highlight: "Caribbean coast",
-        services: "Websites, digital logistics",
+      MX: {
+        name: "Mexico",
+        capital: "Mexico City",
+        highlight: "Northern LatAm hub",
+        services: "Online stores, web apps",
       },
-      CRP: {
-        highlight: "Central and southern Pacific",
-        services: "E-commerce, portfolios",
+      GT: {
+        name: "Guatemala",
+        capital: "Guatemala City",
+        highlight: "Central America",
+        services: "Websites, e-commerce",
       },
-      CRH: {
-        highlight: "Tech hub",
+      BZ: {
+        name: "Belize",
+        capital: "Belmopan",
+        highlight: "Central American Caribbean",
+        services: "Landing pages, booking systems",
+      },
+      HN: {
+        name: "Honduras",
+        capital: "Tegucigalpa",
+        highlight: "Central America",
+        services: "Corporate sites, catalogs",
+      },
+      SV: {
+        name: "El Salvador",
+        capital: "San Salvador",
+        highlight: "Central America",
+        services: "E-commerce, landing pages",
+      },
+      NI: {
+        name: "Nicaragua",
+        capital: "Managua",
+        highlight: "Central America",
+        services: "Websites, forms",
+      },
+      CR: {
+        name: "Costa Rica",
+        capital: "San José",
+        highlight: "Home base · Central Valley",
+        services: "Full-stack projects, SaaS, e-commerce",
+      },
+      PA: {
+        name: "Panama",
+        capital: "Panama City",
+        highlight: "Logistics & finance hub",
+        services: "Corporate sites, software",
+      },
+      CU: {
+        name: "Cuba",
+        capital: "Havana",
+        highlight: "Caribbean",
+        services: "Websites, portfolios",
+      },
+      DO: {
+        name: "Dominican Republic",
+        capital: "Santo Domingo",
+        highlight: "Caribbean",
+        services: "E-commerce, tourism digital",
+      },
+      HT: {
+        name: "Haiti",
+        capital: "Port-au-Prince",
+        highlight: "Caribbean",
+        services: "Websites, landing pages",
+      },
+      JM: {
+        name: "Jamaica",
+        capital: "Kingston",
+        highlight: "English-speaking Caribbean",
+        services: "Websites, booking systems",
+      },
+      CO: {
+        name: "Colombia",
+        capital: "Bogotá",
+        highlight: "Andes · growing market",
+        services: "E-commerce, SaaS apps",
+      },
+      VE: {
+        name: "Venezuela",
+        capital: "Caracas",
+        highlight: "Northern South America",
+        services: "Websites, catalogs",
+      },
+      GY: {
+        name: "Guyana",
+        capital: "Georgetown",
+        highlight: "Guiana Shield",
+        services: "Landing pages, corporate sites",
+      },
+      SR: {
+        name: "Suriname",
+        capital: "Paramaribo",
+        highlight: "Guiana Shield",
+        services: "Websites, portfolios",
+      },
+      EC: {
+        name: "Ecuador",
+        capital: "Quito",
+        highlight: "Andean Pacific",
+        services: "E-commerce, websites",
+      },
+      PE: {
+        name: "Peru",
+        capital: "Lima",
+        highlight: "Andes · Pacific coast",
+        services: "Online stores, software",
+      },
+      BR: {
+        name: "Brazil",
+        capital: "Brasília",
+        highlight: "Largest LatAm market",
+        services: "E-commerce, SaaS, apps",
+      },
+      BO: {
+        name: "Bolivia",
+        capital: "Sucre",
+        highlight: "Central Andes",
+        services: "Websites, catalogs",
+      },
+      PY: {
+        name: "Paraguay",
+        capital: "Asunción",
+        highlight: "Southern Cone",
+        services: "Corporate sites, e-commerce",
+      },
+      UY: {
+        name: "Uruguay",
+        capital: "Montevideo",
+        highlight: "Southern Cone · tech hub",
         services: "Custom software, SaaS",
       },
-      CRSJ: {
-        highlight: "Capital, economic center",
-        services: "Full-stack projects, e-commerce",
+      AR: {
+        name: "Argentina",
+        capital: "Buenos Aires",
+        highlight: "Southern Cone · tech talent",
+        services: "Apps, e-commerce, SaaS",
       },
-      CRC: {
-        highlight: "Eastern Central Valley",
-        services: "SaaS apps, landing pages",
+      CL: {
+        name: "Chile",
+        capital: "Santiago",
+        highlight: "Southern Pacific",
+        services: "Corporate sites, software",
       },
     },
   },
