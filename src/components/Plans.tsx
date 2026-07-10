@@ -47,16 +47,19 @@ export default function Plans() {
         </ScrollReveal>
 
         <ScrollReveal delay={80}>
-          <div className="flex flex-wrap gap-2 mb-8 md:mb-10">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-8 md:mb-10">
             {groupKeys.map((key) => {
               const isActive = key === activeGroup;
+              const isLastOdd = key === "maintenance";
               return (
                 <button
                   key={key}
                   type="button"
                   onClick={() => setActiveGroup(key)}
                   aria-pressed={isActive}
-                  className={`appearance-none text-sm font-medium px-5 py-2.5 rounded-full border transition-all duration-200 ${
+                  className={`appearance-none text-sm font-medium px-4 sm:px-5 py-2.5 rounded-full border transition-all duration-200 text-center w-full sm:w-auto ${
+                    isLastOdd ? "col-span-2 sm:col-span-1" : ""
+                  } ${
                     isActive
                       ? "bg-accent text-white border-accent shadow-sm shadow-accent/25"
                       : "bg-white/80 dark:bg-neutral-900/80 text-neutral-600 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700 hover:border-accent/40 hover:text-accent-hover"

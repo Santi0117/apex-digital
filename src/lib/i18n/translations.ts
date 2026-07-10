@@ -371,7 +371,6 @@ const es: SiteCopy = {
           title: "Páginas web modernas que hacen que tu negocio destaque digitalmente",
           description:
             "Incluye chatbots 100% inteligentes con IA, mapas interactivos, formularios con base de datos, calendarios y todo lo que necesitás para convertir visitas en clientes.",
-          exampleUrl: "https://onvisiondigital.com",
         },
         {
           tabLabel: "App móvil",
@@ -983,7 +982,6 @@ const en: SiteCopy = {
           title: "Modern websites that make your business stand out digitally",
           description:
             "Includes fully intelligent AI chatbots, interactive maps, database-backed forms, calendars, and everything you need to turn visitors into customers.",
-          exampleUrl: "https://onvisiondigital.com",
         },
         {
           tabLabel: "Mobile app",
