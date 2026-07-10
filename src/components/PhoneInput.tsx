@@ -27,16 +27,16 @@ export default function PhoneInput({
   return (
     <div>
       <label className="block text-xs font-medium text-neutral-500 mb-1.5">{label}</label>
-      <div className="grid grid-cols-[4.25rem_minmax(0,1fr)] sm:grid-cols-[4.75rem_minmax(0,1fr)] gap-2">
+      <div className="grid grid-cols-[5.75rem_minmax(0,1fr)] sm:grid-cols-[6.25rem_minmax(0,1fr)] gap-2">
         <select
           value={countryValue}
           onChange={(e) => onCountryChange(e.target.value)}
-          className={`${fieldBase} h-[46px] w-full min-w-0 px-1.5 sm:px-2 text-center text-xs sm:text-sm appearance-none cursor-pointer`}
+          className={`${fieldBase} h-[46px] w-full min-w-0 px-1 sm:px-1.5 text-xs sm:text-sm appearance-none cursor-pointer truncate`}
           aria-label={`${label} — ${selectedCountry?.country ?? countryValue}`}
         >
           {americasPhoneCodes.map((item) => (
             <option key={item.value} value={item.value} title={item.country}>
-              {item.code}
+              {item.flag} {item.code}
             </option>
           ))}
         </select>
