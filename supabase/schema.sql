@@ -20,6 +20,7 @@ create table if not exists public.appointments (
   id uuid primary key default gen_random_uuid(),
   email text not null,
   name text not null,
+  phone text,
   scheduled_at timestamptz not null unique,
   notes text,
   modality text default 'virtual',
@@ -36,3 +37,4 @@ alter table public.appointments enable row level security;
 -- alter table public.contact_submissions add column if not exists service text;
 -- alter table public.appointments add column if not exists modality text default 'virtual';
 -- alter table public.appointments add column if not exists location text;
+-- alter table public.appointments add column if not exists phone text;

@@ -103,6 +103,7 @@ export async function POST(request: Request) {
 
     const email = typeof body.email === "string" ? body.email.trim().slice(0, 254) : "";
     const name = typeof body.name === "string" ? body.name.trim().slice(0, 200) : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim().slice(0, 40) : "";
     const date = typeof body.date === "string" ? body.date.trim() : "";
     const hour = Number(body.hour);
     const minute = Number(body.minute);
@@ -120,6 +121,13 @@ export async function POST(request: Request) {
     if (!name || name.length < 2) {
       return NextResponse.json(
         { error: "Ingresá tu nombre o el de tu empresa." },
+        { status: 400 }
+      );
+    }
+
+    if (!phone || phone.replace(/\D/g, "").length < 8) {
+      return NextResponse.json(
+        { error: "Ingresá un teléfono válido." },
         { status: 400 }
       );
     }
@@ -162,21 +170,25 @@ export async function POST(request: Request) {
       modality === "in_person"
         ? `Modalidad: Presencial · Lugar: ${location}`
         : "Modalidad: Virtual";
-    const combinedNotes = notes
-      ? `${modalityNote}\n${notes}`
-      : modalityNote;
+    const phoneNote = `Teléfono: ${phone}`;
+    const combinedNotes = [modalityNote, phoneNote, notes].filter(Boolean).join("\n");
 
     let { error: dbError } = await supabase.from("appointments").insert({
       email,
       name,
+      phone,
       scheduled_at: scheduledAt,
       notes: combinedNotes,
       modality,
       location: modality === "in_person" ? location : null,
     });
 
-    // Fallback si aún no existen las columnas modality/location
-    if (dbError?.message?.includes("modality") || dbError?.message?.includes("location")) {
+    // Fallback si aún no existen columnas nuevas
+    if (
+      dbError?.message?.includes("modality") ||
+      dbError?.message?.includes("location") ||
+      dbError?.message?.includes("phone")
+    ) {
       const retry = await supabase.from("appointments").insert({
         email,
         name,

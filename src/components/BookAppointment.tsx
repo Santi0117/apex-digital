@@ -34,6 +34,7 @@ export default function BookAppointment() {
   const [nowMs, setNowMs] = useState(() => Date.now());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [modality, setModality] = useState<"virtual" | "in_person">("virtual");
   const [location, setLocation] = useState("");
@@ -133,6 +134,7 @@ export default function BookAppointment() {
         body: JSON.stringify({
           name,
           email,
+          phone,
           date: selectedDate,
           hour: selectedTime.hour,
           minute: selectedTime.minute,
@@ -149,6 +151,7 @@ export default function BookAppointment() {
       setSuccess(data.message);
       setName("");
       setEmail("");
+      setPhone("");
       setNotes("");
       setModality("virtual");
       setLocation("");
@@ -344,6 +347,14 @@ export default function BookAppointment() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder={b.emailPlaceholder}
+                          className={inputClass}
+                        />
+                        <input
+                          type="tel"
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder={b.phonePlaceholder}
                           className={inputClass}
                         />
 

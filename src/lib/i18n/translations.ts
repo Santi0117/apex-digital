@@ -204,6 +204,7 @@ export type SiteCopy = {
     confirmPrefix: string;
     namePlaceholder: string;
     emailPlaceholder: string;
+    phonePlaceholder: string;
     notesPlaceholder: string;
     modalityLabel: string;
     modalityVirtual: string;
@@ -723,6 +724,7 @@ const es: SiteCopy = {
     confirmPrefix: "Confirmá tu cita para ",
     namePlaceholder: "Nombre o empresa",
     emailPlaceholder: "Correo electrónico",
+    phonePlaceholder: "Teléfono / WhatsApp",
     notesPlaceholder: "Notas opcionales (tema de la reunión)",
     modalityLabel: "Modalidad de la reunión",
     modalityVirtual: "Virtual",
@@ -1349,6 +1351,7 @@ const en: SiteCopy = {
     confirmPrefix: "Confirm your appointment for ",
     namePlaceholder: "Name or company",
     emailPlaceholder: "Email address",
+    phonePlaceholder: "Phone / WhatsApp",
     notesPlaceholder: "Optional notes (meeting topic)",
     modalityLabel: "Meeting format",
     modalityVirtual: "Virtual",
