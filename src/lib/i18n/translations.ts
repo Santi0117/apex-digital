@@ -201,10 +201,14 @@ export type SiteCopy = {
     selectDayPrompt: string;
     selectedDateLabel: string;
     availableTimesLabel: string;
+    timePeriodMorning: string;
+    timePeriodAfternoon: string;
+    timePeriodEvening: string;
     confirmPrefix: string;
     namePlaceholder: string;
     emailPlaceholder: string;
     phonePlaceholder: string;
+    phoneLabel: string;
     notesPlaceholder: string;
     modalityLabel: string;
     modalityVirtual: string;
@@ -224,6 +228,8 @@ export type SiteCopy = {
     emailPlaceholder: string;
     nameLabel: string;
     namePlaceholder: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
     serviceLabel: string;
     servicePlaceholder: string;
     serviceOptions: string[];
@@ -713,18 +719,22 @@ const es: SiteCopy = {
     label: "Agendar cita",
     title: "Coordinemos una reunión de descubrimiento",
     description:
-      "Elegí el día y la hora que te quede mejor. Las citas son virtuales (Google Meet o Zoom) o presenciales en horario de Costa Rica.",
+      "Elegí el día y la hora que te quede mejor. Las citas son virtuales (Google Meet o Zoom) o presenciales, todos los días de 8:00 a. m. a 9:00 p. m. (hora de Costa Rica).",
     prevMonth: "Mes anterior",
     nextMonth: "Mes siguiente",
-    availabilityNote: "Disponible lun–vie · America/Costa Rica",
+    availabilityNote: "Todos los días · 8:00 a. m. – 9:00 p. m. · Costa Rica",
     selectDayPrompt:
       "Seleccioná un día en el calendario para ver los horarios disponibles.",
     selectedDateLabel: "Fecha seleccionada",
     availableTimesLabel: "Horario disponible",
+    timePeriodMorning: "Mañana",
+    timePeriodAfternoon: "Tarde",
+    timePeriodEvening: "Noche",
     confirmPrefix: "Confirmá tu cita para ",
     namePlaceholder: "Nombre o empresa",
     emailPlaceholder: "Correo electrónico",
-    phonePlaceholder: "Teléfono / WhatsApp",
+    phonePlaceholder: "8888 8888",
+    phoneLabel: "Teléfono / WhatsApp",
     notesPlaceholder: "Notas opcionales (tema de la reunión)",
     modalityLabel: "Modalidad de la reunión",
     modalityVirtual: "Virtual",
@@ -745,6 +755,8 @@ const es: SiteCopy = {
     emailPlaceholder: "tu@empresa.com",
     nameLabel: "Nombre o empresa",
     namePlaceholder: "Tu nombre o nombre de la empresa",
+    phoneLabel: "Teléfono / WhatsApp",
+    phonePlaceholder: "8888 8888",
     serviceLabel: "¿Qué servicio te interesa?",
     servicePlaceholder: "Seleccioná un servicio",
     serviceOptions: [
@@ -1340,18 +1352,22 @@ const en: SiteCopy = {
     label: "Book a call",
     title: "Let's schedule a discovery meeting",
     description:
-      "Pick the day and time that works best for you. Meetings are virtual (Google Meet or Zoom) or in-person during Costa Rica business hours.",
+      "Pick the day and time that works best for you. Meetings are virtual (Google Meet or Zoom) or in-person, every day from 8:00 AM to 9:00 PM (Costa Rica time).",
     prevMonth: "Previous month",
     nextMonth: "Next month",
-    availabilityNote: "Available Mon–Fri · America/Costa Rica",
+    availabilityNote: "Every day · 8:00 AM – 9:00 PM · Costa Rica",
     selectDayPrompt:
       "Select a day on the calendar to see available time slots.",
     selectedDateLabel: "Selected date",
     availableTimesLabel: "Available times",
+    timePeriodMorning: "Morning",
+    timePeriodAfternoon: "Afternoon",
+    timePeriodEvening: "Evening",
     confirmPrefix: "Confirm your appointment for ",
     namePlaceholder: "Name or company",
     emailPlaceholder: "Email address",
-    phonePlaceholder: "Phone / WhatsApp",
+    phonePlaceholder: "8888 8888",
+    phoneLabel: "Phone / WhatsApp",
     notesPlaceholder: "Optional notes (meeting topic)",
     modalityLabel: "Meeting format",
     modalityVirtual: "Virtual",
@@ -1372,6 +1388,8 @@ const en: SiteCopy = {
     emailPlaceholder: "you@company.com",
     nameLabel: "Name or company",
     namePlaceholder: "Your name or company name",
+    phoneLabel: "Phone / WhatsApp",
+    phonePlaceholder: "8888 8888",
     serviceLabel: "Which service are you interested in?",
     servicePlaceholder: "Select a service",
     serviceOptions: [

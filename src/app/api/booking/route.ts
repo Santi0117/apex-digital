@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
+import { getDialCode } from "@/lib/americas-phone-codes";
 import { getSupabaseAdmin, isDatabaseConfigured } from "@/lib/supabase";
-import { localCostaRicaToISO, WORKDAY_END, WORKDAY_START } from "@/lib/booking";
+import { localCostaRicaToISO, isValidBookingSlot } from "@/lib/booking";
 
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 8;
@@ -103,7 +104,16 @@ export async function POST(request: Request) {
 
     const email = typeof body.email === "string" ? body.email.trim().slice(0, 254) : "";
     const name = typeof body.name === "string" ? body.name.trim().slice(0, 200) : "";
-    const phone = typeof body.phone === "string" ? body.phone.trim().slice(0, 40) : "";
+    const phoneCountryCode =
+      typeof body.phoneCountryCode === "string"
+        ? body.phoneCountryCode.trim().slice(0, 12)
+        : "+506";
+    const phoneNumber =
+      typeof body.phoneNumber === "string" ? body.phoneNumber.trim().slice(0, 20) : "";
+    const phone =
+      typeof body.phone === "string"
+        ? body.phone.trim().slice(0, 40)
+        : `${getDialCode(phoneCountryCode)}${phoneNumber.replace(/\D/g, "")}`;
     const date = typeof body.date === "string" ? body.date.trim() : "";
     const hour = Number(body.hour);
     const minute = Number(body.minute);
@@ -132,6 +142,9 @@ export async function POST(request: Request) {
       );
     }
 
+    const dialCode = getDialCode(phoneCountryCode);
+    const localDigits = phoneNumber.replace(/\D/g, "") || phone.replace(/\D/g, "");
+
     if (modality === "in_person" && location.length < 3) {
       return NextResponse.json(
         { error: "Indicá dónde te gustaría la reunión presencial." },
@@ -143,12 +156,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Seleccioná una fecha válida." }, { status: 400 });
     }
 
-    if (
-      !Number.isInteger(hour) ||
-      !Number.isInteger(minute) ||
-      hour < WORKDAY_START ||
-      hour >= WORKDAY_END
-    ) {
+    if (!isValidBookingSlot(hour, minute)) {
       return NextResponse.json({ error: "Seleccioná un horario válido." }, { status: 400 });
     }
 
@@ -166,24 +174,37 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Error de configuración." }, { status: 503 });
     }
 
-    const modalityNote =
-      modality === "in_person"
-        ? `Modalidad: Presencial · Lugar: ${location}`
-        : "Modalidad: Virtual";
-    const phoneNote = `Teléfono: ${phone}`;
-    const combinedNotes = [modalityNote, phoneNote, notes].filter(Boolean).join("\n");
-
-    let { error: dbError } = await supabase.from("appointments").insert({
+    const appointmentRow = {
       email,
       name,
+      phone_country_code: dialCode,
+      phone_number: localDigits,
       phone,
       scheduled_at: scheduledAt,
-      notes: combinedNotes,
       modality,
       location: modality === "in_person" ? location : null,
-    });
+      notes: notes || null,
+    };
 
-    // Fallback si aún no existen columnas nuevas
+    let { error: dbError } = await supabase.from("appointments").insert(appointmentRow);
+
+    // Fallback mínimo si la tabla aún no tiene columnas nuevas
+    if (
+      dbError?.message?.includes("phone_country_code") ||
+      dbError?.message?.includes("phone_number")
+    ) {
+      const retry = await supabase.from("appointments").insert({
+        email,
+        name,
+        phone,
+        scheduled_at: scheduledAt,
+        modality,
+        location: modality === "in_person" ? location : null,
+        notes: notes || null,
+      });
+      dbError = retry.error;
+    }
+
     if (
       dbError?.message?.includes("modality") ||
       dbError?.message?.includes("location") ||
@@ -193,7 +214,14 @@ export async function POST(request: Request) {
         email,
         name,
         scheduled_at: scheduledAt,
-        notes: combinedNotes,
+        notes: [
+          `Modalidad: ${modality === "in_person" ? "Presencial" : "Virtual"}`,
+          modality === "in_person" && location ? `Lugar: ${location}` : null,
+          `Teléfono: ${phone}`,
+          notes,
+        ]
+          .filter(Boolean)
+          .join("\n"),
       });
       dbError = retry.error;
     }

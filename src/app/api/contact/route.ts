@@ -4,6 +4,7 @@ import { getSupabaseAdmin, isDatabaseConfigured } from "@/lib/supabase";
 export type ContactPayload = {
   email: string;
   name: string;
+  phone: string;
   service: string;
   interest: string;
   budget: string;
@@ -16,6 +17,7 @@ const RATE_WINDOW_MS = 60_000;
 const LIMITS = {
   email: 254,
   name: 200,
+  phone: 40,
   service: 120,
   interest: 2000,
   budget: 100,
@@ -87,6 +89,10 @@ export async function POST(request: Request) {
       typeof body.name === "string" ? body.name.trim() : "",
       LIMITS.name
     );
+    const phone = truncate(
+      typeof body.phone === "string" ? body.phone.trim() : "",
+      LIMITS.phone
+    );
     const service = truncate(
       typeof body.service === "string" ? body.service.trim() : "",
       LIMITS.service
@@ -110,6 +116,13 @@ export async function POST(request: Request) {
     if (!name || name.length < 2) {
       return NextResponse.json(
         { error: "Ingresá tu nombre o el de tu empresa." },
+        { status: 400 }
+      );
+    }
+
+    if (!phone || phone.replace(/\D/g, "").length < 8) {
+      return NextResponse.json(
+        { error: "Ingresá un teléfono válido." },
         { status: 400 }
       );
     }
@@ -146,17 +159,29 @@ export async function POST(request: Request) {
     let { error: dbError } = await supabase.from("contact_submissions").insert({
       email,
       name,
+      phone,
       service,
       interest,
       budget,
     });
 
-    // Fallback si aún no existe la columna service
+    // Fallback si aún no existen columnas nuevas en la tabla
+    if (dbError?.message?.includes("phone") && !dbError.message.includes("service")) {
+      const retry = await supabase.from("contact_submissions").insert({
+        email,
+        name,
+        service,
+        interest: `[Teléfono: ${phone}]\n${interest}`,
+        budget,
+      });
+      dbError = retry.error;
+    }
+
     if (dbError?.message?.includes("service")) {
       const retry = await supabase.from("contact_submissions").insert({
         email,
         name,
-        interest: `[Servicio: ${service}]\n${interest}`,
+        interest: `[Servicio: ${service}]\n[Teléfono: ${phone}]\n${interest}`,
         budget,
       });
       dbError = retry.error;

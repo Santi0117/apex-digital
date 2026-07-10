@@ -1,9 +1,17 @@
 /** Horario de reuniones — America/Costa_Rica (UTC-6, sin DST) */
 export const BOOKING_TIMEZONE = "America/Costa_Rica";
 
-export const WORKDAY_START = 9;
-export const WORKDAY_END = 17;
+export const WORKDAY_START = 8;
+export const WORKDAY_END = 21;
 export const SLOT_MINUTES = 30;
+
+export type TimePeriod = "morning" | "afternoon" | "evening";
+
+export type TimeSlot = {
+  hour: number;
+  minute: number;
+  label: string;
+};
 
 export const WEEKDAY_LABELS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
@@ -63,9 +71,7 @@ export function buildMonthGrid(year: number, month: number): CalendarCell[] {
 export function isBookableDay(date: Date, today: Date): boolean {
   const day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  if (day < now) return false;
-  const dow = day.getDay();
-  return dow >= 1 && dow <= 5;
+  return day >= now;
 }
 
 export function formatSlotLabel(
@@ -81,11 +87,25 @@ export function formatSlotLabel(
   return `${time} ${hour < 12 ? "a. m." : "p. m."}`;
 }
 
-export function buildTimeSlots(locale: "es" | "en" = "es") {
-  const slots: { hour: number; minute: number; label: string }[] = [];
-  for (let hour = WORKDAY_START; hour < WORKDAY_END; hour++) {
+export function isValidBookingSlot(hour: number, minute: number): boolean {
+  if (!Number.isInteger(hour) || !Number.isInteger(minute)) return false;
+  if (minute !== 0 && minute !== SLOT_MINUTES) return false;
+  if (hour < WORKDAY_START || hour > WORKDAY_END) return false;
+  if (hour === WORKDAY_END && minute > 0) return false;
+  return true;
+}
+
+export function getTimePeriod(hour: number): TimePeriod {
+  if (hour < 12) return "morning";
+  if (hour < 17) return "afternoon";
+  return "evening";
+}
+
+export function buildTimeSlots(locale: "es" | "en" = "es"): TimeSlot[] {
+  const slots: TimeSlot[] = [];
+  for (let hour = WORKDAY_START; hour <= WORKDAY_END; hour++) {
     for (let minute = 0; minute < 60; minute += SLOT_MINUTES) {
-      if (hour === WORKDAY_END - 1 && minute >= SLOT_MINUTES) break;
+      if (hour === WORKDAY_END && minute > 0) break;
       slots.push({
         hour,
         minute,
@@ -94,6 +114,14 @@ export function buildTimeSlots(locale: "es" | "en" = "es") {
     }
   }
   return slots;
+}
+
+export function groupTimeSlotsByPeriod(slots: TimeSlot[]) {
+  return {
+    morning: slots.filter((slot) => getTimePeriod(slot.hour) === "morning"),
+    afternoon: slots.filter((slot) => getTimePeriod(slot.hour) === "afternoon"),
+    evening: slots.filter((slot) => getTimePeriod(slot.hour) === "evening"),
+  };
 }
 
 /** ISO UTC para guardar en Supabase a partir de fecha local CR */

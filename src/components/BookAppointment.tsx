@@ -10,10 +10,13 @@ import {
   formatSelectedDate,
   formatSlotLabel,
   getWeekdayLabels,
+  groupTimeSlotsByPeriod,
   isBookableDay,
   localCostaRicaToISO,
   toDateKey,
+  type TimePeriod,
 } from "@/lib/booking";
+import { americasPhoneCodes, formatPhoneWithCode } from "@/lib/americas-phone-codes";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 function slotKey(dateKey: string, hour: number, minute: number) {
@@ -30,11 +33,13 @@ export default function BookAppointment() {
   const [selectedTime, setSelectedTime] = useState<{ hour: number; minute: number } | null>(
     null
   );
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>("morning");
   const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
   const [nowMs, setNowMs] = useState(() => Date.now());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneCountryCode, setPhoneCountryCode] = useState("+506");
   const [notes, setNotes] = useState("");
   const [modality, setModality] = useState<"virtual" | "in_person">("virtual");
   const [location, setLocation] = useState("");
@@ -44,6 +49,7 @@ export default function BookAppointment() {
   const [success, setSuccess] = useState<string | null>(null);
 
   const timeSlots = useMemo(() => buildTimeSlots(locale), [locale]);
+  const timeSlotsByPeriod = useMemo(() => groupTimeSlotsByPeriod(timeSlots), [timeSlots]);
   const weekdayLabels = useMemo(() => getWeekdayLabels(locale), [locale]);
   const monthKey = `${viewYear}-${String(viewMonth + 1).padStart(2, "0")}`;
   const grid = useMemo(
@@ -98,6 +104,7 @@ export default function BookAppointment() {
     }
     setSelectedDate(null);
     setSelectedTime(null);
+    setTimePeriod("morning");
   };
 
   const goNextMonth = () => {
@@ -109,6 +116,7 @@ export default function BookAppointment() {
     }
     setSelectedDate(null);
     setSelectedTime(null);
+    setTimePeriod("morning");
   };
 
   const isSlotTaken = (dateKey: string, hour: number, minute: number) =>
@@ -118,6 +126,31 @@ export default function BookAppointment() {
     const iso = slotKey(dateKey, hour, minute);
     return new Date(iso).getTime() <= nowMs;
   };
+
+  const isSlotAvailable = (dateKey: string, hour: number, minute: number) =>
+    !isSlotTaken(dateKey, hour, minute) && !isSlotPast(dateKey, hour, minute);
+
+  const periodOptions = useMemo(
+    () =>
+      [
+        { id: "morning" as const, label: b.timePeriodMorning },
+        { id: "afternoon" as const, label: b.timePeriodAfternoon },
+        { id: "evening" as const, label: b.timePeriodEvening },
+      ] as const,
+    [b.timePeriodMorning, b.timePeriodAfternoon, b.timePeriodEvening]
+  );
+
+  const pickDefaultPeriod = (dateKey: string) => {
+    for (const period of periodOptions) {
+      const hasAvailable = timeSlotsByPeriod[period.id].some((slot) =>
+        isSlotAvailable(dateKey, slot.hour, slot.minute)
+      );
+      if (hasAvailable) return period.id;
+    }
+    return "morning";
+  };
+
+  const visibleTimeSlots = timeSlotsByPeriod[timePeriod];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -134,7 +167,9 @@ export default function BookAppointment() {
         body: JSON.stringify({
           name,
           email,
-          phone,
+          phoneCountryCode,
+          phoneNumber: phone,
+          phone: formatPhoneWithCode(phoneCountryCode, phone),
           date: selectedDate,
           hour: selectedTime.hour,
           minute: selectedTime.minute,
@@ -152,6 +187,7 @@ export default function BookAppointment() {
       setName("");
       setEmail("");
       setPhone("");
+      setPhoneCountryCode("+506");
       setNotes("");
       setModality("virtual");
       setLocation("");
@@ -226,6 +262,7 @@ export default function BookAppointment() {
                         onClick={() => {
                           setSelectedDate(cell.iso);
                           setSelectedTime(null);
+                          setTimePeriod(pickDefaultPeriod(cell.iso));
                           setError(null);
                           setSuccess(null);
                         }}
@@ -270,8 +307,49 @@ export default function BookAppointment() {
                       <p className="text-xs font-medium text-neutral-500 mb-3">
                         {b.availableTimesLabel}
                       </p>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-1">
-                        {timeSlots.map(({ hour, minute, label }) => {
+
+                      <div
+                        role="tablist"
+                        aria-label={b.availableTimesLabel}
+                        className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800/80 mb-3"
+                      >
+                        {periodOptions.map((period) => {
+                          const availableCount = timeSlotsByPeriod[period.id].filter((slot) =>
+                            isSlotAvailable(selectedDate, slot.hour, slot.minute)
+                          ).length;
+
+                          return (
+                            <button
+                              key={period.id}
+                              type="button"
+                              role="tab"
+                              aria-selected={timePeriod === period.id}
+                              onClick={() => {
+                                setTimePeriod(period.id);
+                                setSelectedTime(null);
+                                setError(null);
+                                setSuccess(null);
+                              }}
+                              className={`appearance-none rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200 ${
+                                timePeriod === period.id
+                                  ? "bg-white dark:bg-neutral-900 text-accent shadow-sm"
+                                  : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
+                              }`}
+                            >
+                              <span className="block">{period.label}</span>
+                              <span className="block text-[10px] font-normal opacity-70">
+                                {availableCount}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div
+                        role="tabpanel"
+                        className="grid grid-cols-3 sm:grid-cols-4 gap-2"
+                      >
+                        {visibleTimeSlots.map(({ hour, minute, label }) => {
                           const taken = isSlotTaken(selectedDate, hour, minute);
                           const past = isSlotPast(selectedDate, hour, minute);
                           const disabled = taken || past;
@@ -289,11 +367,11 @@ export default function BookAppointment() {
                                 setError(null);
                                 setSuccess(null);
                               }}
-                              className={`appearance-none rounded-lg border px-2 py-2 text-xs font-medium transition-all duration-200 ${
+                              className={`appearance-none rounded-xl border px-2 py-2.5 text-xs font-medium transition-all duration-200 ${
                                 disabled
                                   ? "border-neutral-100 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 text-neutral-300 dark:text-neutral-600 cursor-not-allowed line-through"
                                   : isActive
-                                    ? "border-accent bg-accent text-white"
+                                    ? "border-accent bg-accent text-white shadow-sm shadow-accent/25"
                                     : "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-accent/50 hover:text-accent"
                               }`}
                             >
@@ -349,14 +427,33 @@ export default function BookAppointment() {
                           placeholder={b.emailPlaceholder}
                           className={inputClass}
                         />
-                        <input
-                          type="tel"
-                          required
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          placeholder={b.phonePlaceholder}
-                          className={inputClass}
-                        />
+                        <div>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1.5">
+                            {b.phoneLabel}
+                          </label>
+                          <div className="flex gap-2">
+                            <select
+                              value={phoneCountryCode}
+                              onChange={(e) => setPhoneCountryCode(e.target.value)}
+                              className={`${inputClass} w-[118px] sm:w-[132px] shrink-0 px-2 sm:px-3 appearance-none cursor-pointer text-xs sm:text-sm`}
+                              aria-label={b.phoneLabel}
+                            >
+                              {americasPhoneCodes.map((item) => (
+                                <option key={item.value} value={item.value}>
+                                  {item.flag} {item.code}
+                                </option>
+                              ))}
+                            </select>
+                            <input
+                              type="tel"
+                              required
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              placeholder={b.phonePlaceholder}
+                              className={`${inputClass} flex-1 min-w-0`}
+                            />
+                          </div>
+                        </div>
 
                         <fieldset className="space-y-2">
                           <legend className="text-xs font-medium text-neutral-500 mb-1.5">

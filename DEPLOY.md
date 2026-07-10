@@ -46,6 +46,7 @@ git push -u origin main
 
 - [ ] Página carga con imágenes del hero y portafolio
 - [ ] Formulario de contacto → éxito → fila en Supabase `contact_submissions`
+- [ ] Agendar cita → éxito → fila en Supabase `appointments` (fecha, hora, modalidad, teléfono, notas)
 - [ ] Chatbot responde
 - [ ] Botón WhatsApp abre +506 6303-0204
 

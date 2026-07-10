@@ -3,6 +3,7 @@
 import { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
+import { americasPhoneCodes, formatPhoneWithCode } from "@/lib/americas-phone-codes";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 export default function ContactForm() {
@@ -10,6 +11,8 @@ export default function ContactForm() {
   const c = copy.contact;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phoneCountryCode, setPhoneCountryCode] = useState("+506");
   const [service, setService] = useState("");
   const [interest, setInterest] = useState("");
   const [budget, setBudget] = useState("");
@@ -28,7 +31,15 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, service, interest, budget, website }),
+        body: JSON.stringify({
+          email,
+          name,
+          phone: formatPhoneWithCode(phoneCountryCode, phone),
+          service,
+          interest,
+          budget,
+          website,
+        }),
       });
 
       const data = await res.json();
@@ -40,6 +51,8 @@ export default function ContactForm() {
       setSuccess(data.message);
       setEmail("");
       setName("");
+      setPhone("");
+      setPhoneCountryCode("+506");
       setService("");
       setInterest("");
       setBudget("");
@@ -111,6 +124,34 @@ export default function ContactForm() {
                 placeholder={c.namePlaceholder}
                 className={inputClass}
               />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-neutral-500 mb-1.5">
+                {c.phoneLabel}
+              </label>
+              <div className="flex gap-2">
+                <select
+                  value={phoneCountryCode}
+                  onChange={(e) => setPhoneCountryCode(e.target.value)}
+                  className={`${inputClass} w-[118px] sm:w-[132px] shrink-0 px-2 sm:px-3 appearance-none cursor-pointer text-xs sm:text-sm`}
+                  aria-label={c.phoneLabel}
+                >
+                  {americasPhoneCodes.map((item) => (
+                    <option key={item.value} value={item.value}>
+                      {item.flag} {item.code}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder={c.phonePlaceholder}
+                  className={`${inputClass} flex-1 min-w-0`}
+                />
+              </div>
             </div>
 
             <div>
