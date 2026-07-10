@@ -16,8 +16,9 @@ import {
   toDateKey,
   type TimePeriod,
 } from "@/lib/booking";
-import { americasPhoneCodes, formatPhoneWithCode } from "@/lib/americas-phone-codes";
+import { formatPhoneWithCode } from "@/lib/americas-phone-codes";
 import { useLanguage } from "@/lib/i18n/language-provider";
+import PhoneInput from "./PhoneInput";
 
 function slotKey(dateKey: string, hour: number, minute: number) {
   return localCostaRicaToISO(dateKey, hour, minute);
@@ -427,33 +428,14 @@ export default function BookAppointment() {
                           placeholder={b.emailPlaceholder}
                           className={inputClass}
                         />
-                        <div>
-                          <label className="block text-xs font-medium text-neutral-500 mb-1.5">
-                            {b.phoneLabel}
-                          </label>
-                          <div className="flex gap-2">
-                            <select
-                              value={phoneCountryCode}
-                              onChange={(e) => setPhoneCountryCode(e.target.value)}
-                              className={`${inputClass} w-[118px] sm:w-[132px] shrink-0 px-2 sm:px-3 appearance-none cursor-pointer text-xs sm:text-sm`}
-                              aria-label={b.phoneLabel}
-                            >
-                              {americasPhoneCodes.map((item) => (
-                                <option key={item.value} value={item.value}>
-                                  {item.flag} {item.code}
-                                </option>
-                              ))}
-                            </select>
-                            <input
-                              type="tel"
-                              required
-                              value={phone}
-                              onChange={(e) => setPhone(e.target.value)}
-                              placeholder={b.phonePlaceholder}
-                              className={`${inputClass} flex-1 min-w-0`}
-                            />
-                          </div>
-                        </div>
+                        <PhoneInput
+                          countryValue={phoneCountryCode}
+                          onCountryChange={setPhoneCountryCode}
+                          phone={phone}
+                          onPhoneChange={setPhone}
+                          label={b.phoneLabel}
+                          placeholder={b.phonePlaceholder}
+                        />
 
                         <fieldset className="space-y-2">
                           <legend className="text-xs font-medium text-neutral-500 mb-1.5">
