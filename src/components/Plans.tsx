@@ -124,7 +124,7 @@ export default function Plans() {
                         </p>
                       </div>
                       {plan.unitAlt && (
-                        <p className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-700 dark:text-neutral-200 mt-2">
+                        <p className="text-xs text-neutral-400 mt-1">
                           {plan.unitAlt}
                         </p>
                       )}

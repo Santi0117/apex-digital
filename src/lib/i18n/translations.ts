@@ -475,7 +475,7 @@ const es: SiteCopy = {
             priceOr: "/",
             priceAlt: "$80",
             unit: "",
-            unitAlt: "USD · pago único / por mes",
+            unitAlt: "Mensual",
             features: [
               "App web con autenticación y base de datos",
               "Panel de administrador personalizado",
@@ -1241,7 +1241,7 @@ const en: SiteCopy = {
             priceOr: "/",
             priceAlt: "$80",
             unit: "",
-            unitAlt: "USD · one-time / per month",
+            unitAlt: "Monthly",
             features: [
               "Web app with authentication and database",
               "Custom admin panel",
