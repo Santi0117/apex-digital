@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Logo from "./Logo";
 import HeroBlueprint from "./HeroBlueprint";
 import LanguageToggle from "./LanguageToggle";
 import ThemeToggle from "./ThemeToggle";
+import LineWaves from "./ui/LineWaves";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 export default function Hero() {
@@ -27,16 +27,26 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden min-h-screen min-h-[640px] flex flex-col">
-      <Image
-        src="/herr-bg.jpg"
-        alt={copy.hero.bgAlt}
-        fill
-        priority
-        className="object-cover object-center"
-      />
+    <section className="relative overflow-hidden min-h-screen min-h-[640px] flex flex-col bg-neutral-950">
+      <div className="absolute inset-0 z-0" aria-hidden>
+        <LineWaves
+          speed={0.3}
+          innerLineCount={32}
+          outerLineCount={36}
+          warpIntensity={1}
+          rotation={-45}
+          edgeFadeWidth={0}
+          colorCycleSpeed={1}
+          brightness={0.2}
+          color1="#0a63f6"
+          color2="#365587"
+          color3="#5090a1"
+          enableMouseInteraction={true}
+          mouseInfluence={2}
+        />
+      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/65" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/55 via-black/45 to-black/70 pointer-events-none" />
 
       <nav className="relative z-10 flex items-center justify-between gap-3 px-4 sm:px-6 md:px-10 lg:px-14 py-4 sm:py-5 shrink-0">
         <a href="#" className="hover:opacity-90 transition-opacity shrink-0">
