@@ -15,9 +15,9 @@ export default function Hero() {
 
   const navItems = [
     { label: copy.nav.services, href: "#servicios" },
+    { label: copy.nav.portfolio, href: "#portafolio" },
     { label: copy.nav.plans, href: "#planes" },
     { label: copy.nav.schedule, href: "#agendar" },
-    { label: copy.nav.process, href: "#proceso" },
     { label: copy.nav.contact, href: "#cotizar" },
   ];
 
@@ -74,10 +74,10 @@ export default function Hero() {
           <ThemeToggle variant="dark" />
           <LanguageToggle variant="dark" />
           <a
-            href="#cotizar"
+            href="#agendar"
             className="hidden sm:inline-flex appearance-none text-sm font-medium px-5 py-2 rounded-full border border-white/25 bg-white/10 text-white hover:bg-accent hover:border-accent hover:text-white transition-all duration-200"
           >
-            {copy.nav.letsTalk}
+            {copy.hero.scheduleCta}
           </a>
           <button
             type="button"
@@ -144,16 +144,10 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-8 sm:pt-10 border-t border-white/10 max-w-md sm:max-w-none">
-              <a
-                href="#cotizar"
-                className="appearance-none text-center text-sm font-medium px-8 py-3.5 rounded-full bg-white text-neutral-900 hover:bg-accent-soft hover:text-accent-hover transition-colors duration-200"
-              >
-                {copy.hero.contactUs}
-              </a>
+            <div className="pt-8 sm:pt-10 border-t border-white/10">
               <a
                 href="#agendar"
-                className="appearance-none text-center text-sm px-8 py-3.5 rounded-full border border-white/30 text-white hover:bg-white/10 hover:border-accent-muted/50 transition-all duration-200"
+                className="appearance-none inline-flex text-center text-sm font-medium px-8 py-3.5 rounded-full bg-white text-neutral-900 hover:bg-accent-soft hover:text-accent-hover transition-colors duration-200"
               >
                 {copy.hero.scheduleCta}
               </a>

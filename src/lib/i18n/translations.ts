@@ -123,11 +123,18 @@ export type SiteCopy = {
   portfolio: {
     label: string;
     title: string;
-    hint: string;
+    description: string;
     screenshotAlt: string;
+    problemLabel: string;
+    solutionLabel: string;
+    prevImage: string;
+    nextImage: string;
+    cta: string;
     projects: Array<{
       category: string;
       title: string;
+      problem: string;
+      solution: string;
     }>;
   };
   plans: {
@@ -306,7 +313,7 @@ const es: SiteCopy = {
       "Diseñamos e implementamos soluciones tecnológicas personalizadas que impulsan la eficiencia, el crecimiento y la transformación digital de empresas y negocios.",
     pills: ["Sitios web", "E-commerce", "Software (SaaS)", "Mantenimiento"],
     contactUs: "Contáctanos",
-    scheduleCta: "Agendar cita →",
+    scheduleCta: "Agendar reunión",
     menuOpen: "Abrir menú",
     menuClose: "Cerrar menú",
     bgAlt: "Fondo hero",
@@ -405,14 +412,33 @@ const es: SiteCopy = {
     portfolioScroll: "Ver planes",
   },
   portfolio: {
-    label: "Portafolio",
-    title: "Proyectos recientes",
-    hint: "Deslizá para ver más →",
+    label: "Casos",
+    title: "Algunos de los proyectos que ya están en producción",
+    description:
+      "Casos reales: el problema del negocio, lo que construimos y el resultado digital.",
     screenshotAlt: "Captura del proyecto ",
+    problemLabel: "Problema",
+    solutionLabel: "Solución",
+    prevImage: "Imagen anterior",
+    nextImage: "Imagen siguiente",
+    cta: "Agendar reunión",
     projects: [
-      { category: "E-commerce", title: "FirstDown — Jerseys NFL & NBA" },
-      { category: "Sitio corporativo", title: "DAFESA — Electrodomésticos CR" },
-      { category: "Landing page", title: "Tappy — Stickers NFC inteligentes" },
+      {
+        category: "Software SaaS",
+        title: "ClinicOS — Sistema de gestión clínica",
+        problem:
+          "Secretaría manual y operaciones divididas por sector y doctor: calendarios, inventario, finanzas y pacientes en procesos separados, con poca visibilidad conjunta.",
+        solution:
+          "Plataforma unificada con dashboard, agenda, pacientes, inventario, finanzas y alertas en tiempo real para toda la clínica en un solo sistema.",
+      },
+      {
+        category: "Inmobiliaria / Web",
+        title: "Jopa Real Estate — Catálogo premium",
+        problem:
+          "Agencia inmobiliaria que necesitaba un catálogo online profesional y con alcance, más funciones propias personalizadas de financiamiento, formularios y captación de leads.",
+        solution:
+          "Sitio premium con búsqueda de propiedades, fichas con galería, calculadora de hipotecas por banco, formularios y CTAs para visitar, construir o vender.",
+      },
     ],
   },
   plans: {
@@ -1072,7 +1098,7 @@ const en: SiteCopy = {
       "We design and implement custom technology solutions that drive efficiency, growth, and digital transformation for companies and businesses.",
     pills: ["Websites", "E-commerce", "Software (SaaS)", "Maintenance"],
     contactUs: "Contact us",
-    scheduleCta: "Book a call →",
+    scheduleCta: "Book a meeting",
     menuOpen: "Open menu",
     menuClose: "Close menu",
     bgAlt: "Hero background",
@@ -1171,14 +1197,33 @@ const en: SiteCopy = {
     portfolioScroll: "View plans",
   },
   portfolio: {
-    label: "Portfolio",
-    title: "Recent projects",
-    hint: "Swipe to see more →",
+    label: "Case studies",
+    title: "Some of the projects already live in production",
+    description:
+      "Real cases: the business problem, what we built, and the digital outcome.",
     screenshotAlt: "Project screenshot ",
+    problemLabel: "Problem",
+    solutionLabel: "Solution",
+    prevImage: "Previous image",
+    nextImage: "Next image",
+    cta: "Book a meeting",
     projects: [
-      { category: "E-commerce", title: "FirstDown — NFL & NBA Jerseys" },
-      { category: "Corporate website", title: "DAFESA — Home Appliances CR" },
-      { category: "Landing page", title: "Tappy — Smart NFC Stickers" },
+      {
+        category: "SaaS software",
+        title: "ClinicOS — Clinic management system",
+        problem:
+          "Manual front-desk work and fragmented operations by area and doctor: calendars, inventory, finance, and patients handled separately, with little shared visibility.",
+        solution:
+          "A unified platform with dashboard, scheduling, patients, inventory, finance, and real-time alerts for the whole clinic in one system.",
+      },
+      {
+        category: "Real estate / Web",
+        title: "Jopa Real Estate — Premium catalog",
+        problem:
+          "A real estate agency needed a professional online catalog with reach, plus custom financing tools, forms, and lead capture flows.",
+        solution:
+          "A premium site with property search, listing galleries, bank mortgage calculators, forms, and CTAs to visit, build, or sell.",
+      },
     ],
   },
   plans: {
