@@ -129,6 +129,8 @@ export type SiteCopy = {
     solutionLabel: string;
     prevImage: string;
     nextImage: string;
+    expandHint: string;
+    closeLabel: string;
     cta: string;
     projects: Array<{
       category: string;
@@ -421,6 +423,8 @@ const es: SiteCopy = {
     solutionLabel: "Solución",
     prevImage: "Imagen anterior",
     nextImage: "Imagen siguiente",
+    expandHint: "Tocá para ampliar",
+    closeLabel: "Cerrar",
     cta: "Agendar reunión",
     projects: [
       {
@@ -1222,6 +1226,8 @@ const en: SiteCopy = {
     solutionLabel: "Solution",
     prevImage: "Previous image",
     nextImage: "Next image",
+    expandHint: "Tap to expand",
+    closeLabel: "Close",
     cta: "Book a meeting",
     projects: [
       {

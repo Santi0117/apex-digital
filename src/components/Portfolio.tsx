@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "@/lib/i18n/language-provider";
@@ -80,6 +81,7 @@ export default function Portfolio() {
   const p = copy.portfolio;
   const [activeProject, setActiveProject] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
 
   const projects = p.projects.map((project, i) => ({
     ...project,
@@ -88,6 +90,7 @@ export default function Portfolio() {
 
   const project = projects[activeProject];
   const totalImages = project.images.length;
+  const hasMultiple = totalImages > 1;
   const tabCols =
     projects.length >= 4
       ? "grid-cols-2 lg:grid-cols-4"
@@ -97,12 +100,105 @@ export default function Portfolio() {
 
   useEffect(() => {
     setImageIndex(0);
+    setExpanded(false);
   }, [activeProject]);
+
+  useEffect(() => {
+    if (!expanded) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExpanded(false);
+      if (e.key === "ArrowLeft" && hasMultiple) {
+        setImageIndex((current) => (current - 1 + totalImages) % totalImages);
+      }
+      if (e.key === "ArrowRight" && hasMultiple) {
+        setImageIndex((current) => (current + 1) % totalImages);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [expanded, hasMultiple, totalImages]);
 
   const goPrev = () =>
     setImageIndex((current) => (current - 1 + totalImages) % totalImages);
   const goNext = () =>
     setImageIndex((current) => (current + 1) % totalImages);
+
+  const lightbox =
+    expanded && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${p.screenshotAlt}${project.title}`}
+            onClick={() => setExpanded(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setExpanded(false)}
+              className="absolute top-4 right-4 z-20 flex items-center justify-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              aria-label={p.closeLabel}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 1 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+              </svg>
+            </button>
+
+            <div
+              className="relative mx-auto w-[min(96vw,1100px)] h-[min(78vh,720px)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={project.images[imageIndex]}
+                alt={`${p.screenshotAlt}${project.title} ${imageIndex + 1}`}
+                fill
+                className="object-contain object-center"
+                sizes="1100px"
+                quality={95}
+                unoptimized
+                priority
+              />
+
+              {hasMultiple && (
+                <>
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    aria-label={p.prevImage}
+                    className="appearance-none absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  >
+                    <ArrowIcon direction="prev" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    aria-label={p.nextImage}
+                    className="appearance-none absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  >
+                    <ArrowIcon direction="next" />
+                  </button>
+                  <p className="absolute bottom-3 inset-x-0 text-center text-xs text-white/70 tabular-nums">
+                    {imageIndex + 1} / {totalImages}
+                  </p>
+                </>
+              )}
+            </div>
+          </div>,
+          document.body,
+        )
+      : null;
 
   return (
     <section id="portafolio" className="px-6 md:px-12 py-16 md:py-24">
@@ -165,23 +261,33 @@ export default function Portfolio() {
             >
               {/* Galería */}
               <div className="p-4 sm:p-5 space-y-3">
-                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
+                  aria-label={p.expandHint}
+                  className="appearance-none relative block w-full aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 cursor-zoom-in group/shot"
+                >
                   {project.images.map((src, i) => (
                     <Image
                       key={src}
                       src={src}
                       alt={`${p.screenshotAlt}${project.title} ${i + 1}`}
                       fill
-                      className={`object-contain object-center p-2 sm:p-3 transition-opacity duration-300 ${
+                      className={`object-contain object-center p-2 sm:p-3 transition-opacity duration-300 pointer-events-none ${
                         i === imageIndex ? "opacity-100" : "opacity-0"
                       }`}
                       sizes="(max-width: 1024px) 100vw, 640px"
                       priority={activeProject === 0 && i === 0}
                     />
                   ))}
-                </div>
+                  <span className="absolute inset-x-0 bottom-0 px-3 py-2.5 bg-gradient-to-t from-black/55 to-transparent pointer-events-none opacity-100 sm:opacity-0 sm:group-hover/shot:opacity-100 transition-opacity">
+                    <span className="block text-[11px] text-white/95 text-center">
+                      {p.expandHint}
+                    </span>
+                  </span>
+                </button>
 
-                {totalImages > 1 && (
+                {hasMultiple && (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <button
@@ -283,6 +389,7 @@ export default function Portfolio() {
           </div>
         </ScrollReveal>
       </div>
+      {lightbox}
     </section>
   );
 }
