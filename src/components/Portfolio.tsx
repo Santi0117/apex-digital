@@ -26,6 +26,28 @@ const projectAssets = [
     ],
     stack: "Next.js · Tailwind · i18n · Calculadoras",
   },
+  {
+    short: "UniLearn",
+    images: [
+      "/projects/unilearn2-estudiante.png",
+      "/projects/unilearn2-calendario.png",
+      "/projects/unilearn2-admin-v2.png",
+      "/projects/unilearn2-usuarios.png",
+      "/projects/unilearn2-curso.png",
+      "/projects/unilearn2-docente.png",
+    ],
+    stack: "Next.js · Roles · Analytics · Calendario académico",
+  },
+  {
+    short: "FirstDown",
+    images: [
+      "/projects/firstdown2-catalogo.png",
+      "/projects/firstdown2-equipo.png",
+      "/projects/firstdown2-look.png",
+      "/projects/firstdown2-carrito.png",
+    ],
+    stack: "Next.js · E-commerce · Catálogo · Outfit builder",
+  },
 ];
 
 function ArrowIcon({ direction }: { direction: "prev" | "next" }) {

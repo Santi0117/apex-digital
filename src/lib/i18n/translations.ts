@@ -439,6 +439,22 @@ const es: SiteCopy = {
         solution:
           "Sitio premium con búsqueda de propiedades, fichas con galería, calculadora de hipotecas por banco, formularios y CTAs para visitar, construir o vender.",
       },
+      {
+        category: "EdTech / SaaS",
+        title: "UniLearn — Plataforma académica",
+        problem:
+          "Una universidad necesitaba salir de LMS genéricos: poca visibilidad en vivo para admin y docentes, y una experiencia poco útil para estudiantes (entregas, foco y ritmo del cuatrimestre).",
+        solution:
+          "Plataforma a medida con roles (admin, docente, estudiante), métricas y analíticas en vivo, calendario académico, modo enfoque tipo sprint y publicación rápida de material, tareas, quizzes y foros por semana.",
+      },
+      {
+        category: "E-commerce / Moda",
+        title: "FirstDown — Tienda de jerseys",
+        problem:
+          "Tienda de jerseys que necesitaba vender online con catálogo por liga y equipo, piezas personalizables y una experiencia de compra clara en colones, sin perder el vibe de marca.",
+        solution:
+          "E-commerce a medida con filtros MLB/NBA/NFL, catálogo por equipo, armá tu look (camiseta + pantalón), badges de stock/ofertas y carrito para solicitar pedidos con envío gratis.",
+      },
     ],
   },
   plans: {
@@ -1223,6 +1239,22 @@ const en: SiteCopy = {
           "A real estate agency needed a professional online catalog with reach, plus custom financing tools, forms, and lead capture flows.",
         solution:
           "A premium site with property search, listing galleries, bank mortgage calculators, forms, and CTAs to visit, build, or sell.",
+      },
+      {
+        category: "EdTech / SaaS",
+        title: "UniLearn — Academic platform",
+        problem:
+          "A university needed to move beyond generic LMS tools: little live visibility for admins and teachers, and a weak student experience around deadlines, focus, and term pacing.",
+        solution:
+          "A custom platform with roles (admin, teacher, student), live metrics and analytics, academic calendar, focus/sprint mode, and fast weekly publishing of materials, assignments, quizzes, and forums.",
+      },
+      {
+        category: "E-commerce / Fashion",
+        title: "FirstDown — Jersey store",
+        problem:
+          "A jersey shop needed to sell online with catalogs by league and team, customizable pieces, and a clear checkout experience in colones—without losing the brand vibe.",
+        solution:
+          "A custom e-commerce store with MLB/NBA/NFL filters, team catalogs, build-your-look (jersey + shorts), stock/sale badges, and a cart flow to request orders with free shipping.",
       },
     ],
   },
