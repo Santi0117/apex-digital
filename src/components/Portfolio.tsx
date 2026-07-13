@@ -66,6 +66,12 @@ export default function Portfolio() {
 
   const project = projects[activeProject];
   const totalImages = project.images.length;
+  const tabCols =
+    projects.length >= 4
+      ? "grid-cols-2 lg:grid-cols-4"
+      : projects.length === 3
+        ? "grid-cols-3"
+        : "grid-cols-2";
 
   useEffect(() => {
     setImageIndex(0);
@@ -91,10 +97,12 @@ export default function Portfolio() {
           <div
             role="tablist"
             aria-label={p.label}
-            className="flex gap-2 overflow-x-auto pb-1 mb-6 md:mb-8 snap-x snap-mandatory scrollbar-none"
+            className={`grid ${tabCols} gap-2 mb-6 md:mb-8`}
           >
             {projects.map((item, index) => {
               const selected = activeProject === index;
+              const number = String(index + 1).padStart(2, "0");
+
               return (
                 <button
                   key={item.short}
@@ -102,20 +110,25 @@ export default function Portfolio() {
                   role="tab"
                   aria-selected={selected}
                   onClick={() => setActiveProject(index)}
-                  className={`appearance-none snap-start shrink-0 rounded-2xl border px-4 py-3 text-left transition-all duration-200 min-w-[148px] sm:min-w-[180px] ${
+                  className={`appearance-none rounded-2xl border px-3 py-3 sm:px-4 text-left transition-all duration-200 ${
                     selected
                       ? "border-accent bg-accent text-white shadow-sm shadow-accent/25"
                       : "border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-accent/40"
                   }`}
                 >
                   <span
-                    className={`block text-[10px] font-medium tracking-[0.18em] uppercase mb-1 ${
+                    className={`block text-[10px] font-medium tracking-[0.16em] uppercase ${
                       selected ? "text-white/70" : "text-neutral-400"
                     }`}
                   >
-                    {String(index + 1).padStart(2, "0")} · {item.category}
+                    <span className="sm:hidden">{number}</span>
+                    <span className="hidden sm:inline">
+                      {number} · {item.category}
+                    </span>
                   </span>
-                  <span className="block text-sm font-medium">{item.short}</span>
+                  <span className="mt-1 block text-sm font-medium truncate">
+                    {item.short}
+                  </span>
                 </button>
               );
             })}
@@ -123,124 +136,123 @@ export default function Portfolio() {
         </ScrollReveal>
 
         <ScrollReveal delay={120}>
-          <div className="rounded-[1.75rem] border border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-950/60 overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr]">
-              <div className="relative p-3 sm:p-4 lg:p-5">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800">
-                  <div className="absolute top-0 inset-x-0 z-10 flex items-center gap-1.5 px-3 py-2.5 bg-gradient-to-b from-black/45 to-transparent pointer-events-none">
-                    <span className="h-2 w-2 rounded-full bg-white/35" />
-                    <span className="h-2 w-2 rounded-full bg-white/35" />
-                    <span className="h-2 w-2 rounded-full bg-white/35" />
-                    <span className="ml-2 text-[10px] text-white/70 truncate">
-                      {project.title}
-                    </span>
-                  </div>
-
+          <div className="rounded-[1.75rem] border border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-950/60">
+            <div
+              key={project.short}
+              className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.95fr] animate-[fadeIn_0.35s_ease-out]"
+            >
+              {/* Galería */}
+              <div className="p-4 sm:p-5 space-y-3">
+                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800">
                   {project.images.map((src, i) => (
                     <Image
                       key={src}
                       src={src}
                       alt={`${p.screenshotAlt}${project.title} ${i + 1}`}
                       fill
-                      className={`object-contain object-center p-1 sm:p-2 transition-opacity duration-400 ${
+                      className={`object-contain object-center p-2 sm:p-3 transition-opacity duration-300 ${
                         i === imageIndex ? "opacity-100" : "opacity-0"
                       }`}
-                      sizes="(max-width: 1024px) 100vw, 720px"
+                      sizes="(max-width: 1024px) 100vw, 640px"
                       priority={activeProject === 0 && i === 0}
                     />
                   ))}
+                </div>
 
-                  {totalImages > 1 && (
-                    <>
+                {totalImages > 1 && (
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-3">
                       <button
                         type="button"
                         onClick={goPrev}
                         aria-label={p.prevImage}
-                        className="appearance-none absolute left-3 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/75 transition-colors"
+                        className="appearance-none flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 hover:border-accent hover:text-accent transition-colors"
                       >
                         <ArrowIcon direction="prev" />
                       </button>
+
+                      <div className="flex items-center justify-center gap-2 min-w-0 flex-1 overflow-x-auto py-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        {project.images.map((src, i) => {
+                          const selected = imageIndex === i;
+                          return (
+                            <button
+                              key={src}
+                              type="button"
+                              onClick={() => setImageIndex(i)}
+                              aria-label={`${p.screenshotAlt}${i + 1}`}
+                              aria-current={selected}
+                              className={`appearance-none relative shrink-0 h-12 w-[4.5rem] sm:h-14 sm:w-24 rounded-lg overflow-hidden border-2 transition-all ${
+                                selected
+                                  ? "border-accent ring-2 ring-accent/25 opacity-100"
+                                  : "border-transparent opacity-60 hover:opacity-100"
+                              }`}
+                            >
+                              <Image
+                                src={src}
+                                alt=""
+                                fill
+                                className="object-contain object-center bg-neutral-100 dark:bg-neutral-800"
+                                sizes="96px"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+
                       <button
                         type="button"
                         onClick={goNext}
                         aria-label={p.nextImage}
-                        className="appearance-none absolute right-3 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/75 transition-colors"
+                        className="appearance-none flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 hover:border-accent hover:text-accent transition-colors"
                       >
                         <ArrowIcon direction="next" />
                       </button>
-                    </>
-                  )}
-                </div>
+                    </div>
 
-                {totalImages > 1 && (
-                  <div className="mt-3 flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-                    {project.images.map((src, i) => {
-                      const selected = imageIndex === i;
-                      return (
-                        <button
-                          key={src}
-                          type="button"
-                          onClick={() => setImageIndex(i)}
-                          aria-label={`${p.screenshotAlt}${i + 1}`}
-                          className={`appearance-none relative shrink-0 h-14 w-[5.5rem] sm:h-16 sm:w-24 rounded-xl overflow-hidden border transition-all ${
-                            selected
-                              ? "border-accent ring-2 ring-accent/30"
-                              : "border-neutral-200 dark:border-neutral-700 opacity-70 hover:opacity-100"
-                          }`}
-                        >
-                          <Image
-                            src={src}
-                            alt=""
-                            fill
-                            className="object-contain object-center bg-neutral-100 dark:bg-neutral-800"
-                            sizes="96px"
-                          />
-                        </button>
-                      );
-                    })}
+                    <p className="text-center text-xs text-neutral-400 tabular-nums">
+                      {imageIndex + 1} / {totalImages}
+                    </p>
                   </div>
                 )}
               </div>
 
-              <div className="flex flex-col justify-center px-5 py-6 sm:px-7 sm:py-8 lg:pr-8 lg:pl-2 border-t lg:border-t-0 lg:border-l border-neutral-200 dark:border-neutral-800">
-                <p className="text-[11px] font-medium tracking-[0.15em] uppercase text-accent mb-2.5">
-                  {project.category}
-                </p>
-                <h3 className="text-xl sm:text-2xl font-medium text-neutral-900 dark:text-neutral-100 tracking-tight mb-6 text-balance">
-                  {project.title}
-                </h3>
-
-                <div className="space-y-4">
-                  <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4">
-                    <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-neutral-400 mb-1.5">
-                      {p.problemLabel}
-                    </p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                      {project.problem}
-                    </p>
-                  </div>
-                  <div className="rounded-2xl bg-accent-soft/70 dark:bg-cyan-950/30 border border-accent/15 p-4">
-                    <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-accent mb-1.5">
-                      {p.solutionLabel}
-                    </p>
-                    <p className="text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed">
-                      {project.solution}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-xs text-neutral-400 dark:text-neutral-500">
-                    {project.stack}
+              {/* Texto */}
+              <div className="flex flex-col justify-between gap-6 px-5 py-6 sm:px-7 sm:py-8 lg:pr-8 lg:pl-4 border-t lg:border-t-0 lg:border-l border-neutral-200 dark:border-neutral-800">
+                <div>
+                  <p className="text-[11px] font-medium tracking-[0.15em] uppercase text-accent mb-2.5">
+                    {project.category}
                   </p>
-                  <p className="text-xs text-neutral-400">
-                    {imageIndex + 1}/{totalImages}
+                  <h3 className="text-xl sm:text-2xl font-medium text-neutral-900 dark:text-neutral-100 tracking-tight mb-5 text-balance">
+                    {project.title}
+                  </h3>
+
+                  <div className="space-y-3">
+                    <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4">
+                      <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-neutral-400 mb-1.5">
+                        {p.problemLabel}
+                      </p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                        {project.problem}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl bg-accent-soft/70 dark:bg-cyan-950/30 border border-accent/15 p-4">
+                      <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-accent mb-1.5">
+                        {p.solutionLabel}
+                      </p>
+                      <p className="text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed">
+                        {project.solution}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-5 text-xs text-neutral-400 dark:text-neutral-500">
+                    {project.stack}
                   </p>
                 </div>
 
                 <a
                   href="#agendar"
-                  className="appearance-none mt-6 inline-flex w-full sm:w-auto justify-center text-sm font-medium px-6 py-3 rounded-full bg-accent text-white hover:bg-accent-hover transition-colors"
+                  className="appearance-none inline-flex w-full justify-center text-sm font-medium px-6 py-3.5 rounded-full bg-accent text-white hover:bg-accent-hover transition-colors"
                 >
                   {p.cta}
                 </a>

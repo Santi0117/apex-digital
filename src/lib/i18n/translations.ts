@@ -415,7 +415,7 @@ const es: SiteCopy = {
     label: "Casos",
     title: "Algunos de los proyectos que ya están en producción",
     description:
-      "Casos reales: el problema del negocio, lo que construimos y el resultado digital.",
+      "Elegí un caso, recorré las pantallas y mirá el problema que resolvimos y cómo lo construimos.",
     screenshotAlt: "Captura del proyecto ",
     problemLabel: "Problema",
     solutionLabel: "Solución",
@@ -1200,7 +1200,7 @@ const en: SiteCopy = {
     label: "Case studies",
     title: "Some of the projects already live in production",
     description:
-      "Real cases: the business problem, what we built, and the digital outcome.",
+      "Pick a case, browse the screens, and see the problem we solved and how we built it.",
     screenshotAlt: "Project screenshot ",
     problemLabel: "Problem",
     solutionLabel: "Solution",
