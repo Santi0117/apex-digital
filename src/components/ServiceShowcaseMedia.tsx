@@ -37,14 +37,43 @@ export default function ServiceShowcaseMedia({
     const video = videoRef.current;
     if (!video || !useVideo) return;
 
-    if (isActive) {
-      video.play().catch(() => {});
+    if (!isActive) {
+      video.pause();
+      video.currentTime = 0;
       return;
     }
 
-    video.pause();
-    video.currentTime = 0;
-  }, [isActive, useVideo]);
+    // iOS/Android: muted + playsInline must be set before play(), and play often
+    // fails if called before enough data is buffered (promise was swallowed silently).
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true");
+
+    const tryPlay = () => {
+      const playPromise = video.play();
+      if (playPromise) playPromise.catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tryPlay();
+        else video.pause();
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(video);
+
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+      observer.disconnect();
+    };
+  }, [isActive, useVideo, videoSrc]);
 
   useEffect(() => {
     if (!expanded) return;
@@ -119,7 +148,8 @@ export default function ServiceShowcaseMedia({
                 muted
                 loop
                 playsInline
-                preload={isActive ? "metadata" : "none"}
+                autoPlay
+                preload={isActive ? "auto" : "none"}
                 src={isActive ? videoSrc : undefined}
                 onError={() => setVideoFailed(true)}
                 className="w-full h-full object-contain object-center sm:p-1 pointer-events-none"
