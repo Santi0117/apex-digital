@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
+import SiteAurora from "@/components/SiteAurora";
 import LandingTop from "@/components/LandingTop";
+import CentralizedShowcase from "@/components/CentralizedShowcase";
 import BaseCommon from "@/components/BaseCommon";
 import Problem from "@/components/Problem";
 import HowItWorks from "@/components/HowItWorks";
@@ -14,17 +16,21 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
-        <LandingTop />
-        <BaseCommon />
-        <Problem />
-        <HowItWorks />
-        <Verticals />
-        <ValueProps />
-        <Comparison />
-        <Pricing />
-        <Waitlist />
-      </main>
+      <div className="relative min-h-screen bg-[#0a0f14]">
+        <SiteAurora />
+        <main className="relative z-10">
+          <LandingTop />
+          <CentralizedShowcase />
+          <BaseCommon />
+          <Problem />
+          <HowItWorks />
+          <Verticals />
+          <ValueProps />
+          <Comparison />
+          <Pricing />
+          <Waitlist />
+        </main>
+      </div>
       <Footer />
     </>
   );

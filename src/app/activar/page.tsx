@@ -7,14 +7,14 @@ import ActivarFlow from "./ActivarFlow";
 export const metadata: Metadata = {
   title: "Activá tu software — Onvision",
   description:
-    "Elegí tu industria y tu plan. Creás tu cuenta y empezás a operar el mismo día, con 15 días gratis.",
+    "Elegí tu industria, pagá con tarjeta (₡10,500/mes en CRC) y creá tu cuenta el mismo día.",
 };
 
 export default function ActivarPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-ov-surface min-h-screen pt-28 pb-24">
+      <main className="hero-surface min-h-screen pt-28 pb-24">
         <Suspense fallback={null}>
           <ActivarFlow />
         </Suspense>

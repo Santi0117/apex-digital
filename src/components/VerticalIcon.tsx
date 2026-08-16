@@ -8,7 +8,9 @@ export type IconName =
   | "retail"
   | "realestate"
   | "livestock"
-  | "agriculture";
+  | "agriculture"
+  | "legal"
+  | "personal";
 
 const paths: Record<IconName, ReactNode> = {
   clinic: (
@@ -33,6 +35,15 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M14.5 6.5 17 4l3 3-2.5 2.5M10 11l-6.5 6.5a2 2 0 0 0 2.8 2.8L12.5 14" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       <path d="m14.5 6.5-3.5 3.5" strokeWidth="1.75" strokeLinecap="round" />
+    </>
+  ),
+  /* Pliego con sello: el notario da fe. Se evitó la balanza por trillada. */
+  legal: (
+    <>
+      <path d="M7 3.5h6L17 7v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z" strokeWidth="1.6" strokeLinejoin="round" fill="none" />
+      <path d="M13 3.5V6a1 1 0 0 0 1 1h2.5" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+      <circle cx="14" cy="16" r="3.2" strokeWidth="1.6" fill="none" />
+      <path d="M8 9.5h3M8 12.5h2" strokeWidth="1.6" strokeLinecap="round" />
     </>
   ),
   retail: (
@@ -61,6 +72,20 @@ const paths: Record<IconName, ReactNode> = {
       <path d="M12 10c-3-4-7-5-8-3 2 1 4 4 8 3Z" strokeWidth="1.75" strokeLinejoin="round" fill="none" />
       <path d="M12 10c3-4 7-5 8-3-2 1-4 4-8 3Z" strokeWidth="1.75" strokeLinejoin="round" fill="none" />
       <path d="M4 21h16" strokeWidth="1.75" strokeLinecap="round" />
+    </>
+  ),
+  /* Curva del año: loma de dic y caída de enero — identidad de Personal. */
+  personal: (
+    <>
+      <path
+        d="M3 15 L7 15 Q9 15 10 10 Q11 5 13 5 Q15 5 16 14 Q17 20 19.5 17 L21 15"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <circle cx="16" cy="14" r="1.4" fill="currentColor" />
+      <circle cx="13" cy="5" r="1.2" fill="currentColor" opacity="0.7" />
     </>
   ),
 };

@@ -1,0 +1,209 @@
+/* MagicBento — blanco + cyan Onvision Digital, grid formal uniforme */
+.bento-section {
+  --mb-ink: #0a1628;
+  --mb-muted: #5c6f84;
+  --mb-glow: 8, 145, 178;
+  --mb-glow-soft: rgba(8, 145, 178, 0.18);
+  --mb-border: rgba(8, 145, 178, 0.18);
+  --mb-bg: #ffffff;
+  position: relative;
+  user-select: none;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  max-width: 56em;
+  margin: 0 auto;
+  font-size: clamp(1rem, 0.92rem + 0.35vw, 1.25rem);
+  grid-template-columns: 1fr;
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 220px;
+  width: 100%;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 1.35rem;
+  border: 1px solid var(--mb-border);
+  background: var(--mb-bg);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 12px 32px -20px rgba(10, 22, 40, 0.22);
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 220px;
+  --glow-color: var(--mb-glow);
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(8, 145, 178, 0.4);
+  box-shadow: 0 18px 40px -20px rgba(8, 145, 178, 0.28);
+}
+
+.magic-bento-card__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  gap: 0.4rem;
+}
+
+.magic-bento-card__title {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--mb-ink);
+}
+
+.magic-bento-card__description {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0;
+  color: var(--mb-muted);
+}
+
+.magic-bento-card__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75em;
+  position: relative;
+  z-index: 2;
+  margin-top: 1.25rem;
+}
+
+.magic-bento-card__icon {
+  flex-shrink: 0;
+}
+
+.magic-bento-card__icon > div {
+  height: 3.75rem;
+  width: 3.75rem;
+  border-radius: 1.1rem;
+}
+
+.magic-bento-card__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0891b2;
+  padding-bottom: 0.35em;
+}
+
+/* Sin clamp agresivo: títulos completos */
+.magic-bento-card--text-autohide .magic-bento-card__title,
+.magic-bento-card--text-autohide .magic-bento-card__description {
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .magic-bento-card {
+    min-height: 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+
+  .magic-bento-card {
+    min-height: 260px;
+    padding: 1.85rem 1.75rem 1.6rem;
+  }
+
+  .magic-bento-card__title {
+    font-size: 1.65rem;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+  }
+
+  .magic-bento-card__description {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  .magic-bento-card__icon > div {
+    height: 4.25rem;
+    width: 4.25rem;
+  }
+}
+
+.magic-bento-card--border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 5px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.7)) 0%,
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.3)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.magic-bento-card--border-glow:hover {
+  box-shadow:
+    0 12px 32px rgba(10, 22, 40, 0.1),
+    0 0 28px var(--mb-glow-soft);
+}
+
+.particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: rgba(var(--mb-glow), 0.16);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.particle-container:hover {
+  box-shadow:
+    0 12px 32px rgba(10, 22, 40, 0.08),
+    0 0 28px var(--mb-glow-soft);
+}
+
+.global-spotlight {
+  mix-blend-mode: multiply;
+  will-change: transform, opacity;
+  z-index: 200 !important;
+  pointer-events: none;
+}

@@ -121,7 +121,7 @@ export type AuroraProps = {
 };
 
 export default function Aurora({
-  colorStops = ["#0F9F6E", "#E6F7F0", "#0A1628"],
+  colorStops = ["#0891B2", "#E0F2FE", "#0A0F14"],
   amplitude = 1.0,
   blend = 0.5,
   speed = 0.5,
@@ -188,6 +188,7 @@ export default function Aurora({
     let animateId = 0;
     const update = (t: number) => {
       animateId = requestAnimationFrame(update);
+      if (document.hidden) return;
       const {
         speed: currentSpeed = 1.0,
         amplitude: currentAmplitude = 1.0,

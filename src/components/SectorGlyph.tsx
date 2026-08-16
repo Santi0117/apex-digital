@@ -5,19 +5,29 @@ const colors: Record<IconName, { bg: string; fg: string }> = {
   construction: { bg: "#E8F1FB", fg: "#1D6FB8" },
   realestate: { bg: "#EAF7F1", fg: "#0F9F6E" },
   clinic: { bg: "#E8F7FA", fg: "#0E8A9A" },
-  retail: { bg: "#F3EEFF", fg: "#5B4BCC" },
+  retail: { bg: "#F1F5F9", fg: "#1E293B" },
   livestock: { bg: "#FFF6E5", fg: "#C47A00" },
   agriculture: { bg: "#E9F8E9", fg: "#2F9E44" },
   workshop: { bg: "#F0F3F7", fg: "#3D5A80" },
+  legal: { bg: "#F6EEEC", fg: "#6B2028" },
+  personal: { bg: "#F0EEFB", fg: "#5B4BD6" },
 };
 
-function Illustration({ name }: { name: IconName }) {
-  const c = colors[name].fg;
+function Illustration({
+  name,
+  color,
+  sizeClass = "h-10 w-10",
+}: {
+  name: IconName;
+  color?: string;
+  sizeClass?: string;
+}) {
+  const c = color ?? colors[name].fg;
 
   switch (name) {
     case "restaurant":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M22 12v18a6 6 0 0 0 12 0V12" stroke={c} strokeWidth="3.5" fill="none" strokeLinecap="round" />
           <path d="M28 30v22" stroke={c} strokeWidth="3.5" strokeLinecap="round" />
           <path d="M42 12v40" stroke={c} strokeWidth="3.5" strokeLinecap="round" />
@@ -26,7 +36,7 @@ function Illustration({ name }: { name: IconName }) {
       );
     case "construction":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M12 52h40M16 52V30l16-14 16 14v22" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
           <path d="M28 52V38h8v14" stroke={c} strokeWidth="3.5" fill="none" />
           <path d="M14 22h14l-4-8H18l-4 8Z" fill={c} />
@@ -34,7 +44,7 @@ function Illustration({ name }: { name: IconName }) {
       );
     case "realestate":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M10 54h44M14 54V28l18-14 18 14v26" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
           <rect x="26" y="36" width="12" height="18" rx="1.5" stroke={c} strokeWidth="3" fill="none" />
           <circle cx="32" cy="24" r="3" fill={c} />
@@ -42,21 +52,21 @@ function Illustration({ name }: { name: IconName }) {
       );
     case "clinic":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <rect x="12" y="12" width="40" height="40" rx="10" stroke={c} strokeWidth="3.5" fill="none" />
           <path d="M32 20v24M20 32h24" stroke={c} strokeWidth="4" strokeLinecap="round" />
         </svg>
       );
     case "retail":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M14 24h36l-3 28a4 4 0 0 1-4 3.5H21a4 4 0 0 1-4-3.5L14 24Z" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
           <path d="M24 24V20a8 8 0 0 1 16 0v4" stroke={c} strokeWidth="3.5" fill="none" strokeLinecap="round" />
         </svg>
       );
     case "livestock":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <ellipse cx="32" cy="36" rx="18" ry="12" stroke={c} strokeWidth="3.5" fill="none" />
           <circle cx="24" cy="28" r="2.5" fill={c} />
           <circle cx="40" cy="28" r="2.5" fill={c} />
@@ -65,7 +75,7 @@ function Illustration({ name }: { name: IconName }) {
       );
     case "agriculture":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M32 54V28" stroke={c} strokeWidth="3.5" strokeLinecap="round" />
           <path d="M32 30c-8-10-18-12-20-6 6 2 12 10 20 6Z" fill={c} opacity="0.9" />
           <path d="M32 30c8-10 18-12 20-6-6 2-12 10-20 6Z" fill={c} opacity="0.55" />
@@ -74,16 +84,67 @@ function Illustration({ name }: { name: IconName }) {
       );
     case "workshop":
       return (
-        <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
           <path d="M38 18 46 10l8 8-8 8" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
           <path d="M38 18 18 38a7 7 0 0 0 8 8l20-20" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
           <path d="M14 50l8-8" stroke={c} strokeWidth="3.5" strokeLinecap="round" />
         </svg>
       );
+    case "legal":
+      return (
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
+          <path d="M18 10h16l12 11v31a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2Z" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
+          <path d="M34 10v9a2 2 0 0 0 2 2h9" stroke={c} strokeWidth="3.5" fill="none" strokeLinejoin="round" />
+          <circle cx="38" cy="42" r="9" fill={c} opacity="0.9" />
+          <path d="M24 28h10M24 35h7" stroke={c} strokeWidth="3.5" strokeLinecap="round" />
+        </svg>
+      );
+    case "personal":
+      return (
+        <svg viewBox="0 0 64 64" className={sizeClass} aria-hidden>
+          <path
+            d="M10 38 L18 38 Q22 38 24 26 Q26 14 32 14 Q38 14 40 36 Q42 50 48 42 L52 36"
+            stroke={c}
+            strokeWidth="3.5"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="40" cy="36" r="4" fill={c} />
+          <circle cx="32" cy="14" r="3.5" fill={c} opacity="0.55" />
+        </svg>
+      );
   }
 }
 
-export default function SectorGlyph({ name }: { name: IconName }) {
+export default function SectorGlyph({
+  name,
+  plain = false,
+  size = "lg",
+}: {
+  name: IconName;
+  plain?: boolean;
+  size?: "lg" | "mini";
+}) {
+  if (plain) {
+    if (size === "mini") {
+      return (
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center sm:h-9 sm:w-9">
+          <Illustration
+            name={name}
+            color="currentColor"
+            sizeClass="h-7 w-7 sm:h-8 sm:w-8"
+          />
+        </div>
+      );
+    }
+    return (
+      <div className="flex h-[4.5rem] w-[4.5rem] items-center justify-center sm:h-24 sm:w-24">
+        <Illustration name={name} color="currentColor" sizeClass="h-16 w-16 sm:h-[4.75rem] sm:w-[4.75rem]" />
+      </div>
+    );
+  }
+
   const { bg } = colors[name];
   return (
     <div

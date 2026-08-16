@@ -3,7 +3,7 @@ import ScrollReveal from "./ScrollReveal";
 
 export default function ValueProps() {
   return (
-    <section className="hero-surface relative overflow-hidden py-20 md:py-28">
+    <section className="relative py-20 md:py-28">
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <ScrollReveal className="mb-14 max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-ov-teal-hot uppercase">

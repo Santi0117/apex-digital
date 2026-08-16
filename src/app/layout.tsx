@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Syne } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
 });
 
-const syne = Syne({
-  variable: "--font-syne",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: `${site.name} — SaaS multi-vertical para empresas en Costa Rica`,
   description:
-    "Facturación electrónica 4.4, inventario y analiticas en el nucleo. Activá módulos por industria: clínicas, restaurantes, retail, talleres y más. Hecho para Costa Rica.",
+    "Facturación electrónica 4.4, inventario y analíticas en el núcleo. Activá módulos por industria: clínicas, restaurantes, retail, talleres y más. Un producto de Onvision Digital.",
   keywords: [
     "facturación electrónica Costa Rica",
     "SaaS Costa Rica",
@@ -26,14 +24,20 @@ export const metadata: Metadata = {
     "Hacienda 4.4",
     "software PYMEs",
     "Onvision",
+    "Onvision Digital",
   ],
+  icons: {
+    icon: [
+      { url: "/logo-icon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "es_CR",
     siteName: site.name,
     title: `${site.name} — El SaaS hecho para Costa Rica`,
     description:
-      "Un solo núcleo. Muchas industrias. Facturación, inventario y verticales listas para tu giro.",
+      "Un solo núcleo. Muchas industrias. Facturación, inventario y verticales listas para tu giro. Producto de Onvision Digital.",
   },
 };
 
@@ -45,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${jakarta.variable} ${syne.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

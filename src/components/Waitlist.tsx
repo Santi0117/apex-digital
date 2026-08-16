@@ -38,7 +38,7 @@ export default function Waitlist() {
   return (
     <section
       id="registro"
-      className="hero-surface relative overflow-hidden py-20 md:py-28"
+      className="relative py-20 md:py-28"
     >
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">

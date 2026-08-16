@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" fill="none">
+  <rect width="480" height="320" fill="#F0EEFB"/>
+  <path d="M60 200 L140 200 Q180 200 200 120 Q220 40 280 40 Q340 40 360 220 Q380 300 420 240" stroke="#5B4BD6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="360" cy="220" r="16" fill="#F4674E"/>
+  <circle cx="280" cy="40" r="14" fill="#2EC4A8"/>
+  <text x="40" y="290" fill="#372A8C" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Onvision Personal</text>
+</svg>
