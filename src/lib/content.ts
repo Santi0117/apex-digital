@@ -1,6 +1,6 @@
 export const navLinks = [
   { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Industrias", href: "#industrias" },
+  { label: "Industrias", href: "#industrias-grid" },
   { label: "Compará", href: "#comparativa" },
   { label: "Precios", href: "#precios" },
 ];
