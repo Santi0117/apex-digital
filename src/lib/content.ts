@@ -1,6 +1,6 @@
 export const navLinks = [
   { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Industrias", href: "#industrias-grid" },
+  { label: "Industrias", href: "#industrias-imagenes" },
   { label: "Compará", href: "#comparativa" },
   { label: "Precios", href: "#precios" },
 ];
@@ -14,6 +14,7 @@ export const hero = {
   priceNote: "₡10,500 / mes · todos los sectores · producto de Onvision Digital",
   ctaPrimary: "Activar Onvision",
   ctaSecondary: "Ver industrias",
+  ctaSecondaryHref: "#industrias-imagenes",
 };
 
 export const baseFeatures = [

@@ -45,7 +45,7 @@ export default function Hero() {
             {hero.ctaPrimary}
           </a>
           <a
-            href="#industrias-grid"
+            href={hero.ctaSecondaryHref}
             className="btn-ghost-cyan w-full sm:w-auto"
           >
             {hero.ctaSecondary}

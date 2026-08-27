@@ -444,7 +444,7 @@ export default function CentralizedShowcase() {
   }
 
   return (
-    <section className="relative px-4 py-16 sm:px-6 md:px-8 md:py-24">
+    <section id="industrias-imagenes" className="relative scroll-mt-28 px-4 py-16 sm:px-6 md:px-8 md:py-24">
       <div className="relative z-10 mx-auto max-w-6xl text-center">
         <p className="mb-3 text-[11px] font-semibold tracking-[0.2em] text-cyan-300/80 uppercase">
           Por industria · Software para tu giro
