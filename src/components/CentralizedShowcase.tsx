@@ -265,8 +265,8 @@ const SECTORS: SectorSlide[] = [
     panelBody: "Expedientes, plazos hábiles y honorarios — protocolo y cartera en un solo panel.",
     image: "/product/abogados-panel-hq.png",
     imageAlt: "Panel de Onvision Legal: plazos, expedientes y protocolo",
-    imageWidth: 1024,
-    imageHeight: 581,
+    imageWidth: 3024,
+    imageHeight: 1718,
     preview: {
       greeting: "Estudio hoy",
       metricLabel: "Plazos esta semana",
@@ -289,8 +289,8 @@ const SECTORS: SectorSlide[] = [
     panelBody: "Cabezas por lote, tratamientos y ventas — con factura cuando cobrás.",
     image: "/product/ganaderia-panel-hq.png",
     imageAlt: "Panel de Onvision Ganadero: producción de quesos e inventario",
-    imageWidth: 1024,
-    imageHeight: 582,
+    imageWidth: 3024,
+    imageHeight: 1720,
     preview: {
       greeting: "Hacienda hoy",
       metricLabel: "Cabezas",
@@ -313,8 +313,8 @@ const SECTORS: SectorSlide[] = [
     panelBody: "Parcelas, costos por ciclo y ventas de cosecha con factura 4.4.",
     image: "/product/agricultura-panel-hq.png",
     imageAlt: "Panel de Onvision Agrícola: parcelas, cosecha e inventario",
-    imageWidth: 1024,
-    imageHeight: 581,
+    imageWidth: 3024,
+    imageHeight: 1716,
     preview: {
       greeting: "Ciclo actual",
       metricLabel: "Parcelas activas",
@@ -337,8 +337,8 @@ const SECTORS: SectorSlide[] = [
     panelBody: "Órdenes de trabajo, historial por placa y repuestos — del presupuesto a la factura.",
     image: "/product/talleres-panel-hq.png",
     imageAlt: "Panel de Onvision Taller: órdenes de trabajo en tablero",
-    imageWidth: 1024,
-    imageHeight: 582,
+    imageWidth: 3024,
+    imageHeight: 1720,
     preview: {
       greeting: "Taller en vivo",
       metricLabel: "Órdenes abiertas",
@@ -361,8 +361,8 @@ const SECTORS: SectorSlide[] = [
     panelBody: "Presupuesto, deudas y cuesta de enero — finanzas de la casa, sin factura electrónica.",
     image: "/product/personal-panel-hq.png",
     imageAlt: "Panel de Onvision Personal: presupuesto, cuentas y movimientos",
-    imageWidth: 1024,
-    imageHeight: 581,
+    imageWidth: 3024,
+    imageHeight: 1718,
     preview: {
       greeting: "Este mes",
       metricLabel: "Disponible",
@@ -394,8 +394,13 @@ function Chevron({ dir }: { dir: "left" | "right" }) {
 
 function PanelPreview({ sector }: { sector: SectorSlide }) {
   if (sector.image) {
+    const w = sector.imageWidth ?? 3024;
+    const h = sector.imageHeight ?? 1718;
     return (
-      <div className="relative aspect-[3024/1718] overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-28px_rgba(15,23,42,0.45)] ring-1 ring-black/5">
+      <div
+        className="relative overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-28px_rgba(15,23,42,0.45)] ring-1 ring-black/5"
+        style={{ aspectRatio: `${w} / ${h}` }}
+      >
         <Image
           src={sector.image}
           alt={sector.imageAlt}
