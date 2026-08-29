@@ -74,12 +74,12 @@ export default function ActivarFlow() {
           Cancelaste el pago. Podés elegir de nuevo la industria e intentarlo.
         </div>
       )}
-      {(pagoEstado === "error" || pagoEstado === "pendiente") && (
+      {pagoEstado === "error" || pagoEstado === "pendiente" ? (
         <div className="mx-auto mb-8 max-w-2xl rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-100">
           No pudimos confirmar el pago. Si te cobraron, escribinos a soporte con el
-          correo de Stripe.
+          correo que usaste en Onvo.
         </div>
-      )}
+      ) : null}
 
       <ScrollReveal className="mb-14">
         <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-cyan-300 uppercase">
@@ -169,7 +169,7 @@ export default function ActivarFlow() {
                   disabled={pagando}
                   className="btn-teal disabled:opacity-60"
                 >
-                  {pagando ? "Redirigiendo a Stripe…" : "Pagar con tarjeta"}
+                  {pagando ? "Redirigiendo a Onvo…" : "Pagar con tarjeta"}
                 </button>
               )}
               {vertical && !disponible && (
@@ -181,9 +181,9 @@ export default function ActivarFlow() {
           </div>
           {vertical && disponible && (
             <p className="mt-5 text-xs text-white/45">
-              Al pagar te llevamos a Stripe Checkout. Cuando el cobro quede
-              confirmado, creás tu cuenta en {vertical.name} y entrás con la
-              suscripción activa.
+              Al pagar te llevamos al checkout de Onvo (Visa, Mastercard, Amex y
+              SINPE). Cuando el cobro quede confirmado, creás tu cuenta en{" "}
+              {vertical.name} y entrás con la suscripción activa.
             </p>
           )}
         </div>

@@ -1,60 +1,29 @@
 import { redirect } from "next/navigation";
 import { urlDeActivacion } from "@/lib/activacion";
-import { getStripe } from "@/lib/stripe";
 
 type Props = {
-  searchParams: Promise<{ session_id?: string; vertical?: string }>;
+  searchParams: Promise<{ vertical?: string }>;
 };
 
 /**
- * Tras pagar en Stripe: verificamos la sesión y mandamos al registro
- * de la app del vertical con billing=activa.
- *
- * `redirect()` lanza: no va dentro de try/catch genérico.
+ * Tras pagar en Onvo: mandamos al registro de la app del vertical
+ * con billing=activa.
  */
 export default async function ActivarExitoPage({ searchParams }: Props) {
   const params = await searchParams;
-  const sessionId = params.session_id;
-  const verticalId = params.vertical;
+  const verticalId = params.vertical?.trim();
 
-  if (!sessionId || !verticalId) {
+  if (!verticalId) {
     redirect("/activar?pago=error");
   }
 
-  let destino: string | null = null;
-  let fallo: "pendiente" | "error" | null = null;
+  const destino = urlDeActivacion(verticalId, "unico", { billing: "activa" });
 
-  try {
-    const stripe = getStripe();
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    const pagado =
-      session.payment_status === "paid" ||
-      session.status === "complete" ||
-      session.payment_status === "no_payment_required";
-
-    const verticalOk =
-      !session.metadata?.verticalId ||
-      session.metadata.verticalId === verticalId;
-
-    if (!pagado || !verticalOk) {
-      fallo = "pendiente";
-    } else {
-      destino = urlDeActivacion(verticalId, "unico", {
-        billing: "activa",
-        sessionId,
-      });
-      if (!destino) fallo = "error";
-    }
-  } catch {
-    fallo = "error";
-  }
-
-  if (fallo) {
+  if (!destino) {
     redirect(
-      `/activar?vertical=${encodeURIComponent(verticalId)}&pago=${fallo}`,
+      `/activar?vertical=${encodeURIComponent(verticalId)}&pago=error`,
     );
   }
 
-  redirect(destino!);
+  redirect(destino);
 }

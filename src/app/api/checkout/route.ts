@@ -1,15 +1,31 @@
 import { NextResponse } from "next/server";
 import { appUrlDeVertical } from "@/lib/activacion";
 import { verticals } from "@/lib/content";
-import { getStripe, PRECIO_MENSUAL_CRC, siteOrigin } from "@/lib/stripe";
+import {
+  ONVO_PRECIO_MENSUAL_CRC,
+  checkoutOriginFromRequest,
+  createOnvoOneTimeLink,
+  onvoConfigured,
+} from "@/lib/onvo";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const runtime = "nodejs";
 
 /**
- * Crea una Checkout Session de suscripción mensual en CRC.
+ * Crea un link de checkout Onvo (un solo uso) para la suscripción mensual.
  * Body: { verticalId: string }
  */
 export async function POST(request: Request) {
+  if (!onvoConfigured()) {
+    return NextResponse.json(
+      {
+        error:
+          "Onvo no está configurado. Agregá ONVO_SECRET_KEY en .env.local / Vercel.",
+      },
+      { status: 503 },
+    );
+  }
+
   let body: { verticalId?: string };
   try {
     body = await request.json();
@@ -34,59 +50,31 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!process.env.STRIPE_SECRET_KEY) {
-    return NextResponse.json(
-      {
-        error:
-          "Stripe no está configurado. Agregá STRIPE_SECRET_KEY en .env.local.",
-      },
-      { status: 503 },
-    );
-  }
+  const origin = (checkoutOriginFromRequest(request) ?? getSiteUrl()).replace(
+    /\/$/,
+    "",
+  );
 
-  const origin = siteOrigin();
-  const stripe = getStripe();
-
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    locale: "es",
-    billing_address_collection: "auto",
-    allow_promotion_codes: true,
-    line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "crc",
-          unit_amount: PRECIO_MENSUAL_CRC,
-          recurring: { interval: "month" },
-          product_data: {
-            name: `Onvision · ${vertical.name}`,
-            description: `Suscripción mensual — ${vertical.subtitle}`,
-          },
-        },
-      },
-    ],
-    metadata: {
-      verticalId,
-      planId: "unico",
-      producto: "onvision",
-    },
-    subscription_data: {
+  try {
+    const session = await createOnvoOneTimeLink({
+      unitAmount: ONVO_PRECIO_MENSUAL_CRC,
+      currency: "CRC",
+      description: `Onvision · ${vertical.name} — suscripción mensual`,
       metadata: {
         verticalId,
         planId: "unico",
+        producto: "onvision",
+        source: "onvision-landing",
       },
-    },
-    success_url: `${origin}/activar/exito?session_id={CHECKOUT_SESSION_ID}&vertical=${encodeURIComponent(verticalId)}`,
-    cancel_url: `${origin}/activar?vertical=${encodeURIComponent(verticalId)}&pago=cancelado`,
-  });
+      redirectUrl: `${origin}/activar/exito?vertical=${encodeURIComponent(verticalId)}`,
+      cancelUrl: `${origin}/activar?vertical=${encodeURIComponent(verticalId)}&pago=cancelado`,
+    });
 
-  if (!session.url) {
-    return NextResponse.json(
-      { error: "Stripe no devolvió URL de Checkout" },
-      { status: 502 },
-    );
+    return NextResponse.json({ url: session.url, id: session.id });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "No se pudo crear el pago";
+    console.error("[onvo/checkout]", message);
+    return NextResponse.json({ error: message }, { status: 502 });
   }
-
-  return NextResponse.json({ url: session.url, sessionId: session.id });
 }
