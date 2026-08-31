@@ -13,10 +13,11 @@ export type PlanCardCopy = {
   name: string;
   tagline: string;
   price: string;
-  unit: string;
+  unit?: string;
   priceOr?: string;
   priceAlt?: string;
   unitAlt?: string;
+  priceFull?: string;
   features: string[];
   highlighted?: boolean;
 };
@@ -38,6 +39,7 @@ export type SiteCopy = {
     plans: string;
     schedule: string;
     process: string;
+    companies: string;
     contact: string;
     letsTalk: string;
   };
@@ -56,9 +58,19 @@ export type SiteCopy = {
     title: string;
     titleAccent: string;
     description: string;
+    pricePeriod: string;
+    pricePlans: Array<{
+      label: string;
+      amount: string;
+      amountAlt?: string;
+    }>;
+    priceNote: string;
     pills: string[];
     contactUs: string;
     scheduleCta: string;
+    trustedCta: string;
+    systemCta: string;
+    systemCtaShort: string;
     menuOpen: string;
     menuClose: string;
     bgAlt: string;
@@ -139,27 +151,101 @@ export type SiteCopy = {
       solution: string;
     }>;
   };
+  scrollStack: {
+    label: string;
+    title: string;
+    description: string;
+    hint: string;
+    closeLabel: string;
+    expandHint: string;
+    tapHint: string;
+    prevLabel: string;
+    nextLabel: string;
+    items: Array<{
+      title: string;
+      subtitle: string;
+    }>;
+  };
+  payment: {
+    success: {
+      label: string;
+      title: string;
+      body: string;
+      backPlans: string;
+      contact: string;
+    };
+    cancelled: {
+      label: string;
+      title: string;
+      body: string;
+      backPlans: string;
+      quote: string;
+    };
+  };
+  monthlyPlans: {
+    label: string;
+    title: string;
+    description: string;
+    period: string;
+    onceLabel: string;
+    payCta: string;
+    payMessage: string;
+    note: string;
+    mostChosen: string;
+    groups: Array<{
+      id: string;
+      title: string;
+      planIds: string[];
+    }>;
+    plans: Array<{
+      id: string;
+      name: string;
+      tagline: string;
+      price: string;
+      priceAlt?: string;
+      priceFull?: string;
+      features: string[];
+      highlighted?: boolean;
+    }>;
+  };
   plans: {
     label: string;
     title: string;
     description: string;
+    period: string;
+    onceLabel: string;
     tabs: {
       web: string;
       software: string;
       shop: string;
       mobile: string;
-      maintenance: string;
     };
     groups: {
       web: PlanGroupCopy;
       software: PlanGroupCopy;
       shop: PlanGroupCopy;
       mobile: PlanGroupCopy;
-      maintenance: PlanGroupCopy;
     };
     mostChosen: string;
     requestPlan: string;
     quoteCta: string;
+    payMonthlyCta: string;
+    onceAskPrefix: string;
+    onceAskLink: string;
+    paySheet: {
+      title: string;
+      categorySeparator: string;
+      monthlyLabel: string;
+      companyNameLabel: string;
+      companyNamePlaceholder: string;
+      note: string;
+      continueCta: string;
+      continueLoading: string;
+      cancelCta: string;
+      closeAria: string;
+      errorGeneric: string;
+      payMessage: string;
+    };
     customQuotePrefix: string;
     customQuoteLink: string;
   };
@@ -285,6 +371,57 @@ export type SiteCopy = {
   site: {
     region: string;
   };
+  trustedCompanies: {
+    label: string;
+    title: string;
+    description: string;
+    note: string;
+    backHome: string;
+    emailLabel: string;
+    phoneLabel: string;
+    whatsappLabel: string;
+    instagramLabel: string;
+    webLabel: string;
+    showMap: string;
+    hideMap: string;
+    openMaps: string;
+    highlightsTitle: string;
+    visitSite: string;
+    ctaTitle: string;
+    ctaBody: string;
+    clientsStat: string;
+    filterBusinessType: string;
+    filterProvince: string;
+    allBusinessTypes: string;
+    allProvinces: string;
+    clearFilters: string;
+    showingResults: string;
+    noResults: string;
+    filterHint: string;
+    closeFilter: string;
+    categories: {
+      restaurant: string;
+      store: string;
+      clinic: string;
+      education: string;
+      automotive: string;
+      agriculture: string;
+      corporate: string;
+    };
+    projectTypes: {
+      website: string;
+      ecommerce: string;
+      software: string;
+    };
+    provinces: {
+      "san-jose": string;
+      heredia: string;
+      cartago: string;
+      alajuela: string;
+      guanacaste: string;
+      usa: string;
+    };
+  };
 };
 
 const es: SiteCopy = {
@@ -294,6 +431,7 @@ const es: SiteCopy = {
     plans: "Planes",
     schedule: "Agendar",
     process: "Proceso",
+    companies: "Empresas",
     contact: "Contacto",
     letsTalk: "Hablemos",
   },
@@ -309,13 +447,26 @@ const es: SiteCopy = {
   },
   hero: {
     badge: "Disponible para proyectos",
-    title: "Digitalización estratégica",
-    titleAccent: "a medida",
+    title: "Digitalización personalizada",
+    titleAccent: "por mensualidad",
     description:
       "Diseñamos e implementamos soluciones tecnológicas personalizadas que impulsan la eficiencia, el crecimiento y la transformación digital de empresas y negocios.",
-    pills: ["Sitios web", "E-commerce", "Software (SaaS)", "Mantenimiento"],
+    pricePeriod: "/ mes",
+    pricePlans: [
+      { label: "Página estándar", amount: "$35", amountAlt: "₡15.000" },
+      { label: "Página Pro", amount: "$55", amountAlt: "₡25.000" },
+      { label: "E-commerce estándar", amount: "$50", amountAlt: "₡22.000" },
+      { label: "E-commerce Pro", amount: "$65", amountAlt: "₡30.000" },
+      { label: "App móvil", amount: "$150" },
+      { label: "Software SaaS", amount: "$130" },
+    ],
+    priceNote: "Precios mensuales en USD. Diseño a tu medida y soporte incluidos.",
+    pills: ["Sitios web", "E-commerce", "Software (SaaS)", "App móvil"],
     contactUs: "Contáctanos",
     scheduleCta: "Agendar reunión",
+    trustedCta: "Empresas que confiaron en Onvision",
+    systemCta: "Sistema Onvision para empresas",
+    systemCtaShort: "Sistema Onvision",
     menuOpen: "Abrir menú",
     menuClose: "Cerrar menú",
     bgAlt: "Fondo hero",
@@ -386,10 +537,10 @@ const es: SiteCopy = {
       videoHint: "Tocá para ampliar el demo en video →",
       cards: [
         {
-          tabLabel: "Software a medida",
-          title: "Software de gestión de empresa a medida.",
+          tabLabel: "Sitios web",
+          title: "Páginas web modernas que hacen que tu negocio destaque digitalmente",
           description:
-            "Panel de control con ventas, inventario, clientes y comprobantes listos para Hacienda. También incluye manejo de rutas de distribución, analíticas y todo lo que tu operación necesite.",
+            "Incluye chatbots 100% inteligentes con IA, mapas interactivos, formularios con base de datos, calendarios y todo lo que necesitás para convertir visitas en clientes.",
         },
         {
           tabLabel: "E-commerce",
@@ -398,10 +549,10 @@ const es: SiteCopy = {
             "Catálogo, carrito, pagos online y panel admin. Con utilidades que las hacen únicas y personalizables: filtros por equipo, armador de outfits, jerseys a medida y más.",
         },
         {
-          tabLabel: "Sitios web",
-          title: "Páginas web modernas que hacen que tu negocio destaque digitalmente",
+          tabLabel: "SaaS",
+          title: "Software de gestión de empresa a medida.",
           description:
-            "Incluye chatbots 100% inteligentes con IA, mapas interactivos, formularios con base de datos, calendarios y todo lo que necesitás para convertir visitas en clientes.",
+            "Panel de control con ventas, inventario, clientes y comprobantes listos para Hacienda. También incluye manejo de rutas de distribución, analíticas y todo lo que tu operación necesite.",
         },
         {
           tabLabel: "App móvil",
@@ -461,218 +612,354 @@ const es: SiteCopy = {
       },
     ],
   },
+  scrollStack: {
+    label: "Portafolio",
+    title: "Proyectos en detalle",
+    description:
+      "Capturas de sitios web, tiendas online y sistemas a medida desarrollados para empresas en Costa Rica y el exterior.",
+    hint: "Desplázate para recorrer · Flechas para cambiar pantalla",
+    closeLabel: "Cerrar",
+    expandHint: "Ampliar",
+    tapHint: "Clic para ampliar",
+    prevLabel: "Pantalla anterior",
+    nextLabel: "Pantalla siguiente",
+    items: [
+      {
+        title: "Página estándar",
+        subtitle: "Sitio corporativo a medida",
+      },
+      {
+        title: "Página Pro",
+        subtitle: "Sitios con herramientas a medida",
+      },
+      {
+        title: "E-commerce",
+        subtitle: "Catálogo, carrito y checkout",
+      },
+      {
+        title: "Software SaaS",
+        subtitle: "Sistemas a medida como ClinicOS y UniLearn",
+      },
+      {
+        title: "App móvil",
+        subtitle: "iOS y Android a medida",
+      },
+    ],
+  },
+  payment: {
+    success: {
+      label: "Pago",
+      title: "Gracias — recibimos tu pago",
+      body: "Si acabás de completar el checkout de Onvo, tu mensualidad quedó registrada. Te contactamos pronto para activar o continuar el proyecto.",
+      backPlans: "Volver a planes",
+      contact: "Contacto",
+    },
+    cancelled: {
+      label: "Pago",
+      title: "Pago cancelado",
+      body: "No se cobró nada. Podés volver a planes e intentarlo de nuevo cuando quieras.",
+      backPlans: "Volver a planes",
+      quote: "Cotizar / preguntar",
+    },
+  },
+  monthlyPlans: {
+    label: "Planes",
+    title: "Qué incluye cada mensualidad",
+    description:
+      "Elegí el plan que mejor se adapta a tu negocio. Diseño a medida, hosting y soporte van incluidos en la mensualidad.",
+    period: "/ mes",
+    onceLabel: "pago único",
+    payCta: "Pagar plan",
+    payMessage:
+      "Hola, quiero pagar el plan {name} ({price}/mes) de Onvision Digital.",
+    note: "Al tocar pagar te abrimos WhatsApp para confirmar el plan y enviarte el link de pago.",
+    mostChosen: "Más elegido",
+    groups: [
+      {
+        id: "paginas",
+        title: "Páginas",
+        planIds: ["pagina-estandar", "pagina-pro"],
+      },
+      {
+        id: "ecommerce",
+        title: "E-commerce",
+        planIds: ["ecom-estandar", "ecom-pro"],
+      },
+      {
+        id: "productos",
+        title: "App y software",
+        planIds: ["app-movil", "software-saas"],
+      },
+    ],
+    plans: [
+      {
+        id: "pagina-estandar",
+        name: "Página estándar",
+        tagline: "Presencia clara y profesional.",
+        price: "$35",
+        priceAlt: "₡15.000",
+        priceFull: "$450",
+        features: [
+          "Landing o sitio de 1–3 secciones",
+          "Diseño responsive a tu marca",
+          "Formulario o WhatsApp de contacto",
+          "Chatbot IA para tu empresa",
+          "Hosting y dominio configurado",
+          "SEO on-page",
+          "Soporte y ajustes menores incluidos",
+        ],
+      },
+      {
+        id: "pagina-pro",
+        name: "Página Pro",
+        tagline: "Sitios con herramientas a medida.",
+        price: "$55",
+        priceAlt: "₡25.000",
+        priceFull: "$650",
+        highlighted: true,
+        features: [
+          "Sitio multipágina a medida",
+          "Herramientas (reservas, calculadoras, filtros)",
+          "Chatbot IA para tu empresa",
+          "Animaciones e interacciones premium",
+          "Integración WhatsApp y analytics",
+          "SEO on-page",
+          "Hosting y dominio configurado",
+          "Soporte prioritario y actualizaciones",
+        ],
+      },
+      {
+        id: "ecom-estandar",
+        name: "E-commerce estándar",
+        tagline: "Catálogo listo para vender.",
+        price: "$50",
+        priceAlt: "₡22.000",
+        priceFull: "$650",
+        features: [
+          "Catálogo de productos con filtros",
+          "Pedidos por WhatsApp o carrito simple",
+          "Método de pago: tarjeta, pasarela, SINPE o transferencia",
+          "Diseño mobile-first a tu marca",
+          "Panel básico para actualizar stock/precios",
+          "SEO para e-commerce",
+          "Hosting, SSL y soporte mensual",
+          "Optimización de velocidad",
+          "1 ronda de revisiones",
+        ],
+      },
+      {
+        id: "ecom-pro",
+        name: "E-commerce Pro",
+        tagline: "Tienda completa con checkout.",
+        price: "$65",
+        priceAlt: "₡30.000",
+        priceFull: "$850",
+        features: [
+          "Catálogo, carrito y checkout",
+          "Método de pago: tarjeta, pasarela, SINPE o transferencia",
+          "Features a medida (outfits, ligas, personalización)",
+          "Panel admin de pedidos e inventario",
+          "SEO para e-commerce",
+          "Analytics y seguimiento de conversión",
+          "Soporte prioritario y mejoras mensuales",
+          "2 rondas de revisiones",
+        ],
+      },
+      {
+        id: "app-movil",
+        name: "App móvil",
+        tagline: "Producto nativo para tu operación.",
+        price: "$150",
+        priceFull: "$1.500",
+        features: [
+          "App iOS/Android o PWA a medida",
+          "UI moderna con flujos de negocio",
+          "Notificaciones y sincronización",
+          "Panel o backend asociado",
+          "Publicación y mantenimiento",
+          "Soporte y actualizaciones mensuales",
+        ],
+      },
+      {
+        id: "software-saas",
+        name: "Software SaaS",
+        tagline: "Sistemas como ClinicOS, UniLearn o Sistema Gan.",
+        price: "$130",
+        priceFull: "$1.650",
+        features: [
+          "App web con autenticación y roles",
+          "Panel admin y dashboards",
+          "Base de datos e integraciones",
+          "Módulos a medida de tu operación",
+          "Hosting, backups y monitoreo",
+          "Soporte prioritario y evolución del producto",
+        ],
+      },
+    ],
+  },
   plans: {
     label: "Planes y precios",
     title: "Planes base claros, adaptados a tu necesidad",
     description:
-      "Paquetes de referencia para web, software a medida, e-commerce, apps móviles y mantenimiento. El precio final se ajusta después de la reunión de descubrimiento según alcance y complejidad.",
+      "Paquetes de referencia para web, e-commerce, software SaaS y apps móviles. En el sitio pagás la mensualidad; el pago único se coordina aparte.",
+    period: "/ mes",
+    onceLabel: "pago único",
     tabs: {
       web: "Sitios web",
       software: "Software",
       shop: "Tienda online",
       mobile: "App móvil",
-      maintenance: "Mantenimiento",
     },
     groups: {
       web: {
         description:
-          "Planes base para presencia digital y sitios corporativos. El precio final se ajusta después de la reunión de descubrimiento.",
+          "Presencia digital y sitios corporativos. Pagá la mensualidad acá; el pago único se coordina aparte.",
         plans: [
           {
-            name: "Estandar",
-            tagline: "Presencia profesional lista para vender.",
-            price: "$400",
-            unit: "USD · pago único",
+            name: "Página estándar",
+            tagline: "Presencia clara y profesional.",
+            price: "$35",
+            priceAlt: "₡15.000",
+            priceFull: "$450",
             features: [
-              "Landing page de una sección",
-              "Diseño responsive mobile-first",
+              "Landing o sitio de 1–3 secciones",
+              "Diseño responsive mobile-first a tu marca",
               "Formulario de contacto + redes sociales",
+              "Integración WhatsApp para consultas",
+              "Chatbot IA para tu empresa",
               "Animaciones e interacciones personalizadas",
               "SEO on-page",
-              "Despliegue incluido",
+              "Hosting y dominio configurado",
               "Optimización de velocidad",
-              "Certificado SSL y dominio configurado",
-              "2 rondas de revisiones",
+              "Despliegue incluido",
+              "Soporte y ajustes menores incluidos en la mensualidad",
             ],
           },
           {
-            name: "Profesional",
-            tagline: "El estándar para empresas en crecimiento.",
-            price: "$600",
-            unit: "USD · pago único",
+            name: "Página Pro",
+            tagline: "Sitios con herramientas a medida.",
+            price: "$55",
+            priceAlt: "₡25.000",
+            priceFull: "$650",
             highlighted: true,
             features: [
-              "Sitio multipágina",
+              "Sitio multipágina a medida",
+              "Herramientas (reservas, calculadoras, filtros, mapas)",
+              "Chatbot IA para tu empresa",
               "Animaciones e interacciones premium",
               "Blog o gestor de contenido básico",
               "Analytics e integración de formularios",
-              "SEO on-page avanzado",
-              "30 días de garantía post-entrega",
+              "SEO on-page",
               "Integración WhatsApp y redes sociales",
               "Optimización orientada a conversión",
-              "Hasta 3–4 rondas de revisiones",
+              "Hosting y dominio configurado",
+              "Optimización de velocidad",
+              "Despliegue incluido",
               "Capacitación básica de uso",
-            ],
-          },
-          {
-            name: "Plataforma Saas",
-            tagline: "Aplicaciones web con lógica de negocio.",
-            price: "$1,350",
-            priceOr: "/",
-            priceAlt: "$80",
-            unit: "",
-            unitAlt: "Mensual",
-            features: [
-              "App web con autenticación y base de datos",
-              "Panel de administrador personalizado",
-              "Roles, permisos e integraciones externas",
-              "Arquitectura escalable",
-              "60 días de garantía post-entrega",
-              "Dashboards y reportes a medida",
-              "Pasarela de pagos",
-              "Notificaciones por email y en app",
-              "Seguridad reforzada (cifrado y headers)",
-              "Entrega y capacitación",
+              "Soporte prioritario y actualizaciones mensuales",
             ],
           },
         ],
       },
       software: {
         description:
-          "Sistemas de gestión a medida como facturación electrónica, inventario, rutas y analíticas. El precio final depende de módulos, integraciones y complejidad de tu operación.",
+          "Sistemas como ClinicOS, UniLearn o Sistema Gan. Mensualidad acá; pago único o alcance a medida por cotización.",
         plans: [
           {
-            name: "Software a medida",
+            name: "Software SaaS",
             tagline: "Infraestructura completa de gestión según tu negocio.",
-            price: "Desde $2,000",
-            unit: "USD · desde",
+            price: "$130",
+            priceFull: "$1.650",
             highlighted: true,
             features: [
-              "Panel de control con métricas y analíticas en tiempo real",
-              "Facturación electrónica y comprobantes listos para Hacienda",
-              "Gestión de inventario, stock y movimientos con alertas",
-              "Módulos de ventas, compras, clientes y productos",
-              "Gestión de rutas de distribución y asignación de conductores",
-              "Roles de usuario y permisos (admin, vendedor, bodega, etc.)",
-              "Base de datos PostgreSQL con respaldos automáticos",
-              "API REST e integraciones con servicios externos",
-              "Dashboards y reportes exportables (ventas, IVA, créditos)",
-              "Hosting, SSL e infraestructura escalable en la nube",
-              "Autenticación segura, cifrado y monitoreo de uptime",
-              "Capacitación, documentación técnica y soporte de lanzamiento",
+              "App web con autenticación y base de datos",
+              "Panel de administrador personalizado",
+              "Roles, permisos e integraciones externas",
+              "Módulos a medida (ventas, inventario, clientes, rutas, etc.)",
+              "Dashboards y reportes exportables",
+              "Arquitectura escalable en la nube",
+              "Pasarela de pagos (si aplica)",
+              "Notificaciones por email y en app",
+              "Seguridad reforzada (cifrado y headers)",
+              "Hosting, backups automáticos y monitoreo de uptime",
+              "Entrega, capacitación y documentación técnica",
+              "Soporte prioritario y evolución continua del producto",
             ],
           },
         ],
       },
       shop: {
         description:
-          "Planes base para e-commerce y catálogos digitales. Integraciones avanzadas se cotizan según complejidad.",
+          "Catálogos y tiendas online. Pagá la mensualidad acá; el pago único se coordina aparte.",
         plans: [
           {
-            name: "Starter",
-            tagline: "Tu primera tienda online operativa.",
-            price: "$650",
-            unit: "USD · pago único",
+            name: "E-commerce estándar",
+            tagline: "Catálogo listo para vender.",
+            price: "$50",
+            priceAlt: "₡22.000",
+            priceFull: "$650",
             features: [
-              "Catálogo de hasta 50 productos",
-              "Carrito y checkout funcional",
-              "Pagos online (Stripe / transferencia)",
-              "Panel admin para pedidos",
-              "Diseño responsive",
-              "SEO básico para productos",
-              "Notificaciones de venta por email",
+              "Catálogo de productos con filtros",
+              "Pedidos por WhatsApp o carrito simple",
+              "Método de pago: tarjeta, pasarela, SINPE o transferencia",
+              "Diseño mobile-first a tu marca",
+              "Panel básico para actualizar stock y precios",
+              "Fichas de producto con galería",
+              "SEO para e-commerce",
+              "Notificaciones de pedidos por email o WhatsApp",
+              "Hosting, SSL y soporte mensual",
+              "Optimización de velocidad",
               "Despliegue incluido",
-              "3 ronda de revisiones",
+              "1 ronda de revisiones",
             ],
           },
           {
-            name: "Profesional",
-            tagline: "E-commerce completo para escalar ventas.",
-            price: "$850",
-            unit: "USD · pago único",
+            name: "E-commerce Pro",
+            tagline: "Tienda completa con checkout.",
+            price: "$65",
+            priceAlt: "₡30.000",
+            priceFull: "$850",
             highlighted: true,
             features: [
-              "Catálogo ilimitado con filtros",
-              "Variantes, inventario y cupones",
-              "Checkout optimizado para conversión",
-              "Integración SINPE / Stripe avanzada",
-              "Panel admin con reportes de ventas",
-              "30 días de garantía post-entrega",
-              "SEO avanzado para e-commerce",
+              "Catálogo ilimitado con filtros y variantes",
+              "Carrito y checkout optimizado para conversión",
+              "Método de pago: tarjeta, pasarela, SINPE o transferencia",
+              "Features a medida (outfits, ligas, personalización)",
+              "Panel admin de pedidos, inventario y cupones",
+              "Reportes de ventas y analytics",
+              "SEO para e-commerce",
               "Integración WhatsApp para pedidos",
-              "Hasta 5 rondas de revisiones",
+              "Hosting, SSL y monitoreo incluidos",
+              "2 rondas de revisiones",
               "Capacitación para gestionar la tienda",
-            ],
-          },
-          {
-            name: "Avanzada",
-            tagline: "Tiendas con lógica de negocio compleja.",
-            price: "$1,000",
-            unit: "USD · desde",
-            features: [
-              "Multi-vendedor o multi-sucursal",
-              "Suscripciones y pagos recurrentes",
-              "Integraciones ERP / inventario externo",
-              "Automatizaciones y webhooks",
-              "Dashboards de métricas en tiempo real",
-              "30 días de garantía post-entrega",
-              "Roles de usuario (admin, vendedor, etc.)",
-              "API para integraciones futuras",
-              "Arquitectura escalable documentada",
-              "Soporte prioritario en lanzamiento",
+              "Soporte prioritario y mejoras mensuales",
             ],
           },
         ],
       },
       mobile: {
         description:
-          "Aplicación móvil completa para iOS y Android. Incluye diseño, desarrollo, integración con backend y publicación en tiendas.",
+          "App iOS/Android o PWA a medida. Pagá la mensualidad acá; el pago único se coordina aparte.",
         plans: [
           {
-            name: "App completa",
-            tagline: "Tu producto en el bolsillo de tus usuarios.",
-            price: "$1,900",
-            unit: "USD · pago único",
+            name: "App móvil",
+            tagline: "Producto nativo para tu operación.",
+            price: "$150",
+            priceFull: "$1.500",
             highlighted: true,
             features: [
-              "App nativa cross-platform (iOS + Android)",
+              "App nativa cross-platform (iOS + Android) o PWA",
               "Diseño UI/UX mobile-first personalizado",
               "Login, registro y recuperación de contraseña",
-              "Integración con API / backend existente",
+              "Flujos de negocio a medida para tu operación",
               "Notificaciones push",
               "Modo offline y sincronización de datos",
+              "Integración con API / backend o panel admin",
               "Pagos in-app y suscripciones (si aplica)",
               "Publicación asistida en App Store y Google Play",
               "Analytics, métricas de uso y reporte de errores",
-              "30 días de garantía post-lanzamiento",
-              "Panel admin o conexión con CMS/web",
               "Deep links y compartir contenido",
-              "Capacitación y documentación de entrega",
-            ],
-          },
-        ],
-      },
-      maintenance: {
-        description:
-          "Plan mensual para que tu sitio o app siga activo, seguro y actualizado sin que tengas que preocuparte por lo técnico.",
-        plans: [
-          {
-            name: "Plan mensual",
-            tagline: "Tu sitio siempre activo, seguro y al día.",
-            price: "$20",
-            unit: "USD · por mes",
-            highlighted: true,
-            features: [
-              "Hosting y monitoreo de uptime",
-              "Backups automáticos periódicos",
-              "Actualizaciones de seguridad",
-              "Actualización de dependencias y plugins",
-              "Renovación y gestión de certificado SSL",
-              "Soporte técnico por WhatsApp y email",
-              "Monitoreo de rendimiento y velocidad",
-              "Informe mensual de estado del sitio",
-              "Corrección de bugs menores post-lanzamiento",
-              "Ajustes de contenido básicos incluidos",
+              "Capacitación, documentación y soporte mensual",
             ],
           },
         ],
@@ -680,7 +967,25 @@ const es: SiteCopy = {
     },
     mostChosen: "Más elegido",
     requestPlan: "Solicitar este plan",
-    quoteCta: "Cotizar",
+    quoteCta: "Cotizar / preguntar",
+    payMonthlyCta: "Pagar mensualidad",
+    onceAskPrefix: "¿Preferís pago único?",
+    onceAskLink: "Consultanos",
+    paySheet: {
+      title: "Confirmar mensualidad",
+      categorySeparator: " · ",
+      monthlyLabel: "Mensualidad",
+      companyNameLabel: "Nombre del negocio o sitio",
+      companyNamePlaceholder: "Ej. La Pacífica, Jopa Autos…",
+      note: "Vas a pagar la mensualidad con Onvo (tarjeta, SINPE y más). El pago único se coordina aparte.",
+      continueCta: "Continuar al pago",
+      continueLoading: "Abriendo pago…",
+      cancelCta: "Cancelar",
+      closeAria: "Cerrar",
+      errorGeneric: "No se pudo abrir el pago. Probá de nuevo o escribinos por WhatsApp.",
+      payMessage:
+        "Hola, quiero pagar la mensualidad del plan {name} ({price}/mes) de Onvision Digital.",
+    },
     customQuotePrefix:
       "¿Necesitás un SaaS a medida o un proyecto con integraciones complejas? ",
     customQuoteLink: "Solicitá cotización personalizada →",
@@ -989,7 +1294,7 @@ const es: SiteCopy = {
     quickReplies: [
       "¿Cuánto cuesta un sitio web?",
       "¿Cuánto tiempo tarda?",
-      "¿Qué incluye el mantenimiento?",
+      "¿Qué incluye la mensualidad?",
       "¿Trabajás fuera de CR?",
     ],
     chatRules: [
@@ -1004,7 +1309,7 @@ const es: SiteCopy = {
           "tarifa",
         ],
         reply:
-          "Los proyectos van desde $400 (sitio corporativo) hasta $1,500+ (app SaaS). E-commerce desde $800. Mantenimiento desde $20/mes. Cada cotización es a medida según alcance — escríbeme a info@onvisiondigital.com y te preparo una propuesta sin compromiso.",
+          "Los proyectos van desde $400 (sitio corporativo) hasta $1,500+ (app SaaS). E-commerce desde $800. Cada cotización es a medida según alcance — escríbeme a info@onvisiondigital.com y te preparo una propuesta sin compromiso.",
       },
       {
         keywords: [
@@ -1028,7 +1333,7 @@ const es: SiteCopy = {
           "hosting",
         ],
         reply:
-          "El plan de mantenimiento incluye actualizaciones de seguridad, backups, monitoreo básico y soporte por correo. Desde $20/mes según el tamaño del proyecto.",
+          "La mensualidad de cada plan incluye hosting, dominio configurado, soporte y ajustes menores. Los detalles varían según el plan — revisá la sección Planes o escribime para aclarar tu caso.",
       },
       {
         keywords: [
@@ -1056,7 +1361,7 @@ const es: SiteCopy = {
           "sitio",
         ],
         reply:
-          "Ofrezco sitios web corporativos, tiendas online (e-commerce), aplicaciones SaaS a medida y mantenimiento mensual. Todo con código propio — sin plantillas genéricas.",
+          "Ofrezco sitios web corporativos, tiendas online (e-commerce) y aplicaciones SaaS a medida. Todo con código propio — sin plantillas genéricas.",
       },
       {
         keywords: [
@@ -1088,6 +1393,58 @@ const es: SiteCopy = {
   site: {
     region: "Latinoamérica",
   },
+  trustedCompanies: {
+    label: "Clientes y proyectos",
+    title: "Empresas que confiaron en Onvision",
+    description:
+      "Algunas de las marcas y proyectos con los que hemos trabajado: sitios, tiendas y software a medida.",
+    note: "Algunos perfiles son de referencia del portafolio. Podés reemplazarlos por clientes reales con logo y contactos oficiales.",
+    backHome: "Volver al inicio",
+    emailLabel: "Correo",
+    phoneLabel: "Teléfono",
+    whatsappLabel: "WhatsApp",
+    instagramLabel: "Instagram",
+    webLabel: "Sitio web",
+    showMap: "Ver mapa",
+    hideMap: "Ocultar mapa",
+    openMaps: "Abrir en Google Maps",
+    highlightsTitle: "Destacados",
+    visitSite: "Ver sitio web",
+    ctaTitle: "¿Querés aparecer acá?",
+    ctaBody: "Agendá una reunión y contanos qué necesita tu empresa.",
+    clientsStat: "{count} marcas y proyectos",
+    filterBusinessType: "Rubro",
+    filterProvince: "Provincia",
+    allBusinessTypes: "Todos los rubros",
+    allProvinces: "Todo el país",
+    clearFilters: "Limpiar",
+    showingResults: "{shown} de {total} empresas",
+    noResults: "No hay empresas con estos filtros. Probá otra combinación.",
+    filterHint: "Filtrá por tipo de negocio y zona",
+    closeFilter: "Cerrar filtro",
+    categories: {
+      restaurant: "Restaurantes",
+      store: "Tiendas",
+      clinic: "Clínicas",
+      education: "Educación",
+      automotive: "Automotriz",
+      agriculture: "Agro / ganadería",
+      corporate: "Empresas",
+    },
+    projectTypes: {
+      website: "Sitio web",
+      ecommerce: "E-commerce",
+      software: "Software",
+    },
+    provinces: {
+      "san-jose": "San José",
+      heredia: "Heredia",
+      cartago: "Cartago",
+      alajuela: "Alajuela",
+      guanacaste: "Guanacaste",
+      usa: "Estados Unidos",
+    },
+  },
 };
 
 const en: SiteCopy = {
@@ -1097,6 +1454,7 @@ const en: SiteCopy = {
     plans: "Plans",
     schedule: "Schedule",
     process: "Process",
+    companies: "Companies",
     contact: "Contact",
     letsTalk: "Let's talk",
   },
@@ -1112,13 +1470,26 @@ const en: SiteCopy = {
   },
   hero: {
     badge: "Available for projects",
-    title: "Strategic digitalization",
-    titleAccent: "tailored to you",
+    title: "Custom digitalization",
+    titleAccent: "by monthly plan",
     description:
       "We design and implement custom technology solutions that drive efficiency, growth, and digital transformation for companies and businesses.",
-    pills: ["Websites", "E-commerce", "Software (SaaS)", "Maintenance"],
+    pricePeriod: "/ month",
+    pricePlans: [
+      { label: "Standard website", amount: "$35", amountAlt: "₡15,000" },
+      { label: "Pro website", amount: "$55", amountAlt: "₡25,000" },
+      { label: "Standard e-commerce", amount: "$50", amountAlt: "₡22,000" },
+      { label: "Pro e-commerce", amount: "$65", amountAlt: "₡30,000" },
+      { label: "Mobile app", amount: "$150" },
+      { label: "Software SaaS", amount: "$130" },
+    ],
+    priceNote: "Monthly prices in USD. Tailored design and support included.",
+    pills: ["Websites", "E-commerce", "Software (SaaS)", "Mobile app"],
     contactUs: "Contact us",
     scheduleCta: "Book a meeting",
+    trustedCta: "Companies that trusted Onvision",
+    systemCta: "Onvision system for businesses",
+    systemCtaShort: "Onvision system",
     menuOpen: "Open menu",
     menuClose: "Close menu",
     bgAlt: "Hero background",
@@ -1189,10 +1560,10 @@ const en: SiteCopy = {
       videoHint: "Tap to expand the video demo →",
       cards: [
         {
-          tabLabel: "Custom software",
-          title: "Custom inventory management and electronic invoicing software for your business",
+          tabLabel: "Websites",
+          title: "Modern websites that make your business stand out digitally",
           description:
-            "Control panel with sales, inventory, clients, and tax-compliant invoicing. Also includes distribution route management, analytics, and everything your operation needs.",
+            "Includes fully intelligent AI chatbots, interactive maps, database-backed forms, calendars, and everything you need to turn visitors into customers.",
         },
         {
           tabLabel: "E-commerce",
@@ -1201,10 +1572,10 @@ const en: SiteCopy = {
             "Catalog, cart, online payments, and admin panel. With unique, customizable features: team filters, outfit builder, custom jerseys, and more.",
         },
         {
-          tabLabel: "Websites",
-          title: "Modern websites that make your business stand out digitally",
+          tabLabel: "SaaS",
+          title: "Custom inventory management and electronic invoicing software for your business",
           description:
-            "Includes fully intelligent AI chatbots, interactive maps, database-backed forms, calendars, and everything you need to turn visitors into customers.",
+            "Control panel with sales, inventory, clients, and tax-compliant invoicing. Also includes distribution route management, analytics, and everything your operation needs.",
         },
         {
           tabLabel: "Mobile app",
@@ -1264,218 +1635,354 @@ const en: SiteCopy = {
       },
     ],
   },
+  scrollStack: {
+    label: "Portfolio",
+    title: "Projects in detail",
+    description:
+      "Screenshots from websites, online stores, and custom systems built for businesses in Costa Rica and abroad.",
+    hint: "Scroll to browse · Arrows to switch screens",
+    closeLabel: "Close",
+    expandHint: "Expand",
+    tapHint: "Click to enlarge",
+    prevLabel: "Previous screen",
+    nextLabel: "Next screen",
+    items: [
+      {
+        title: "Standard website",
+        subtitle: "Custom corporate site",
+      },
+      {
+        title: "Pro website",
+        subtitle: "Sites with custom tools",
+      },
+      {
+        title: "E-commerce",
+        subtitle: "Catalog, cart, and checkout",
+      },
+      {
+        title: "SaaS software",
+        subtitle: "Custom systems like ClinicOS and UniLearn",
+      },
+      {
+        title: "Mobile app",
+        subtitle: "Custom iOS and Android",
+      },
+    ],
+  },
+  payment: {
+    success: {
+      label: "Payment",
+      title: "Thank you — we received your payment",
+      body: "If you just completed the Onvo checkout, your monthly plan is registered. We’ll contact you soon to activate or continue the project.",
+      backPlans: "Back to plans",
+      contact: "Contact",
+    },
+    cancelled: {
+      label: "Payment",
+      title: "Payment cancelled",
+      body: "Nothing was charged. You can go back to plans and try again whenever you want.",
+      backPlans: "Back to plans",
+      quote: "Get a quote / ask",
+    },
+  },
+  monthlyPlans: {
+    label: "Plans",
+    title: "What’s included in each monthly plan",
+    description:
+      "Pick the plan that fits your business. Custom design, hosting, and support are included in the monthly fee.",
+    period: "/ month",
+    onceLabel: "one-time",
+    payCta: "Pay plan",
+    payMessage:
+      "Hi, I’d like to pay for the {name} plan ({price}/month) from Onvision Digital.",
+    note: "Tapping pay opens WhatsApp so we can confirm the plan and send you the payment link.",
+    mostChosen: "Most popular",
+    groups: [
+      {
+        id: "paginas",
+        title: "Websites",
+        planIds: ["pagina-estandar", "pagina-pro"],
+      },
+      {
+        id: "ecommerce",
+        title: "E-commerce",
+        planIds: ["ecom-estandar", "ecom-pro"],
+      },
+      {
+        id: "productos",
+        title: "App & software",
+        planIds: ["app-movil", "software-saas"],
+      },
+    ],
+    plans: [
+      {
+        id: "pagina-estandar",
+        name: "Standard website",
+        tagline: "Clear, professional presence.",
+        price: "$35",
+        priceAlt: "₡15,000",
+        priceFull: "$450",
+        features: [
+          "Landing or 1–3 section site",
+          "Brand-matched responsive design",
+          "Contact form or WhatsApp",
+          "AI chatbot for your business",
+          "Hosting and domain setup",
+          "On-page SEO",
+          "Support and minor updates included",
+        ],
+      },
+      {
+        id: "pagina-pro",
+        name: "Pro website",
+        tagline: "Sites with custom tools.",
+        price: "$55",
+        priceAlt: "₡25,000",
+        priceFull: "$650",
+        highlighted: true,
+        features: [
+          "Custom multi-page site",
+          "Tools (booking, calculators, filters)",
+          "AI chatbot for your business",
+          "Premium animations and interactions",
+          "WhatsApp + analytics integration",
+          "On-page SEO",
+          "Hosting and domain setup",
+          "Priority support and updates",
+        ],
+      },
+      {
+        id: "ecom-estandar",
+        name: "Standard e-commerce",
+        tagline: "Catalog ready to sell.",
+        price: "$50",
+        priceAlt: "₡22,000",
+        priceFull: "$650",
+        features: [
+          "Product catalog with filters",
+          "WhatsApp orders or simple cart",
+          "Payment: card, gateway, SINPE, or bank transfer",
+          "Mobile-first brand design",
+          "Basic panel for stock/prices",
+          "E-commerce SEO",
+          "Hosting, SSL, and monthly support",
+          "Speed optimization",
+          "1 round of revisions",
+        ],
+      },
+      {
+        id: "ecom-pro",
+        name: "Pro e-commerce",
+        tagline: "Full store with checkout.",
+        price: "$65",
+        priceAlt: "₡30,000",
+        priceFull: "$850",
+        features: [
+          "Catalog, cart, and checkout",
+          "Payment: card, gateway, SINPE, or bank transfer",
+          "Custom features (outfits, leagues, personalization)",
+          "Admin panel for orders and inventory",
+          "E-commerce SEO",
+          "Analytics and conversion tracking",
+          "Priority support and monthly improvements",
+          "2 rounds of revisions",
+        ],
+      },
+      {
+        id: "app-movil",
+        name: "Mobile app",
+        tagline: "Native product for your ops.",
+        price: "$150",
+        priceFull: "$1,500",
+        features: [
+          "Custom iOS/Android or PWA",
+          "Modern UI with business flows",
+          "Notifications and sync",
+          "Related panel or backend",
+          "Publishing and maintenance",
+          "Monthly support and updates",
+        ],
+      },
+      {
+        id: "software-saas",
+        name: "Software SaaS",
+        tagline: "Systems like ClinicOS, UniLearn, or Sistema Gan.",
+        price: "$130",
+        priceFull: "$1,650",
+        features: [
+          "Web app with auth and roles",
+          "Admin panel and dashboards",
+          "Database and integrations",
+          "Custom modules for your operation",
+          "Hosting, backups, and monitoring",
+          "Priority support and product evolution",
+        ],
+      },
+    ],
+  },
   plans: {
     label: "Plans & pricing",
     title: "Clear base plans tailored to your needs",
     description:
-      "Reference packages for web, custom software, e-commerce, mobile apps, and maintenance. Final pricing is adjusted after the discovery call based on scope and complexity.",
+      "Reference packages for web, e-commerce, SaaS software, and mobile apps. On this site you pay the monthly fee; one-time payment is arranged separately.",
+    period: "/ mo",
+    onceLabel: "one-time",
     tabs: {
       web: "Websites",
       software: "Software",
       shop: "Online store",
       mobile: "Mobile app",
-      maintenance: "Maintenance",
     },
     groups: {
       web: {
         description:
-          "Base plans for digital presence and corporate websites. Final pricing is adjusted after the discovery call.",
+          "Digital presence and corporate websites. Pay monthly here; one-time is arranged separately.",
         plans: [
           {
-            name: "Standard",
-            tagline: "Professional presence ready to sell.",
-            price: "$400",
-            unit: "USD · one-time",
+            name: "Standard website",
+            tagline: "Clear, professional presence.",
+            price: "$35",
+            priceAlt: "₡15,000",
+            priceFull: "$450",
             features: [
-              "Single-section landing page",
-              "Mobile-first responsive design",
+              "Landing or 1–3 section site",
+              "Mobile-first responsive design to your brand",
               "Contact form + social media links",
+              "WhatsApp integration for inquiries",
+              "AI chatbot for your business",
               "Custom animations and interactions",
               "On-page SEO",
-              "Deployment included",
+              "Hosting and domain setup",
               "Speed optimization",
-              "SSL certificate and domain setup",
-              "2 rounds of revisions",
+              "Deployment included",
+              "Support and minor tweaks included in the monthly plan",
             ],
           },
           {
-            name: "Professional",
-            tagline: "The standard for growing companies.",
-            price: "$600",
-            unit: "USD · one-time",
+            name: "Pro website",
+            tagline: "Sites with custom tools.",
+            price: "$55",
+            priceAlt: "₡25,000",
+            priceFull: "$650",
             highlighted: true,
             features: [
-              "Multi-page website",
+              "Custom multi-page site",
+              "Tools (bookings, calculators, filters, maps)",
+              "AI chatbot for your business",
               "Premium animations and interactions",
               "Blog or basic content manager",
               "Analytics and form integrations",
-              "Advanced on-page SEO",
-              "30-day post-delivery warranty",
+              "On-page SEO",
               "WhatsApp and social media integration",
               "Conversion-focused optimization",
-              "Up to 3–4 rounds of revisions",
+              "Hosting and domain setup",
+              "Speed optimization",
+              "Deployment included",
               "Basic usage training",
-            ],
-          },
-          {
-            name: "SaaS Platform",
-            tagline: "Web applications with business logic.",
-            price: "$1,350",
-            priceOr: "/",
-            priceAlt: "$80",
-            unit: "",
-            unitAlt: "Monthly",
-            features: [
-              "Web app with authentication and database",
-              "Custom admin panel",
-              "Roles, permissions, and external integrations",
-              "Scalable architecture",
-              "60-day post-delivery warranty",
-              "Custom dashboards and reports",
-              "Payment gateway",
-              "Email and in-app notifications",
-              "Enhanced security (encryption and headers)",
-              "Delivery and training",
+              "Priority support and monthly updates",
             ],
           },
         ],
       },
       software: {
         description:
-          "Custom management systems such as electronic invoicing, inventory, routes, and analytics. Final pricing depends on modules, integrations, and operational complexity.",
+          "Systems like ClinicOS, UniLearn, or Sistema Gan. Pay monthly here; one-time or custom scope via quote.",
         plans: [
           {
-            name: "Custom software",
+            name: "Software SaaS",
             tagline: "Full management infrastructure tailored to your business.",
-            price: "From $2,000",
-            unit: "USD · starting at",
+            price: "$130",
+            priceFull: "$1,650",
             highlighted: true,
             features: [
-              "Control panel with real-time metrics and analytics",
-              "Electronic invoicing and tax-compliant receipts",
-              "Inventory, stock, and movement management with alerts",
-              "Sales, purchases, clients, and products modules",
-              "Distribution route management and driver assignment",
-              "User roles and permissions (admin, seller, warehouse, etc.)",
-              "PostgreSQL database with automatic backups",
-              "REST API and third-party service integrations",
-              "Exportable dashboards and reports (sales, VAT, credits)",
-              "Hosting, SSL, and scalable cloud infrastructure",
-              "Secure authentication, encryption, and uptime monitoring",
-              "Training, technical documentation, and launch support",
+              "Web app with authentication and database",
+              "Custom admin panel",
+              "Roles, permissions, and external integrations",
+              "Custom modules (sales, inventory, clients, routes, etc.)",
+              "Exportable dashboards and reports",
+              "Scalable cloud architecture",
+              "Payment gateway (if applicable)",
+              "Email and in-app notifications",
+              "Enhanced security (encryption and headers)",
+              "Hosting, automatic backups, and uptime monitoring",
+              "Delivery, training, and technical documentation",
+              "Priority support and continuous product evolution",
             ],
           },
         ],
       },
       shop: {
         description:
-          "Base plans for e-commerce and digital catalogs. Advanced integrations are quoted based on complexity.",
+          "Catalogs and online stores. Pay monthly here; one-time is arranged separately.",
         plans: [
           {
-            name: "Starter",
-            tagline: "Your first online store up and running.",
-            price: "$650",
-            unit: "USD · one-time",
+            name: "Standard e-commerce",
+            tagline: "Catalog ready to sell.",
+            price: "$50",
+            priceAlt: "₡22,000",
+            priceFull: "$650",
             features: [
-              "Catalog of up to 50 products",
-              "Functional cart and checkout",
-              "Online payments (Stripe / bank transfer)",
-              "Admin panel for orders",
-              "Responsive design",
-              "Basic product SEO",
-              "Sale notifications by email",
+              "Product catalog with filters",
+              "WhatsApp orders or simple cart",
+              "Payment: card, gateway, SINPE, or bank transfer",
+              "Mobile-first brand design",
+              "Basic panel for stock and prices",
+              "Product pages with gallery",
+              "E-commerce SEO",
+              "Order notifications by email or WhatsApp",
+              "Hosting, SSL, and monthly support",
+              "Speed optimization",
               "Deployment included",
-              "3 rounds of revisions",
+              "1 round of revisions",
             ],
           },
           {
-            name: "Professional",
-            tagline: "Full e-commerce to scale sales.",
-            price: "$850",
-            unit: "USD · one-time",
+            name: "Pro e-commerce",
+            tagline: "Full store with checkout.",
+            price: "$65",
+            priceAlt: "₡30,000",
+            priceFull: "$850",
             highlighted: true,
             features: [
-              "Unlimited catalog with filters",
-              "Variants, inventory, and coupons",
-              "Conversion-optimized checkout",
-              "Advanced SINPE / Stripe integration",
-              "Admin panel with sales reports",
-              "30-day post-delivery warranty",
-              "Advanced e-commerce SEO",
+              "Unlimited catalog with filters and variants",
+              "Conversion-optimized cart and checkout",
+              "Payment: card, gateway, SINPE, or bank transfer",
+              "Custom features (outfits, leagues, personalization)",
+              "Admin panel for orders, inventory, and coupons",
+              "Sales reports and analytics",
+              "E-commerce SEO",
               "WhatsApp integration for orders",
-              "Up to 5 rounds of revisions",
+              "Hosting, SSL, and monitoring included",
+              "2 rounds of revisions",
               "Training to manage your store",
-            ],
-          },
-          {
-            name: "Advanced",
-            tagline: "Stores with complex business logic.",
-            price: "$1,000",
-            unit: "USD · starting at",
-            features: [
-              "Multi-vendor or multi-branch",
-              "Subscriptions and recurring payments",
-              "ERP / external inventory integrations",
-              "Automations and webhooks",
-              "Real-time metrics dashboards",
-              "30-day post-delivery warranty",
-              "User roles (admin, seller, etc.)",
-              "API for future integrations",
-              "Documented scalable architecture",
-              "Priority launch support",
+              "Priority support and monthly improvements",
             ],
           },
         ],
       },
       mobile: {
         description:
-          "Complete mobile app for iOS and Android. Includes design, development, backend integration, and store publishing.",
+          "Custom iOS/Android or PWA. Pay monthly here; one-time is arranged separately.",
         plans: [
           {
-            name: "Full app",
-            tagline: "Your product in your users' pockets.",
-            price: "$1,900",
-            unit: "USD · one-time",
+            name: "Mobile app",
+            tagline: "Native product for your ops.",
+            price: "$150",
+            priceFull: "$1,500",
             highlighted: true,
             features: [
-              "Native cross-platform app (iOS + Android)",
+              "Native cross-platform app (iOS + Android) or PWA",
               "Custom mobile-first UI/UX design",
               "Login, registration, and password recovery",
-              "Integration with existing API / backend",
+              "Custom business flows for your operation",
               "Push notifications",
               "Offline mode and data sync",
+              "API / backend integration or admin panel",
               "In-app payments and subscriptions (if applicable)",
               "Assisted publishing on App Store and Google Play",
               "Analytics, usage metrics, and error reporting",
-              "30-day post-launch warranty",
-              "Admin panel or CMS/web connection",
               "Deep links and content sharing",
-              "Training and delivery documentation",
-            ],
-          },
-        ],
-      },
-      maintenance: {
-        description:
-          "Monthly plan to keep your site or app active, secure, and up to date without worrying about the technical side.",
-        plans: [
-          {
-            name: "Monthly plan",
-            tagline: "Your site always active, secure, and up to date.",
-            price: "$20",
-            unit: "USD · per month",
-            highlighted: true,
-            features: [
-              "Hosting and uptime monitoring",
-              "Periodic automatic backups",
-              "Security updates",
-              "Dependency and plugin updates",
-              "SSL certificate renewal and management",
-              "Technical support via WhatsApp and email",
-              "Performance and speed monitoring",
-              "Monthly site status report",
-              "Minor post-launch bug fixes",
-              "Basic content updates included",
+              "Training, documentation, and monthly support",
             ],
           },
         ],
@@ -1483,7 +1990,25 @@ const en: SiteCopy = {
     },
     mostChosen: "Most popular",
     requestPlan: "Request this plan",
-    quoteCta: "Get a quote",
+    quoteCta: "Get a quote / ask",
+    payMonthlyCta: "Pay monthly",
+    onceAskPrefix: "Prefer one-time?",
+    onceAskLink: "Contact us",
+    paySheet: {
+      title: "Confirm monthly plan",
+      categorySeparator: " · ",
+      monthlyLabel: "Monthly",
+      companyNameLabel: "Business or site name",
+      companyNamePlaceholder: "E.g. La Pacífica, Jopa Autos…",
+      note: "You’ll pay the monthly fee with Onvo (card, SINPE, and more). One-time payment is arranged separately.",
+      continueCta: "Continue to payment",
+      continueLoading: "Opening checkout…",
+      cancelCta: "Cancel",
+      closeAria: "Close",
+      errorGeneric: "Couldn’t open checkout. Try again or message us on WhatsApp.",
+      payMessage:
+        "Hi, I’d like to pay the monthly fee for the {name} plan ({price}/month) from Onvision Digital.",
+    },
     customQuotePrefix:
       "Need a custom SaaS or a project with complex integrations? ",
     customQuoteLink: "Request a custom quote →",
@@ -1792,7 +2317,7 @@ const en: SiteCopy = {
     quickReplies: [
       "How much does a website cost?",
       "How long does it take?",
-      "What's included in maintenance?",
+      "What's included in the monthly plan?",
       "Do you work outside Costa Rica?",
     ],
     chatRules: [
@@ -1808,7 +2333,7 @@ const en: SiteCopy = {
           "quote",
         ],
         reply:
-          "Projects range from $400 (corporate website) to $1,500+ (SaaS app). E-commerce from $800. Maintenance from $20/month. Each quote is tailored to scope — email info@onvisiondigital.com and I'll prepare a no-obligation proposal.",
+          "Projects range from $400 (corporate website) to $1,500+ (SaaS app). E-commerce from $800. Each quote is tailored to scope — email info@onvisiondigital.com and I'll prepare a no-obligation proposal.",
       },
       {
         keywords: [
@@ -1833,7 +2358,7 @@ const en: SiteCopy = {
           "hosting",
         ],
         reply:
-          "The maintenance plan includes security updates, backups, basic monitoring, and email support. From $20/month depending on project size.",
+          "Each plan's monthly fee includes hosting, domain setup, support, and minor updates. Details vary by plan — check the Plans section or message me about your case.",
       },
       {
         keywords: [
@@ -1862,7 +2387,7 @@ const en: SiteCopy = {
           "site",
         ],
         reply:
-          "I offer corporate websites, online stores (e-commerce), custom SaaS applications, and monthly maintenance. All with custom code — no generic templates.",
+          "I offer corporate websites, online stores (e-commerce), and custom SaaS applications. All with custom code — no generic templates.",
       },
       {
         keywords: [
@@ -1895,6 +2420,58 @@ const en: SiteCopy = {
   },
   site: {
     region: "Latin America",
+  },
+  trustedCompanies: {
+    label: "Clients & projects",
+    title: "Companies that trusted Onvision",
+    description:
+      "A list of brands and projects we’ve worked with: websites, stores, and custom software.",
+    note: "Some profiles are portfolio references. Replace them with real clients, logos, and official contacts when ready.",
+    backHome: "Back to home",
+    emailLabel: "Email",
+    phoneLabel: "Phone",
+    whatsappLabel: "WhatsApp",
+    instagramLabel: "Instagram",
+    webLabel: "Website",
+    showMap: "Show map",
+    hideMap: "Hide map",
+    openMaps: "Open in Google Maps",
+    highlightsTitle: "Highlights",
+    visitSite: "View website",
+    ctaTitle: "Want to be listed here?",
+    ctaBody: "Book a meeting and tell us what your business needs.",
+    clientsStat: "{count} brands and projects",
+    filterBusinessType: "Industry",
+    filterProvince: "Province",
+    allBusinessTypes: "All industries",
+    allProvinces: "Nationwide",
+    clearFilters: "Clear",
+    showingResults: "{shown} of {total} companies",
+    noResults: "No companies match these filters. Try a different combination.",
+    filterHint: "Filter by industry and region",
+    closeFilter: "Close filter",
+    categories: {
+      restaurant: "Restaurants",
+      store: "Stores",
+      clinic: "Clinics",
+      education: "Education",
+      automotive: "Automotive",
+      agriculture: "Agriculture",
+      corporate: "Corporate",
+    },
+    projectTypes: {
+      website: "Website",
+      ecommerce: "E-commerce",
+      software: "Software",
+    },
+    provinces: {
+      "san-jose": "San José",
+      heredia: "Heredia",
+      cartago: "Cartago",
+      alajuela: "Alajuela",
+      guanacaste: "Guanacaste",
+      usa: "United States",
+    },
   },
 };
 

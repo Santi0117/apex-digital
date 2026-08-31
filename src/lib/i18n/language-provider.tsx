@@ -4,9 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/lib/i18n/translations";
 
 const STORAGE_KEY = "onvision-locale";
+const LOCALE_CHANGE = "onvision-locale-change";
 
 type LanguageContextValue = {
   locale: Locale;
@@ -31,16 +32,38 @@ function readStoredLocale(): Locale {
   return stored === "en" ? "en" : "es";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => readStoredLocale());
+function getServerSnapshot(): Locale {
+  return "es";
+}
 
-  useEffect(() => {
+function subscribe(callback: () => void) {
+  window.addEventListener(LOCALE_CHANGE, callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    window.removeEventListener(LOCALE_CHANGE, callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+function notifyLocaleChange() {
+  window.dispatchEvent(new Event(LOCALE_CHANGE));
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const locale = useSyncExternalStore(
+    subscribe,
+    readStoredLocale,
+    getServerSnapshot,
+  );
+
+  useLayoutEffect(() => {
     document.documentElement.lang = locale === "en" ? "en" : "es";
-    localStorage.setItem(STORAGE_KEY, locale);
   }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
+    localStorage.setItem(STORAGE_KEY, next);
+    document.documentElement.lang = next === "en" ? "en" : "es";
+    notifyLocaleChange();
   }, []);
 
   const value = useMemo(
@@ -49,7 +72,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLocale,
       copy: translations[locale],
     }),
-    [locale, setLocale]
+    [locale, setLocale],
   );
 
   return (

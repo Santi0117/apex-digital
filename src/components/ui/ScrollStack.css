@@ -1,0 +1,454 @@
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+  /* Must stay visible — overflow clip/hidden kills position:sticky */
+  overflow: visible;
+}
+
+.scroll-stack-inner {
+  padding: 4vh 1.25rem 12vh;
+}
+
+@media (min-width: 640px) {
+  .scroll-stack-inner {
+    padding: 6vh 2rem 14vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scroll-stack-inner {
+    padding: 8vh 3rem 16vh;
+  }
+}
+
+.scroll-stack-card {
+  position: sticky;
+  top: calc(var(--stack-top, 12vh) + (var(--stack-index, 0) * var(--stack-gap, 28px)));
+  height: clamp(22rem, 72vw, 32rem);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding: 0;
+  border-radius: 28px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgb(8 145 178 / 0.28);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 35%, rgb(30 58 95 / 0.35), transparent 65%),
+    linear-gradient(165deg, #0c1219 0%, #070b10 55%, #0a1520 100%);
+  cursor: default;
+  box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.45);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card {
+    border-radius: 36px;
+    height: clamp(28rem, 52vw, 36rem);
+  }
+}
+
+/* Device cards: room for laptop + phone mockup */
+.scroll-stack-card--laptop {
+  height: clamp(22rem, 72vw, 34rem);
+  width: min(100%, 1080px);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card--laptop {
+    height: clamp(28rem, 50vw, 40rem);
+  }
+}
+
+/* —— Devices mockup: laptop + phone (PNG) —— */
+.scroll-stack-devices {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -52%);
+  width: min(calc(100% - 1.25rem), 40rem);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-devices {
+    width: min(calc(100% - 2rem), 48rem);
+    top: 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scroll-stack-devices {
+    width: min(calc(100% - 2.5rem), 52rem);
+  }
+}
+
+.scroll-stack-devices__laptop-screen {
+  position: absolute;
+  left: 16.25%;
+  top: 21.48%;
+  width: 66.97%;
+  height: 41.7%;
+  z-index: 1;
+  overflow: hidden;
+  background: #0a0f14;
+  border-radius: 2px;
+}
+
+.scroll-stack-devices__phone-screen {
+  position: absolute;
+  left: 78.16%;
+  top: 48.01%;
+  width: 14.98%;
+  height: 33.03%;
+  z-index: 3;
+  overflow: hidden;
+  background: #111827;
+  border-radius: 6px;
+}
+
+.scroll-stack-devices__laptop-screen img,
+.scroll-stack-devices__phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.scroll-stack-devices__phone-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, #1f2937 0%, #111827 40%, #0b1220 100%);
+  position: relative;
+}
+
+.scroll-stack-devices__phone-placeholder::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 14%;
+  height: 10%;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.scroll-stack-devices__phone-placeholder::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 30%;
+  height: 48%;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.05);
+  box-shadow:
+    0 18px 0 rgb(255 255 255 / 0.04),
+    0 36px 0 rgb(255 255 255 / 0.03);
+}
+
+.scroll-stack-devices__frame {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 16px 28px rgb(0 0 0 / 0.4));
+}
+
+/* Phone screen sits above frame so content shows through hole */
+.scroll-stack-devices__phone-screen {
+  z-index: 3;
+}
+
+@media (max-width: 639px) {
+  .scroll-stack-devices {
+    width: min(calc(100% - 0.75rem), 28rem);
+    top: 42%;
+  }
+}
+
+.scroll-stack-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.scroll-stack-card--phone {
+  height: clamp(26rem, 88vw, 44rem);
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  animation: none;
+  transform: none;
+  filter: none;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 10% -5%, rgb(8 145 178 / 0.07), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 10%, rgb(8 145 178 / 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgb(8 145 178 / 0.04), transparent 60%),
+    linear-gradient(to right, rgb(8 145 178 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(8 145 178 / 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
+
+.dark .scroll-stack-card--phone {
+  background-color: #0a0f14;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 10% -5%, rgb(8 145 178 / 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 10%, rgb(8 145 178 / 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgb(8 145 178 / 0.06), transparent 60%),
+    linear-gradient(to right, rgb(8 145 178 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(8 145 178 / 0.06) 1px, transparent 1px);
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card--phone {
+    height: clamp(34rem, 60vw, 50rem);
+  }
+}
+
+.scroll-stack-card--phone .scroll-stack-card__media {
+  object-fit: contain;
+  object-position: center 50%;
+  padding: 5.25rem 1.1rem 1.25rem;
+  box-sizing: border-box;
+  image-rendering: auto;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card--phone .scroll-stack-card__media {
+    object-position: center 46%;
+    padding: 3.25rem 1.35rem 1.35rem;
+  }
+}
+
+.scroll-stack-card--phone .scroll-stack-card__overlay {
+  display: none;
+}
+
+.scroll-stack-card--phone .scroll-stack-card__caption {
+  top: calc(var(--stack-gap, 22px) + 0.85rem);
+  bottom: auto;
+}
+
+/* Canva mockups: same page grid so stacked cards hide the previous silhouette */
+.scroll-stack-card--mockup {
+  height: clamp(26rem, 88vw, 44rem);
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  animation: none;
+  transform: none;
+  filter: none;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 10% -5%, rgb(8 145 178 / 0.07), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 10%, rgb(8 145 178 / 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgb(8 145 178 / 0.04), transparent 60%),
+    linear-gradient(to right, rgb(8 145 178 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(8 145 178 / 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
+
+.dark .scroll-stack-card--mockup {
+  background-color: #0a0f14;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 10% -5%, rgb(8 145 178 / 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 10%, rgb(8 145 178 / 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgb(8 145 178 / 0.06), transparent 60%),
+    linear-gradient(to right, rgb(8 145 178 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(8 145 178 / 0.06) 1px, transparent 1px);
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card--mockup {
+    height: clamp(34rem, 60vw, 50rem);
+  }
+}
+
+.scroll-stack-card--mockup .scroll-stack-card__media {
+  object-fit: contain;
+  object-position: center 48%;
+  padding: 5.35rem 1rem 3.5rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card--mockup .scroll-stack-card__media {
+    object-position: center 40%;
+    padding: 1.5rem 1.75rem 4.75rem;
+  }
+}
+
+.scroll-stack-card--mockup .scroll-stack-card__overlay {
+  display: none;
+}
+
+.scroll-stack-card--mockup .scroll-stack-card__caption {
+  top: calc(var(--stack-gap, 22px) + 0.85rem);
+  bottom: auto;
+}
+
+.scroll-stack-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 42%,
+    rgb(10 15 20 / 0.55) 72%,
+    rgb(10 15 20 / 0.92) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scroll-stack-card__caption {
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 4;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card__caption {
+    left: 2rem;
+    right: 2rem;
+    bottom: 1.75rem;
+  }
+
+  .scroll-stack-card--mockup .scroll-stack-card__caption {
+    top: calc(var(--stack-gap, 22px) + 1rem);
+    bottom: auto;
+  }
+
+  .scroll-stack-card--phone .scroll-stack-card__caption {
+    top: calc(var(--stack-gap, 22px) + 1rem);
+    bottom: auto;
+  }
+}
+
+.scroll-stack-card__caption h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.scroll-stack-card__caption p {
+  margin: 0.4rem 0 0;
+  color: rgb(255 255 255 / 0.72);
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  line-height: 1.4;
+}
+
+.scroll-stack-card__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.22);
+  border-radius: 999px;
+  color: #fff;
+  background: rgb(8 12 18 / 0.62);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transform: translateY(-62%);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.scroll-stack-card__nav:hover,
+.scroll-stack-card__nav:focus-visible {
+  background: rgb(8 145 178 / 0.88);
+  border-color: rgb(255 255 255 / 0.35);
+  outline: none;
+}
+
+.scroll-stack-card__nav--prev {
+  left: 0.7rem;
+}
+
+.scroll-stack-card__nav--next {
+  right: 0.7rem;
+}
+
+@media (min-width: 768px) {
+  .scroll-stack-card__nav {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .scroll-stack-card__nav--prev {
+    left: 1rem;
+  }
+
+  .scroll-stack-card__nav--next {
+    right: 1rem;
+  }
+}
+
+.scroll-stack-card__count {
+  position: absolute;
+  top: calc(var(--stack-gap, 22px) + 0.45rem);
+  right: 1rem;
+  z-index: 5;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgb(255 255 255 / 0.88);
+  background: rgb(0 0 0 / 0.5);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  pointer-events: none;
+}
+
+/* Soft scale as a card exits — compositor only, no JS. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-stack-card {
+      transform-origin: top center;
+      animation: scroll-stack-recede linear both;
+      animation-timeline: view();
+      animation-range: exit-crossing 0% exit-crossing 55%;
+    }
+
+    @keyframes scroll-stack-recede {
+      to {
+        transform: scale(0.92);
+        filter: brightness(0.88);
+      }
+    }
+
+    .scroll-stack-card--mockup,
+    .scroll-stack-card--phone {
+      animation: none;
+      transform: none;
+      filter: none;
+    }
+  }
+}

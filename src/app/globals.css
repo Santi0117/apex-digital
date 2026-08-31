@@ -26,7 +26,7 @@
     font-family: var(--font-sans, system-ui, sans-serif);
     background: #ffffff;
     color: #171717;
-    overflow-x: hidden;
+    /* Do not set overflow-x here — it breaks position:sticky for the gallery */
     transition: background-color 0.25s ease, color 0.25s ease;
   }
 
@@ -150,5 +150,9 @@
     to {
       transform: scaleY(1);
     }
+  }
+
+  body.dg-scroll-lock {
+    overflow: hidden;
   }
 }

@@ -7,35 +7,38 @@ import { useLanguage } from "@/lib/i18n/language-provider";
 
 const showcaseImages = [
   [
+    "/projects/web-crestview-hero.png",
+    "/projects/web-crestview-why.png",
+    "/projects/web-alchemy-hero.png",
+    "/projects/web-alchemy-book.png",
+  ],
+  [
+    "/projects/ecom-firstdown-tienda.png",
+    "/projects/ecom-firstdown-probar.png",
+    "/projects/ecom-firstdown-ligas.png",
+    "/projects/ecom-guba-catalogo.png",
+  ],
+  [
+    "/projects/clinicos-dashboard.png",
+    "/projects/unilearn2-estudiante.png",
     "/projects/sistemagan-control.jpg",
-    "/projects/sistemagan-inventario-leche.jpg",
-    "/projects/sistemagan-inventario-quesos.jpg",
+    "/projects/unilearn2-admin-v2.png",
     "/projects/sistemagan-rutas-v2.jpg",
+    "/projects/clinicos-finanzas.png",
   ],
   [
-    "/projects/firstdown-catalogo.jpg",
-    "/projects/firstdown.jpg",
-    "/projects/firstdown-outfit.jpg",
-    "/projects/firstdown-stock.jpg",
-  ],
-  [
-    "/projects/web-dafesa.jpg",
-    "/projects/web-tappy-mapa.jpg",
-    "/projects/web-tappy-chatbot.jpg",
-    "/projects/web-crestview.jpg",
-  ],
-  [
-    "/projects/mobile-cuenta.jpg",
-    "/projects/mobile-mascotas.jpg",
-    "/projects/mobile-hidratacion.jpg",
+    "/projects/mobile-finanzas.png",
+    "/projects/mobile-run.png",
+    "/projects/mobile-stickers.png",
+    "/projects/mobile-hidratacion-app.png",
   ],
 ] as const;
 
 /** Pon tus .mp4 en public/projects/videos/ — solo carga el video de la pestaña activa. */
 const showcaseVideos: (string | null)[] = [
-  "/projects/videos/software.mp4",
-  "/projects/videos/ecommerce.mp4",
   "/projects/videos/web.mp4",
+  "/projects/videos/ecommerce.mp4",
+  "/projects/videos/software.mp4",
   "/projects/videos/mobile.mp4",
 ];
 

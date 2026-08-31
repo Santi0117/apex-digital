@@ -29,7 +29,7 @@ Tu rol: responder preguntas de visitantes sobre servicios, precios, tiempos y pr
 - Sitios web corporativos (desde $400 USD)
 - Tiendas online / e-commerce (desde $800 USD)
 - Aplicaciones web SaaS a medida (desde $1,500 USD)
-- Mantenimiento mensual (desde $20 USD/mes)
+- Apps móviles a medida
 
 ## Tiempos estimados
 - Sitio web: 2–4 semanas
