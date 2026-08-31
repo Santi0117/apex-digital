@@ -149,6 +149,28 @@ export const TRUSTED_COMPANIES: TrustedCompany[] = [
     },
   },
   {
+    id: "crestview",
+    name: "Crestview Legal",
+    logo: "/clients/crestview-legal.png",
+    initials: "CV",
+    accent: "#34d399",
+    category: "corporate",
+    projectType: "website",
+    province: "usa",
+    sector: { es: "Servicios legales", en: "Legal services" },
+    location: { es: "Estados Unidos", en: "United States" },
+    coords: { lat: 33.7225, lng: -116.377 },
+    description: {
+      es: "Firma de servicios legales que acompaña clientes en temas jurídicos con atención personalizada y enfoque en claridad y confianza.",
+      en: "Legal services firm helping clients with legal matters through personalized attention and a focus on clarity and trust.",
+    },
+    contacts: {
+      email: "info@crestview-legal.com",
+      phone: "+1 760-690-3131",
+      website: "https://www.crestview-legal.com",
+    },
+  },
+  {
     id: "jopa-autos",
     name: "Jopa Autos",
     logo: "/clients/jopa-autos.png",
@@ -199,9 +221,8 @@ export const TRUSTED_COMPANIES: TrustedCompany[] = [
     },
     contacts: {
       instagram: "@firstdown_store",
-      phone: "+506 2222-0101",
       website: "https://firstdown-store.onvisiondigital.com",
-      whatsapp: "50663030204",
+      whatsapp: "50685875999",
     },
   },
   {
@@ -230,28 +251,6 @@ export const TRUSTED_COMPANIES: TrustedCompany[] = [
     contacts: {
       phone: "+506 6303-0204",
       website: "https://clinicos.onvisiondigital.com",
-    },
-  },
-  {
-    id: "crestview",
-    name: "Crestview Legal",
-    logo: "/clients/crestview-legal.png",
-    initials: "CV",
-    accent: "#34d399",
-    category: "corporate",
-    projectType: "website",
-    province: "usa",
-    sector: { es: "Servicios legales", en: "Legal services" },
-    location: { es: "Estados Unidos", en: "United States" },
-    coords: { lat: 33.7225, lng: -116.377 },
-    description: {
-      es: "Firma de servicios legales que acompaña clientes en temas jurídicos con atención personalizada y enfoque en claridad y confianza.",
-      en: "Legal services firm helping clients with legal matters through personalized attention and a focus on clarity and trust.",
-    },
-    contacts: {
-      email: "info@crestview-legal.com",
-      phone: "+1 760-690-3131",
-      website: "https://www.crestview-legal.com",
     },
   },
   {
