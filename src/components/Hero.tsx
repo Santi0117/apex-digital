@@ -201,7 +201,7 @@ export default function Hero() {
 
             <h1 className="text-[2rem] leading-[1.12] sm:text-5xl sm:leading-[1.1] lg:text-[3.25rem] lg:leading-[1.08] font-medium text-white mb-4 sm:mb-5 tracking-tight text-balance">
               {copy.hero.title}{" "}
-              <span className="block mt-1 sm:mt-2 text-white/55 font-normal">
+              <span className="block mt-1 sm:mt-2 text-accent-muted font-normal">
                 {copy.hero.titleAccent}
               </span>
             </h1>
