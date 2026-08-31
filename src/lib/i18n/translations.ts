@@ -262,6 +262,22 @@ export type SiteCopy = {
     readyPrefix: string;
     writeMe: string;
   };
+  faq: {
+    label: string;
+    title: string;
+    description: string;
+    itemPrefix: string;
+    items: Array<{
+      question: string;
+      answer: string;
+      groups?: Array<{
+        title: string;
+        points: string[];
+      }>;
+    }>;
+    footerText: string;
+    footerCta: string;
+  };
   coverage: {
     label: string;
     title: string;
@@ -1024,6 +1040,76 @@ const es: SiteCopy = {
     ],
     readyPrefix: "¿Listo para empezar? ",
     writeMe: "Escríbeme",
+  },
+  faq: {
+    label: "Preguntas frecuentes",
+    title: "Lo que se pregunta todo el mundo antes de empezar",
+    description:
+      "Las dudas más comunes sobre la mensualidad, el dominio y qué pasa si querés parar.",
+    itemPrefix: "FAQ-",
+    items: [
+      {
+        question: "¿El sitio es mío o de ustedes?",
+        answer:
+          "Tuyo. Con el pago único queda a tu nombre desde que se entrega. Con la mensualidad también es tuyo, mientras la mensualidad esté al día.",
+      },
+      {
+        question:
+          "Si elegís la mensualidad, ¿cuál es el mínimo antes de poder cancelar?",
+        answer:
+          "El tiempo mínimo son 4 meses. Después de eso podés cancelar en cualquier momento, e incluso pedir la devolución de esa mensualidad si la usaste menos de la mitad del mes.",
+      },
+      {
+        question: "¿Qué pasa si cancelo o me atraso con el pago?",
+        answer:
+          "Tenés 5 días para ponerte al día antes de que se desactiven la página y los demás servicios. Tené en cuenta que la mensualidad no cubre solo la página web: incluye el mantenimiento, el pago del servicio de IA y tu espacio promocional en nuestro sitio.",
+      },
+      {
+        question: "¿Qué cubre exactamente el soporte incluido?",
+        answer:
+          "La mensualidad cubre dos cosas distintas. Por un lado, cambios sobre el sitio, que coordinamos según lo que vaya necesitando tu negocio:",
+        groups: [
+          {
+            title: "Cambios sobre el sitio",
+            points: [
+              "Cambios de diseño y estructura según las necesidades del negocio.",
+              "Creación y adición de nuevas secciones dentro de la página.",
+              "Actualización de contenido, imágenes y elementos visuales.",
+            ],
+          },
+          {
+            title: "Y de forma ilimitada",
+            points: [
+              "Mantenimiento técnico y solución de errores o fallos que puedan presentarse.",
+              "Atención ante posibles ataques cibernéticos o problemas de seguridad de la página.",
+              "Supervisión general para mantener la página funcionando correctamente.",
+            ],
+          },
+        ],
+      },
+      {
+        question: "¿A nombre de quién queda el dominio?",
+        answer:
+          "El dominio lo comprás vos y queda a tu nombre. Ronda los $11 al año (unos ₡5.000 colones). Nosotros lo dejamos comprado, configurado y apuntando a tu sitio.",
+      },
+      {
+        question: "¿Cuánto tarda desde que pago?",
+        answer:
+          "Depende bastante de qué tan rápido fluya la información de tu lado, porque el sitio es 100% personalizado. El tiempo promedio es de una semana: la idea es entregar de forma eficiente, sin bajarle a la calidad.",
+      },
+      {
+        question: "Ya tengo página, ¿la pueden migrar?",
+        answer:
+          "Sí, y sin ningún costo adicional.",
+      },
+      {
+        question: "¿Por qué mensualidad y no un solo pago?",
+        answer:
+          "La mensualidad se añadió para darle la oportunidad a los negocios de tener un servicio digital de manera más accesible. Aun así, podés elegir la que te sirva: el pago único aparece en cada plan.",
+      },
+    ],
+    footerText: "¿Te quedó otra duda? ",
+    footerCta: "Escribinos",
   },
   coverage: {
     label: "Cobertura",
@@ -2047,6 +2133,76 @@ const en: SiteCopy = {
     ],
     readyPrefix: "Ready to get started? ",
     writeMe: "Write to me",
+  },
+  faq: {
+    label: "FAQ",
+    title: "What everyone asks before getting started",
+    description:
+      "The most common questions about the monthly plan, the domain, and what happens if you stop.",
+    itemPrefix: "FAQ-",
+    items: [
+      {
+        question: "Is the site mine or yours?",
+        answer:
+          "Yours. With the one-time payment it is yours from delivery. With the monthly plan it is also yours, as long as the monthly payment is up to date.",
+      },
+      {
+        question:
+          "If I choose the monthly plan, what is the minimum before I can cancel?",
+        answer:
+          "The minimum is 4 months. After that you can cancel at any time, and you can even ask for a refund of that month if you used less than half of it.",
+      },
+      {
+        question: "What happens if I cancel or fall behind on a payment?",
+        answer:
+          "You have 5 days to catch up before the site and the other services are deactivated. Keep in mind the monthly fee does not cover only the website: it includes maintenance, the AI service, and your promotional space on our site.",
+      },
+      {
+        question: "What exactly does the included support cover?",
+        answer:
+          "The monthly plan covers two different things. First, changes to the site, which we coordinate based on what your business needs:",
+        groups: [
+          {
+            title: "Changes to the site",
+            points: [
+              "Design and structure changes as the business needs them.",
+              "Creating and adding new sections to the page.",
+              "Updating content, images, and visual elements.",
+            ],
+          },
+          {
+            title: "And with no limit",
+            points: [
+              "Technical maintenance and fixing any errors or failures that come up.",
+              "Response to cyberattacks or security issues affecting the site.",
+              "General monitoring to keep the page running correctly.",
+            ],
+          },
+        ],
+      },
+      {
+        question: "Whose name is the domain registered under?",
+        answer:
+          "You buy the domain and it stays in your name. It runs about $11 a year (roughly ₡5,000 colones). We handle purchasing, configuring, and pointing it at your site.",
+      },
+      {
+        question: "How long does it take once I pay?",
+        answer:
+          "It depends a lot on how quickly information flows from your side, since the site is 100% custom. The average is about one week — the goal is an efficient delivery without cutting quality.",
+      },
+      {
+        question: "I already have a site — can you migrate it?",
+        answer:
+          "Yes, at no additional cost.",
+      },
+      {
+        question: "Why a monthly plan instead of a single payment?",
+        answer:
+          "The monthly plan was added to give businesses the chance to have a digital service in a more accessible way. Either way, you can pick what works for you: the one-time price is listed on every plan.",
+      },
+    ],
+    footerText: "Still have a question? ",
+    footerCta: "Write to us",
   },
   coverage: {
     label: "Coverage",

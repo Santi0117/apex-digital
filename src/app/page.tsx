@@ -4,7 +4,7 @@ import Services from "@/components/Services";
 import ScrollStackShowcase from "@/components/ScrollStackShowcase";
 import Plans from "@/components/Plans";
 import Process from "@/components/Process";
-import CoverageMap from "@/components/CoverageMap";
+import Faq from "@/components/Faq";
 import ContactForm from "@/components/ContactForm";
 import BookAppointment from "@/components/BookAppointment";
 import Assistant from "@/components/Assistant";
@@ -21,7 +21,7 @@ export default function Home() {
         <ScrollStackShowcase />
         <Plans />
         <Process />
-        <CoverageMap />
+        <Faq />
         <BookAppointment />
         <ContactForm />
         <Assistant />
