@@ -285,15 +285,15 @@
 
 .scroll-stack-card--mockup .scroll-stack-card__media {
   object-fit: contain;
-  object-position: center 42%;
-  padding: 5.35rem 1rem 5.25rem;
+  object-position: center 48%;
+  padding: 5.35rem 1rem 3.5rem;
   box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .scroll-stack-card--mockup .scroll-stack-card__media {
-    object-position: center 38%;
-    padding: 1.5rem 1.75rem 5.5rem;
+    object-position: center 40%;
+    padding: 1.5rem 1.75rem 4.75rem;
   }
 }
 

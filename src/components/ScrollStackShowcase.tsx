@@ -5,6 +5,9 @@ import ScrollStack, { ScrollStackItem } from "./ui/ScrollStack";
 import SectionHeader from "./SectionHeader";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
+/** Poné true cuando quieras mostrar de nuevo “Visitar sitio web” bajo cada ejemplo. */
+const SHOW_VISIT_SITE_LINKS = false;
+
 /** Imágenes de referencia — reemplazá paths cuando tengas las definitivas. */
 const SCROLL_STACK_MEDIA: ReadonlyArray<{
   images: readonly string[];
@@ -268,13 +271,15 @@ export default function ScrollStackShowcase() {
                     </span>
                   </>
                 )}
-                <div className="scroll-stack-card__visit-wrap">
-                  <VisitSiteLink
-                    href={currentUrl}
-                    label={g.visitSite}
-                    pending={!currentUrl}
-                  />
-                </div>
+                {SHOW_VISIT_SITE_LINKS ? (
+                  <div className="scroll-stack-card__visit-wrap">
+                    <VisitSiteLink
+                      href={currentUrl}
+                      label={g.visitSite}
+                      pending={!currentUrl}
+                    />
+                  </div>
+                ) : null}
                 <div className="scroll-stack-card__caption">
                   <h2>{item.title}</h2>
                   <p>{item.subtitle}</p>
