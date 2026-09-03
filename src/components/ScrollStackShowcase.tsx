@@ -8,6 +8,8 @@ import { useLanguage } from "@/lib/i18n/language-provider";
 /** Imágenes de referencia — reemplazá paths cuando tengas las definitivas. */
 const SCROLL_STACK_MEDIA: ReadonlyArray<{
   images: readonly string[];
+  /** URL del sitio por captura (mismo orden que images). Vacío = pendiente. */
+  urls: readonly (string | undefined)[];
   layout: "mockup" | "phone" | "devices";
 }> = [
   {
@@ -16,6 +18,7 @@ const SCROLL_STACK_MEDIA: ReadonlyArray<{
       "/projects/web-std-alchemy-cut2.png",
       "/projects/web-std-ecois-cut2.png",
     ],
+    urls: [undefined, undefined, undefined],
     layout: "mockup",
   },
   {
@@ -25,6 +28,7 @@ const SCROLL_STACK_MEDIA: ReadonlyArray<{
       "/projects/web-pro-jopa-calculadora-cut2.png",
       "/projects/web-pro-jopa-autos-cut2.png",
     ],
+    urls: [undefined, undefined, undefined, undefined],
     layout: "mockup",
   },
   {
@@ -34,6 +38,7 @@ const SCROLL_STACK_MEDIA: ReadonlyArray<{
       "/projects/ecom-guba-cut2.png",
       "/projects/ecom-aurelia-cut2.png",
     ],
+    urls: [undefined, undefined, undefined, undefined],
     layout: "mockup",
   },
   {
@@ -43,6 +48,7 @@ const SCROLL_STACK_MEDIA: ReadonlyArray<{
       "/projects/saas-unilearn-cut2.png",
       "/projects/saas-clinicos-calendario-cut2.png",
     ],
+    urls: [undefined, undefined, undefined, undefined],
     layout: "mockup",
   },
   {
@@ -51,6 +57,7 @@ const SCROLL_STACK_MEDIA: ReadonlyArray<{
       "/projects/mobile-hidratacion-cut5.png",
       "/projects/mobile-finanzas-cut5.png",
     ],
+    urls: [undefined, undefined, undefined],
     layout: "mockup",
   },
 ] ;
@@ -60,6 +67,54 @@ type StackItem = (typeof SCROLL_STACK_MEDIA)[number] & {
   subtitle: string;
   phoneImage?: string;
 };
+
+function GlobeIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className="h-3.5 w-3.5 shrink-0"
+      aria-hidden
+    >
+      <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm0 1.5c.9 0 1.72.7 2.36 1.82.5.87.87 2.07.99 3.43H6.65c.12-1.36.49-2.56.99-3.43C8.28 4.2 9.1 3.5 10 3.5Zm-3.76.76C5.3 5.36 4.6 7.3 4.52 9.25h2.07c.13-1.5.52-2.85 1.07-3.84a6.2 6.2 0 0 0-1.42-.15Zm7.52 0c-.4.03-.82.08-1.22.15.55.99.94 2.34 1.07 3.84h2.07c-.08-1.95-.78-3.89-1.92-4Zm1.92 6.24h-2.07c-.13 1.5-.52 2.85-1.07 3.84.4.07.82.12 1.22.15 1.14-1.11 1.84-3.05 1.92-5Zm-3.91 5.25C12.72 15.8 11.9 16.5 11 16.5c-.9 0-1.72-.7-2.36-1.82-.5-.87-.87-2.07-.99-3.43h6.7c-.12 1.36-.49 2.56-.99 3.43ZM5.84 14.49c.4-.03.82-.08 1.22-.15-.55-.99-.94-2.34-1.07-3.84H3.92c.08 1.95.78 3.89 1.92 5Z" />
+    </svg>
+  );
+}
+
+function VisitSiteLink({
+  href,
+  label,
+  pending,
+}: {
+  href?: string;
+  label: string;
+  pending?: boolean;
+}) {
+  const className =
+    "scroll-stack-card__visit inline-flex items-center gap-1.5 rounded-full border border-cyan-600/25 bg-white/90 px-3 py-1.5 text-[11px] font-medium text-cyan-700 shadow-sm backdrop-blur-sm transition-colors dark:border-cyan-500/30 dark:bg-neutral-900/90 dark:text-cyan-300";
+
+  if (href && !pending) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${className} hover:border-cyan-600/45 hover:bg-cyan-50 dark:hover:bg-cyan-950/40`}
+      >
+        <GlobeIcon />
+        <span>{label}</span>
+      </a>
+    );
+  }
+
+  return (
+    <span className={`${className} opacity-80`} aria-disabled="true">
+      <GlobeIcon />
+      <span>{label}</span>
+    </span>
+  );
+}
 
 function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
   return (
@@ -148,6 +203,7 @@ export default function ScrollStackShowcase() {
                 : "scroll-stack-card--laptop";
           const slideIndex = slides[index];
           const currentImage = item.images[slideIndex];
+          const currentUrl = item.urls?.[slideIndex];
           const hasMultiple = item.images.length > 1;
 
           return (
@@ -212,6 +268,13 @@ export default function ScrollStackShowcase() {
                     </span>
                   </>
                 )}
+                <div className="scroll-stack-card__visit-wrap">
+                  <VisitSiteLink
+                    href={currentUrl}
+                    label={g.visitSite}
+                    pending={!currentUrl}
+                  />
+                </div>
                 <div className="scroll-stack-card__caption">
                   <h2>{item.title}</h2>
                   <p>{item.subtitle}</p>

@@ -161,6 +161,7 @@ export type SiteCopy = {
     tapHint: string;
     prevLabel: string;
     nextLabel: string;
+    visitSite: string;
     items: Array<{
       title: string;
       subtitle: string;
@@ -639,6 +640,7 @@ const es: SiteCopy = {
     tapHint: "Clic para ampliar",
     prevLabel: "Pantalla anterior",
     nextLabel: "Pantalla siguiente",
+    visitSite: "Visitar sitio web",
     items: [
       {
         title: "Página estándar",
@@ -1732,6 +1734,7 @@ const en: SiteCopy = {
     tapHint: "Click to enlarge",
     prevLabel: "Previous screen",
     nextLabel: "Next screen",
+    visitSite: "Visit website",
     items: [
       {
         title: "Standard website",

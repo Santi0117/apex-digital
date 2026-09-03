@@ -19,9 +19,9 @@ export default function Hero() {
   const navItems = [
     { label: copy.nav.services, href: "#servicios" },
     { label: copy.nav.portfolio, href: "#galeria-stack" },
+    { label: copy.nav.companies, href: "/empresas" },
     { label: copy.nav.plans, href: "#planes" },
     { label: copy.nav.schedule, href: "#agendar" },
-    { label: copy.nav.companies, href: "/empresas" },
     { label: copy.nav.contact, href: "#cotizar" },
   ];
 
