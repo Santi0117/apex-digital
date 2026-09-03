@@ -285,15 +285,15 @@
 
 .scroll-stack-card--mockup .scroll-stack-card__media {
   object-fit: contain;
-  object-position: center 48%;
-  padding: 5.35rem 1rem 3.5rem;
+  object-position: center 42%;
+  padding: 5.35rem 1rem 5.25rem;
   box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .scroll-stack-card--mockup .scroll-stack-card__media {
-    object-position: center 40%;
-    padding: 1.5rem 1.75rem 4.75rem;
+    object-position: center 38%;
+    padding: 1.5rem 1.75rem 5.5rem;
   }
 }
 
@@ -415,11 +415,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0.85rem;
-  z-index: 5;
+  z-index: 6;
   display: flex;
   justify-content: center;
   pointer-events: none;
+  /* Default: mid-lower area so it sits under mockups, not under next stacked card */
+  top: 70%;
+  bottom: auto;
+  transform: translateY(-50%);
 }
 
 .scroll-stack-card__visit-wrap .scroll-stack-card__visit {
@@ -428,18 +431,22 @@
 
 @media (min-width: 768px) {
   .scroll-stack-card__visit-wrap {
-    bottom: 1.1rem;
+    top: 72%;
   }
 }
 
 .scroll-stack-card--mockup .scroll-stack-card__visit-wrap {
-  bottom: 0.65rem;
+  top: 68%;
 }
 
 @media (min-width: 768px) {
   .scroll-stack-card--mockup .scroll-stack-card__visit-wrap {
-    bottom: 0.85rem;
+    top: 71%;
   }
+}
+
+.scroll-stack-card--phone .scroll-stack-card__visit-wrap {
+  top: 74%;
 }
 
 .scroll-stack-card__count {

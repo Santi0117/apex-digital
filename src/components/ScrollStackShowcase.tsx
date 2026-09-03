@@ -92,7 +92,7 @@ function VisitSiteLink({
   pending?: boolean;
 }) {
   const className =
-    "scroll-stack-card__visit inline-flex items-center gap-1.5 rounded-full border border-cyan-600/25 bg-white/90 px-3 py-1.5 text-[11px] font-medium text-cyan-700 shadow-sm backdrop-blur-sm transition-colors dark:border-cyan-500/30 dark:bg-neutral-900/90 dark:text-cyan-300";
+    "scroll-stack-card__visit inline-flex items-center gap-1.5 rounded-full border border-cyan-500/40 bg-neutral-950/85 px-3.5 py-1.5 text-[12px] font-medium text-cyan-300 shadow-md backdrop-blur-md transition-colors dark:border-cyan-400/35 dark:bg-neutral-950/90 dark:text-cyan-200";
 
   if (href && !pending) {
     return (
@@ -100,7 +100,7 @@ function VisitSiteLink({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${className} hover:border-cyan-600/45 hover:bg-cyan-50 dark:hover:bg-cyan-950/40`}
+        className={`${className} hover:border-cyan-400/60 hover:bg-cyan-950/70 hover:text-cyan-100`}
       >
         <GlobeIcon />
         <span>{label}</span>
@@ -109,7 +109,7 @@ function VisitSiteLink({
   }
 
   return (
-    <span className={`${className} opacity-80`} aria-disabled="true">
+    <span className={className} aria-disabled="true">
       <GlobeIcon />
       <span>{label}</span>
     </span>
