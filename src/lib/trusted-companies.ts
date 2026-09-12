@@ -145,7 +145,7 @@ export const TRUSTED_COMPANIES: TrustedCompany[] = [
     },
     contacts: {
       phone: "+506 2250-3633",
-      website: "https://la-pacifica.onvisiondigital.com",
+      website: "https://la-pacifica.com",
     },
   },
   {
@@ -221,7 +221,7 @@ export const TRUSTED_COMPANIES: TrustedCompany[] = [
     },
     contacts: {
       instagram: "@firstdown_store",
-      website: "https://firstdown-store.onvisiondigital.com",
+      website: "https://firstdown-store.com",
       whatsapp: "50685875999",
     },
   },
