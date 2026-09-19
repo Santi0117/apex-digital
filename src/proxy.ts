@@ -13,8 +13,10 @@ function isSistemaHost(host: string) {
 /**
  * sistema.onvisiondigital.com → SaaS / verticales (Activar).
  * onvisiondigital.com → landing Digital (sin cambios).
+ *
+ * Next.js 16: Middleware was renamed to Proxy (`proxy.ts`).
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   if (!isSistemaHost(host)) {
     return NextResponse.next();
