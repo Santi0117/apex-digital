@@ -26,9 +26,6 @@ export default function ActivarFlow() {
 
   const vertical = verticals.find((v) => v.id === verticalId) ?? null;
   const disponible = verticalId ? appUrlDeVertical(verticalId) !== null : false;
-  const disponibles = verticals.filter(
-    (v) => appUrlDeVertical(v.id) !== null,
-  ).length;
   const verticalesOrdenadas = [...verticals].sort((a, b) => {
     const aOk = appUrlDeVertical(a.id) !== null ? 0 : 1;
     const bOk = appUrlDeVertical(b.id) !== null ? 0 : 1;
@@ -64,8 +61,8 @@ export default function ActivarFlow() {
         <p className="section-lead text-white/70">
           Elegí tu industria, pagá{" "}
           <strong className="text-white">{formatCRC(plan.monthly)}/mes</strong>{" "}
-          con tarjeta y creás tu cuenta. Hoy ya podés activar{" "}
-          <strong className="text-white">{disponibles} industrias</strong>.
+          con tarjeta y creás tu cuenta. Todas las industrias están listas para
+          activar.
         </p>
       </ScrollReveal>
 
@@ -86,7 +83,7 @@ export default function ActivarFlow() {
           1 · Tu industria
         </p>
         <p className="mb-5 text-sm text-white/55">
-          Las marcadas ya están listas para activar; el resto va a lista de espera.
+          Todas las industrias están listas para activar.
         </p>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {verticalesOrdenadas.map((v) => {

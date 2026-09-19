@@ -63,7 +63,7 @@ export default function Navbar() {
             href={site.parentUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium text-white/45 transition hover:text-white"
+            className="rounded-xl border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_0_20px_-8px_rgba(8,145,178,0.55)] transition hover:border-cyan-300/50 hover:bg-white/15 hover:text-white"
           >
             {site.parentName}
           </a>
@@ -114,7 +114,7 @@ export default function Navbar() {
               href={site.parentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-white/55"
+              className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-center text-base font-semibold text-white"
             >
               {site.parentName}
             </a>
