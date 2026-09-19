@@ -4,7 +4,7 @@ export const companyNav = [
   { label: "Servicios", href: "/digital" },
   { label: "Planes", href: "/digital#planes" },
   { label: "Empresas", href: "/empresas" },
-  { label: "Sistema", href: "/producto#industrias-imagenes" },
+  { label: "Sistema", href: "/#sistema" },
   { label: "Sobre nosotros", href: "/sobre-nosotros" },
 ] as const;
 

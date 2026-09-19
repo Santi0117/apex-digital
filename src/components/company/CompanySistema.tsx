@@ -115,7 +115,7 @@ export default function CompanySistema() {
   };
 
   return (
-    <section className="w-full px-4 py-12 md:px-6 md:py-24">
+    <section id="sistema" className="scroll-mt-24 w-full px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 lg:grid lg:grid-cols-[minmax(240px,0.7fr)_minmax(0,1.35fr)] lg:items-center lg:gap-14">
         <ScrollReveal className="max-w-sm lg:pr-2" variant="left" delay={0.06}>
           <h2 className="text-[1.45rem] leading-[1.15] font-medium tracking-[-0.04em] text-white sm:text-[1.9rem]">
