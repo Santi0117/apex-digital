@@ -62,9 +62,17 @@ export async function POST(request: Request) {
       description: `Onvision · ${vertical.name} — suscripción mensual`,
       metadata: {
         verticalId,
+        verticalName: vertical.name,
         planId: "unico",
         producto: "onvision",
         source: "onvision-landing",
+        site: "onvisiondigital.com",
+        // Mes 1 ahora; webhook agenda meses 2–4 automáticos (tarjeta).
+        setupRecurring: "1",
+        recurringMonths: "4",
+        minMonths: "4",
+        unitAmount: String(ONVO_PRECIO_MENSUAL_CRC),
+        currency: "CRC",
       },
       redirectUrl: `${origin}/activar/exito?vertical=${encodeURIComponent(verticalId)}`,
       cancelUrl: `${origin}/activar?vertical=${encodeURIComponent(verticalId)}&pago=cancelado`,

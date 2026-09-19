@@ -1,0 +1,59 @@
+.ov-onvi-page {
+  position: relative;
+  overflow: hidden;
+  background: #101214;
+}
+
+.ov-onvi-copy {
+  transition:
+    color 380ms ease,
+    opacity 380ms ease,
+    transform 380ms ease;
+}
+
+.ov-onvi-copy.is-fresh {
+  animation: ov-onvi-fresh 700ms ease;
+}
+
+@keyframes ov-onvi-fresh {
+  0% {
+    color: #67e8f9;
+  }
+  100% {
+    color: inherit;
+  }
+}
+
+.ov-onvi-popup {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  width: min(210px, calc(100% - 20px));
+  transform-origin: bottom right;
+  animation: ov-onvi-pop 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ov-onvi-fab {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  animation: ov-onvi-pop 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ov-onvi-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-onvi-popup,
+  .ov-onvi-fab,
+  .ov-onvi-copy {
+    animation: none !important;
+    transition: none !important;
+  }
+}

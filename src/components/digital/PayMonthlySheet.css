@@ -1,0 +1,224 @@
+.pay-sheet-root {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .pay-sheet-root {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.pay-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(0 0 0 / 0.65);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+}
+
+.pay-sheet-panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 26rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border-radius: 1.25rem 1.25rem 0 0;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: #0c0c0c;
+  color: #fff;
+  box-shadow: 0 40px 100px -40px rgb(0 0 0 / 0.9);
+}
+
+@media (min-width: 640px) {
+  .pay-sheet-panel {
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+  }
+}
+
+.pay-sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pay-sheet-kicker {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.pay-sheet-title {
+  margin: 0.35rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.pay-sheet-close {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.06);
+  color: rgb(255 255 255 / 0.65);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pay-sheet-close:disabled {
+  opacity: 0.5;
+}
+
+.pay-sheet-summary {
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.03);
+}
+
+.pay-sheet-plan {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.pay-sheet-plan span {
+  color: rgb(255 255 255 / 0.92);
+  font-weight: 560;
+}
+
+.pay-sheet-price {
+  margin: 0.75rem 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 1.85rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.pay-sheet-period {
+  font-size: 0.875rem;
+  font-weight: 560;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.pay-sheet-alt {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+.pay-sheet-field {
+  display: block;
+  margin-top: 1rem;
+}
+
+.pay-sheet-field span {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 560;
+  color: rgb(255 255 255 / 0.78);
+}
+
+.pay-sheet-field input {
+  margin-top: 0.4rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: #111;
+  color: #fff;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.pay-sheet-field input:focus {
+  border-color: rgb(255 255 255 / 0.35);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.08);
+}
+
+.pay-sheet-field input:disabled {
+  opacity: 0.6;
+}
+
+.pay-sheet-note {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.pay-sheet-error {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.06);
+  color: rgb(255 255 255 / 0.85);
+  font-size: 0.85rem;
+}
+
+.pay-sheet-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .pay-sheet-actions {
+    flex-direction: row-reverse;
+  }
+}
+
+.pay-sheet-primary,
+.pay-sheet-secondary {
+  flex: 1;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.pay-sheet-primary {
+  border: 0;
+  background: #fff;
+  color: #0a0a0a;
+}
+
+.pay-sheet-primary:hover:not(:disabled) {
+  background: #f2f2f2;
+}
+
+.pay-sheet-primary:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.pay-sheet-secondary {
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: transparent;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.pay-sheet-secondary:disabled {
+  opacity: 0.5;
+}

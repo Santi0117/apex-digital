@@ -251,3 +251,23 @@ body {
 .ov-fade-slide {
   animation: ov-fade-slide 280ms ease;
 }
+
+.cli-window {
+  background: #0c0c0c;
+}
+
+.cli-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid rgb(255 255 255 / 0.2);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: cli-spin 0.7s linear infinite;
+}
+
+@keyframes cli-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

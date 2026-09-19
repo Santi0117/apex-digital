@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -14,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — SaaS multi-vertical para empresas en Costa Rica`,
+  title: `${site.parentName} — Sitios, software y SaaS`,
   description:
-    "Facturación electrónica 4.4, inventario y analíticas en el núcleo. Activá módulos por industria: clínicas, restaurantes, retail, talleres y más. Un producto de Onvision Digital.",
+    "Onvision Digital construye sitios, tiendas y software a medida, y el SaaS Onvision para empresas en Costa Rica.",
   keywords: [
     "facturación electrónica Costa Rica",
     "SaaS Costa Rica",
@@ -27,9 +28,7 @@ export const metadata: Metadata = {
     "Onvision Digital",
   ],
   icons: {
-    icon: [
-      { url: "/logo-icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     type: "website",
@@ -51,7 +50,10 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

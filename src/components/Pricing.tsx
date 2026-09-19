@@ -56,7 +56,7 @@ export default function Pricing() {
               }`}
             >
               Anual{" "}
-              <span className={annual ? "text-ov-teal" : "text-cyan-300"}>
+              <span className={annual ? "text-black/55" : "text-white/55"}>
                 −17%
               </span>
             </button>
@@ -64,11 +64,11 @@ export default function Pricing() {
         </ScrollReveal>
 
         <ScrollReveal className="mx-auto max-w-lg">
-          <article className="relative flex flex-col rounded-[1.75rem] border border-cyan-300/30 bg-gradient-to-b from-white/[0.08] to-white/[0.03] p-8 text-white shadow-[0_28px_60px_-28px_rgb(8_145_178_/_0.45)] md:p-10">
-            <span className="absolute -top-3 left-8 rounded-full bg-ov-teal px-3 py-1 text-[11px] font-bold text-white shadow-sm">
+          <article className="relative flex flex-col rounded-[1.75rem] border border-white/20 bg-gradient-to-b from-white/[0.08] to-white/[0.03] p-8 text-white shadow-[0_28px_60px_-28px_rgb(0_0_0_/_0.55)] md:p-10">
+            <span className="absolute -top-3 left-8 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-black shadow-sm">
               {plan.badge}
             </span>
-            <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-cyan-300 uppercase">
+            <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-white/50 uppercase">
               {plan.name}
             </p>
             <p className="mb-6 text-sm text-white/60">{plan.subtitle}</p>
@@ -92,12 +92,15 @@ export default function Pricing() {
                   key={f}
                   className="flex items-start gap-2.5 text-sm text-white/75"
                 >
-                  <span className="text-cyan-300">✓</span>
+                  <span className="text-white/70">✓</span>
                   {f}
                 </li>
               ))}
             </ul>
-            <a href="/activar?plan=unico" className="btn-teal w-full">
+            <a
+              href="/activar?plan=unico"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200"
+            >
               Activar Onvision
             </a>
           </article>

@@ -12,7 +12,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const sectionHref = (href: string) =>
-    href.startsWith("#") && pathname !== "/" ? `/${href}` : href;
+    href.startsWith("#") && pathname !== "/producto"
+      ? `/producto${href}`
+      : href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);

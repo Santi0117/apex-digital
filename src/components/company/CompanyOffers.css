@@ -1,0 +1,395 @@
+.ov-offers-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .ov-offers-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ov-offer-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+  height: 100%;
+  padding: 1.35rem 1.35rem 0;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 1.15rem;
+  background: #141414;
+  color: #fff;
+  overflow: hidden;
+}
+
+.ov-offer-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.ov-offer-card > p {
+  margin: 0.7rem 0 0;
+  max-width: 34ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.48);
+}
+
+.ov-offer-card > a {
+  display: inline-flex;
+  margin-top: 0.95rem;
+  font-size: 0.875rem;
+  color: #ff5a1f;
+  transition: color 160ms ease;
+}
+
+.ov-offer-card > a:hover {
+  color: #ff7a4d;
+}
+
+.ov-offer-stage {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 240px;
+  padding: 1.25rem 0.85rem 0;
+}
+
+.ov-offer-stage--laptop {
+  background: linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 0.02) 100%);
+  padding-bottom: 1.15rem;
+  padding-top: 0.65rem;
+}
+
+.ov-laptop {
+  width: min(100%, 280px);
+  transform: translateY(-16px);
+}
+
+.ov-laptop-lid {
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-bottom: 0;
+  border-radius: 10px 10px 2px 2px;
+  background: #1a1a1a;
+  padding: 7px 7px 0;
+  box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.9);
+}
+
+.ov-laptop-bezel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px 6px 0 0;
+  background: #050505;
+}
+
+.ov-laptop-cam {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  z-index: 2;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.18);
+  transform: translateX(-50%);
+}
+
+.ov-laptop-screen {
+  padding: 14px 8px 8px;
+}
+
+.ov-laptop-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.ov-laptop-bar span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ff5f57;
+}
+
+.ov-laptop-bar span:nth-child(2) {
+  background: #febc2e;
+}
+
+.ov-laptop-bar span:nth-child(3) {
+  background: #28c840;
+}
+
+.ov-laptop-bar p {
+  margin: 0 0 0 auto;
+  flex: 1;
+  margin-left: 8px;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.05);
+  padding: 2px 6px;
+  font-size: 0.52rem;
+  color: rgb(255 255 255 / 0.35);
+  text-align: center;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+.ov-laptop-body {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 6px;
+  min-height: 118px;
+}
+
+.ov-laptop-body aside {
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.03);
+  padding: 6px;
+}
+
+.ov-laptop-body aside > p {
+  margin: 0 0 4px;
+  font-size: 0.48rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.3);
+}
+
+.ov-laptop-body aside ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ov-laptop-body aside li {
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 0.55rem;
+  color: rgb(255 255 255 / 0.42);
+}
+
+.ov-laptop-body aside li.is-on {
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+.ov-laptop-body main {
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.035);
+  padding: 7px;
+}
+
+.ov-laptop-kicker {
+  margin: 0;
+  font-size: 0.48rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.3);
+}
+
+.ov-laptop-body main > strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.72rem;
+  letter-spacing: -0.02em;
+}
+
+.ov-laptop-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.ov-laptop-cards div {
+  border-radius: 5px;
+  background: rgb(255 255 255 / 0.05);
+  padding: 5px 4px;
+}
+
+.ov-laptop-cards span {
+  display: block;
+  font-size: 0.45rem;
+  color: rgb(255 255 255 / 0.35);
+}
+
+.ov-laptop-cards b {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.ov-laptop-row {
+  height: 5px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.ov-laptop-row.is-short {
+  width: 62%;
+  margin-top: 4px;
+}
+
+.ov-laptop-base {
+  position: relative;
+  height: 10px;
+  margin: 0 -8px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(180deg, #2a2a2a 0%, #151515 100%);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-top: 0;
+}
+
+.ov-laptop-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 28%;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 0 0 6px 6px;
+  background: #0a0a0a;
+}
+
+.ov-offer-stage--phone {
+  background: transparent;
+  min-height: 260px;
+  padding-top: 1.5rem;
+}
+
+.ov-offer-phone {
+  position: relative;
+  width: min(100%, 168px);
+  min-height: 230px;
+  padding: 1.35rem 0.85rem 1rem;
+  border-radius: 1.35rem 1.35rem 0 0;
+  background: #0c0c0c;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-bottom: 0;
+  transform: translateY(10px);
+}
+
+.ov-offer-phone-island {
+  width: 42px;
+  height: 5px;
+  margin: 0 auto 0.9rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.14);
+}
+
+.ov-offer-phone-title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 550;
+  letter-spacing: -0.03em;
+}
+
+.ov-offer-phone-copy {
+  margin: 0.45rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.42);
+}
+
+.ov-offer-phone ul {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ov-offer-phone li {
+  border-radius: 0.55rem;
+  background: rgb(255 255 255 / 0.05);
+  padding: 0.45rem 0.55rem;
+  font-size: 0.68rem;
+  color: rgb(255 255 255 / 0.72);
+}
+
+.ov-offer-stage--support {
+  background: linear-gradient(180deg, #121212 0%, #1a1a1a 100%);
+  min-height: 260px;
+  align-items: center;
+  padding: 1.1rem;
+}
+
+.ov-offer-chat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ov-offer-bubble {
+  max-width: 88%;
+  border-radius: 1rem;
+  padding: 0.65rem 0.75rem;
+}
+
+.ov-offer-bubble p {
+  margin: 0;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.ov-offer-bubble span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.ov-offer-bubble.is-in {
+  background: rgb(255 255 255 / 0.08);
+  border-radius: 1rem 1rem 1rem 0.35rem;
+}
+
+.ov-offer-bubble.is-in p {
+  color: rgb(103 232 249 / 0.85);
+}
+
+.ov-offer-bubble.is-in span {
+  color: rgb(255 255 255 / 0.75);
+}
+
+.ov-offer-bubble.is-out {
+  margin-left: auto;
+  background: #fff;
+  color: #111;
+  border-radius: 1rem 1rem 0.35rem 1rem;
+}
+
+.ov-offer-bubble.is-out p {
+  color: rgb(0 0 0 / 0.45);
+}
+
+.ov-offer-code {
+  margin-top: 0.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background: #0a0a0a;
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.ov-offer-code span {
+  display: block;
+}
+
+.ov-offer-code span:first-child {
+  color: #67e8f9;
+}

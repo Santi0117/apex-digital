@@ -70,19 +70,19 @@ export default function ActivarFlow() {
       </ScrollReveal>
 
       {pagoEstado === "cancelado" && (
-        <div className="mx-auto mb-8 max-w-2xl rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+        <div className="mx-auto mb-8 max-w-2xl rounded-xl border border-white/15 bg-white/[0.06] px-4 py-3 text-sm text-white/80">
           Cancelaste el pago. Podés elegir de nuevo la industria e intentarlo.
         </div>
       )}
       {pagoEstado === "error" || pagoEstado === "pendiente" ? (
-        <div className="mx-auto mb-8 max-w-2xl rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-100">
+        <div className="mx-auto mb-8 max-w-2xl rounded-xl border border-white/15 bg-white/[0.06] px-4 py-3 text-sm text-white/80">
           No pudimos confirmar el pago. Si te cobraron, escribinos a soporte con el
           correo que usaste en Onvo.
         </div>
       ) : null}
 
       <ScrollReveal className="mb-14">
-        <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-cyan-300 uppercase">
+        <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-white/50 uppercase">
           1 · Tu industria
         </p>
         <p className="mb-5 text-sm text-white/55">
@@ -102,22 +102,22 @@ export default function ActivarFlow() {
                 }}
                 className={`relative flex flex-col items-start gap-3 rounded-2xl border p-5 text-left transition ${
                   activo
-                    ? "border-cyan-300/50 bg-white/10 shadow-[0_18px_40px_-24px_rgb(8_145_178_/_0.45)]"
+                    ? "border-white/40 bg-white/10 shadow-[0_18px_40px_-24px_rgb(0_0_0_/_0.55)]"
                     : vive
-                      ? "border-cyan-300/25 bg-white/[0.05] hover:border-cyan-300/40 hover:bg-white/[0.08]"
+                      ? "border-white/20 bg-white/[0.05] hover:border-white/35 hover:bg-white/[0.08]"
                       : "border-white/10 bg-white/[0.03] opacity-80 hover:border-white/20 hover:opacity-100"
                 }`}
               >
                 <span
                   className={`absolute top-3 right-3 rounded-full px-2 py-0.5 text-[10px] font-bold ${
                     vive
-                      ? "bg-ov-teal text-white"
+                      ? "bg-white text-black"
                       : "bg-white/10 text-white/50"
                   }`}
                 >
                   {vive ? "Listo" : "Pronto"}
                 </span>
-                <VerticalIcon name={v.icon} className="h-8 w-8 text-cyan-300" />
+                <VerticalIcon name={v.icon} className="h-8 w-8 text-white/80" />
                 <span className="font-display text-sm font-bold text-white">
                   {v.name}
                 </span>
@@ -130,7 +130,7 @@ export default function ActivarFlow() {
 
       <ScrollReveal>
         <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-8">
-          <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-cyan-300 uppercase">
+          <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-white/50 uppercase">
             2 · Pago
           </p>
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -151,13 +151,13 @@ export default function ActivarFlow() {
                 )}
               </p>
               {vertical && !disponible && (
-                <p className="mt-2 text-sm font-semibold text-cyan-100">
+                <p className="mt-2 text-sm font-semibold text-white/75">
                   {vertical.name} está casi listo — dejanos tu correo y te avisamos
                   primero.
                 </p>
               )}
               {errorPago && (
-                <p className="mt-2 text-sm font-medium text-red-300">{errorPago}</p>
+                <p className="mt-2 text-sm font-medium text-white/70">{errorPago}</p>
               )}
             </div>
 
@@ -167,13 +167,16 @@ export default function ActivarFlow() {
                   type="button"
                   onClick={pagarConTarjeta}
                   disabled={pagando}
-                  className="btn-teal disabled:opacity-60"
+                  className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200 disabled:opacity-60"
                 >
-                  {pagando ? "Redirigiendo a Onvo…" : "Pagar con tarjeta"}
+                  {pagando ? "Abriendo pago…" : "Pagar"}
                 </button>
               )}
               {vertical && !disponible && (
-                <a href="/#registro" className="btn-ghost-cyan">
+                <a
+                  href="/producto#registro"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40"
+                >
                   Unirme a la lista
                 </a>
               )}

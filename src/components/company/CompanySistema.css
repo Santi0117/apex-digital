@@ -1,0 +1,79 @@
+.ov-sis-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.ov-sis-nav {
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  padding: 8px 8px 10px;
+}
+
+.ov-sis-nav-list {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ov-sis-nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.ov-sis-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.ov-sis-shot {
+  animation: ov-sis-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ov-sis-row {
+  transition: background 180ms ease;
+}
+
+.ov-sis-row.is-on {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.ov-sis-cursor {
+  display: none;
+}
+
+@keyframes ov-sis-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .ov-sis-body {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+  }
+
+  .ov-sis-nav {
+    border-bottom: 0;
+    border-right: 1px solid rgb(255 255 255 / 0.08);
+    padding: 12px 8px;
+  }
+
+  .ov-sis-nav-list {
+    display: block;
+    overflow: visible;
+  }
+
+  .ov-sis-frame {
+    aspect-ratio: 16 / 9.4;
+  }
+
+  .ov-sis-cursor {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-sis-shot {
+    animation: none;
+  }
+}

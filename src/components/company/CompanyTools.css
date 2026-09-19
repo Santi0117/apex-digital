@@ -1,0 +1,95 @@
+.ov-tools-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.ov-tools-track {
+  --ov-tools-gap: 8px;
+  display: flex;
+  width: max-content;
+  gap: var(--ov-tools-gap);
+  animation: ov-tools-scroll 32s linear infinite;
+}
+
+.ov-tools-track:hover {
+  animation-play-state: paused;
+}
+
+.ov-tools-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ov-tools-card {
+  flex: 0 0 auto;
+  height: 52px;
+  min-width: 118px;
+  gap: 6px;
+  padding-inline: 10px;
+  border-radius: 14px;
+}
+
+.ov-tools-card > span:last-child {
+  font-size: 12px;
+}
+
+.ov-tools-card svg,
+.ov-tools-card > span:first-child {
+  transform: scale(0.72);
+  transform-origin: center;
+}
+
+@media (min-width: 768px) {
+  .ov-tools-track {
+    --ov-tools-gap: 12px;
+    animation-duration: 36s;
+  }
+
+  .ov-tools-row {
+    gap: var(--ov-tools-gap);
+  }
+
+  .ov-tools-card {
+    height: 84px;
+    min-width: 176px;
+    gap: 10px;
+    padding-inline: 20px;
+    border-radius: 16px;
+  }
+
+  .ov-tools-card > span:last-child {
+    font-size: 15px;
+  }
+
+  .ov-tools-card svg,
+  .ov-tools-card > span:first-child {
+    transform: none;
+  }
+}
+
+@keyframes ov-tools-scroll {
+  to {
+    transform: translateX(calc(-50% - (var(--ov-tools-gap) / 2)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-tools-viewport {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .ov-tools-track {
+    animation: none;
+  }
+
+  .ov-tools-track [aria-hidden] {
+    display: none;
+  }
+}

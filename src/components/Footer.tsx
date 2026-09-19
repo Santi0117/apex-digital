@@ -37,17 +37,25 @@ export default function Footer() {
             </p>
             <ul className="space-y-2.5 text-sm text-white/65">
               <li>
-                <a href="/#modulos" className="transition hover:text-white">
+                <a href="/" className="transition hover:text-white">
+                  Onvision Digital
+                </a>
+              </li>
+              <li>
+                <a href="/producto#modulos" className="transition hover:text-white">
                   Módulos
                 </a>
               </li>
               <li>
-                <a href="/#industrias" className="transition hover:text-white">
+                <a
+                  href="/producto#industrias-imagenes"
+                  className="transition hover:text-white"
+                >
                   Industrias
                 </a>
               </li>
               <li>
-                <a href="/#precios" className="transition hover:text-white">
+                <a href="/producto#precios" className="transition hover:text-white">
                   Precios
                 </a>
               </li>

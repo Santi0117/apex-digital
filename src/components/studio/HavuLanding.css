@@ -1,0 +1,642 @@
+.havu-page {
+  --havu-bg: #000;
+  --havu-fg: #fff;
+  --havu-muted: rgb(255 255 255 / 0.48);
+  --havu-line: rgb(255 255 255 / 0.12);
+  min-height: 100svh;
+  background: var(--havu-bg);
+  color: var(--havu-fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.havu-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgb(0 0 0 / 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+}
+
+.havu-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.havu-logo img {
+  height: 1.1rem;
+  width: auto;
+}
+
+.havu-nav-links {
+  display: none;
+  gap: 1.5rem;
+}
+
+.havu-nav-links a {
+  color: rgb(255 255 255 / 0.7);
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 180ms ease;
+}
+
+.havu-nav-links a:hover {
+  color: #fff;
+}
+
+.havu-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.havu-ghost,
+.havu-outline,
+.havu-menu-btn {
+  font-size: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.havu-ghost {
+  display: none;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.havu-outline {
+  display: none;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 999px;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.havu-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+.havu-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  letter-spacing: 0.08em;
+}
+
+.havu-menu-btn i,
+.havu-menu-btn i::before {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: #fff;
+  transition: transform 220ms ease;
+}
+
+.havu-menu-btn i::before {
+  content: "";
+  margin-top: 5px;
+}
+
+.havu-menu-btn i.is-open {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.havu-menu-btn i.is-open::before {
+  transform: translateY(-6.5px) rotate(-90deg);
+}
+
+.havu-drawer {
+  position: fixed;
+  inset: 3.4rem 0 0;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem 1.25rem;
+  background: #000;
+}
+
+.havu-drawer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.havu-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6.5rem 1.25rem 2rem;
+}
+
+.havu-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.havu-hero-meta p {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--havu-muted);
+}
+
+.havu-headline {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 9vw, 5.4rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.havu-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.havu-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.havu-space {
+  display: inline-block;
+  width: 0.28em;
+}
+
+.havu-pixels {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+  min-height: 36px;
+}
+
+.havu-pixel {
+  display: inline-block;
+  image-rendering: pixelated;
+}
+
+.havu-pixel--walk,
+.havu-pixel--bot,
+.havu-pixel--ufo {
+  width: 16px;
+  height: 24px;
+  background: #fff;
+  box-shadow:
+    4px 0 0 #fff,
+    8px 4px 0 #fff,
+    0 8px 0 #fff,
+    4px 8px 0 #fff,
+    8px 8px 0 #fff,
+    0 12px 0 #fff,
+    8px 12px 0 #fff,
+    0 16px 0 #fff,
+    8px 16px 0 #fff,
+    4px 20px 0 #fff;
+  animation: havu-bob 0.8s steps(2) infinite;
+}
+
+.havu-pixel--bot {
+  animation-duration: 1.1s;
+  opacity: 0.92;
+}
+
+.havu-pixel--ufo {
+  width: 20px;
+  height: 14px;
+  box-shadow:
+    6px 0 0 #fff,
+    2px 4px 0 #fff,
+    6px 4px 0 #fff,
+    10px 4px 0 #fff,
+    0 8px 0 #fff,
+    4px 8px 0 #fff,
+    8px 8px 0 #fff,
+    12px 8px 0 #fff,
+    16px 8px 0 #fff;
+  animation: havu-float 1.4s ease-in-out infinite;
+}
+
+.havu-pixel--tag {
+  padding: 0.15rem 0.35rem;
+  border: 1px solid #fff;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.havu-hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: auto;
+  padding-top: 3rem;
+}
+
+.havu-hero-copy {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--havu-muted);
+}
+
+.havu-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 0.95rem 1.35rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.havu-cta:hover {
+  background: #e8e8e8;
+  transform: translateY(-1px);
+}
+
+.havu-marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--havu-line);
+  border-bottom: 1px solid var(--havu-line);
+  padding: 0.85rem 0;
+}
+
+.havu-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: havu-marquee 38s linear infinite;
+}
+
+.havu-marquee-track span {
+  padding-right: 2rem;
+  font-size: 0.82rem;
+  color: var(--havu-muted);
+  white-space: nowrap;
+}
+
+.havu-section {
+  padding: 5rem 1.25rem;
+  border-bottom: 1px solid var(--havu-line);
+}
+
+.havu-section-title {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  font-weight: 550;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.havu-section-lead {
+  margin: 1.25rem 0 0;
+  max-width: 42ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--havu-muted);
+}
+
+.havu-problems {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.havu-problem {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0.85rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--havu-line);
+}
+
+.havu-problem > span {
+  font-size: 0.75rem;
+  color: var(--havu-muted);
+  padding-top: 0.2rem;
+}
+
+.havu-problem h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.havu-problem p {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--havu-muted);
+}
+
+.havu-offers,
+.havu-steps {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.havu-offer,
+.havu-step {
+  padding: 1.25rem 1.1rem;
+  border: 1px solid var(--havu-line);
+  border-radius: 1rem;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.havu-offer:hover,
+.havu-step:hover {
+  border-color: rgb(255 255 255 / 0.28);
+  background: rgb(255 255 255 / 0.03);
+}
+
+.havu-offer h3,
+.havu-step h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.havu-offer p,
+.havu-step p {
+  margin: 0.55rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--havu-muted);
+}
+
+.havu-step > span {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--havu-muted);
+}
+
+.havu-compare-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.havu-compare-grid > div {
+  padding: 1.25rem;
+  border: 1px solid var(--havu-line);
+  border-radius: 1rem;
+}
+
+.havu-compare-label {
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--havu-muted);
+}
+
+.havu-compare-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.havu-compare-grid li {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.havu-compare-grid li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--havu-muted);
+}
+
+.havu-compare-grid > div:last-child {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.havu-compare-grid > div:last-child .havu-compare-label,
+.havu-compare-grid > div:last-child li::before {
+  color: rgb(0 0 0 / 0.45);
+}
+
+.havu-faq {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.havu-faq > li {
+  border-top: 1px solid var(--havu-line);
+}
+
+.havu-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.havu-faq-q span {
+  font-size: 1.25rem;
+  color: var(--havu-muted);
+}
+
+.havu-faq-a {
+  margin: 0 0 1.15rem;
+  max-width: 48ch;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--havu-muted);
+}
+
+.havu-end {
+  padding: 5rem 1.25rem 4rem;
+}
+
+.havu-end .havu-cta {
+  margin-top: 1.75rem;
+}
+
+.havu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--havu-line);
+  color: var(--havu-muted);
+  font-size: 0.8rem;
+}
+
+.havu-footer > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.havu-footer img {
+  height: 0.95rem;
+  width: auto;
+}
+
+@keyframes havu-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes havu-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes havu-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (min-width: 768px) {
+  .havu-nav {
+    padding: 1.1rem 2rem;
+  }
+
+  .havu-nav-links,
+  .havu-ghost,
+  .havu-outline {
+    display: flex;
+  }
+
+  .havu-menu-btn {
+    display: none;
+  }
+
+  .havu-hero,
+  .havu-section,
+  .havu-end,
+  .havu-footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .havu-hero-bottom {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .havu-offers,
+  .havu-steps,
+  .havu-compare-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .havu-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .havu-hero,
+  .havu-section,
+  .havu-end,
+  .havu-footer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .havu-problems {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 2rem;
+  }
+
+  .havu-offers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .havu-steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .havu-marquee-track,
+  .havu-pixel--walk,
+  .havu-pixel--bot,
+  .havu-pixel--ufo {
+    animation: none;
+  }
+}

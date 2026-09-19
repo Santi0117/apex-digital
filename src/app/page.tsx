@@ -1,37 +1,31 @@
-import Navbar from "@/components/Navbar";
-import SiteAurora from "@/components/SiteAurora";
-import LandingTop from "@/components/LandingTop";
-import CentralizedShowcase from "@/components/CentralizedShowcase";
-import BaseCommon from "@/components/BaseCommon";
-import Problem from "@/components/Problem";
-import HowItWorks from "@/components/HowItWorks";
-import Verticals from "@/components/Verticals";
-import ValueProps from "@/components/ValueProps";
-import Comparison from "@/components/Comparison";
-import Pricing from "@/components/Pricing";
-import Waitlist from "@/components/Waitlist";
-import Footer from "@/components/Footer";
+import CompanyNav from "@/components/company/CompanyNav";
+import CompanyHero from "@/components/company/CompanyHero";
+import CompanyWalkthrough from "@/components/company/CompanyWalkthrough";
+import CompanyOnvi from "@/components/company/CompanyOnvi";
+import CompanyChats from "@/components/company/CompanyChats";
+import CompanySistema from "@/components/company/CompanySistema";
+import CompanyOffers from "@/components/company/CompanyOffers";
+import OnvisionCLI from "@/components/company/OnvisionCLI";
+import CompanyFooter from "@/components/company/CompanyFooter";
+import WhatsAppFab from "@/components/WhatsAppFab";
+import LegacyHashRedirect from "@/components/LegacyHashRedirect";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <div className="relative min-h-screen bg-[#0a0f14]">
-        <SiteAurora />
-        <main className="relative z-10">
-          <LandingTop />
-          <CentralizedShowcase />
-          <BaseCommon />
-          <Problem />
-          <HowItWorks />
-          <Verticals />
-          <ValueProps />
-          <Comparison />
-          <Pricing />
-          <Waitlist />
-        </main>
-      </div>
-      <Footer />
-    </>
+    <div className="bg-black">
+      <LegacyHashRedirect />
+      <CompanyNav />
+      <main>
+        <CompanyHero />
+        <CompanyWalkthrough />
+        <CompanyOnvi />
+        <CompanyChats />
+        <CompanySistema />
+        <CompanyOffers />
+        <OnvisionCLI />
+      </main>
+      <CompanyFooter />
+      <WhatsAppFab />
+    </div>
   );
 }

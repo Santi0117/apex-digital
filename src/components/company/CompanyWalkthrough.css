@@ -1,0 +1,150 @@
+.ov-walk-window {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: #0c0c0c;
+  box-shadow: 0 48px 140px -48px rgb(0 0 0 / 0.9);
+}
+
+.ov-walk-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 22rem;
+  width: 100%;
+}
+
+.ov-walk-copy-top {
+  width: 100%;
+}
+
+.ov-walk-title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.ov-walk-cta {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: #ff5a1f;
+  transition: color 160ms ease;
+}
+
+.ov-walk-cta:hover {
+  color: #ff7a4d;
+}
+
+@media (min-width: 640px) {
+  .ov-walk-title {
+    font-size: 1.45rem;
+  }
+
+  .ov-walk-cta {
+    margin-top: 1.1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ov-walk-copy {
+    max-width: none;
+    padding-top: 0.15rem;
+    padding-left: 0.15rem;
+  }
+
+  .ov-walk-title {
+    font-size: 1.75rem;
+    max-width: 16ch;
+  }
+}
+
+.ov-walk-tape {
+  position: relative;
+  overflow: hidden;
+  background: #101214;
+  user-select: none;
+}
+
+.ov-walk-tape button {
+  pointer-events: none;
+}
+
+.ov-walk-cursor {
+  position: absolute;
+  z-index: 6;
+  width: 18px;
+  height: 24px;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.55));
+  transition:
+    left 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 640ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ov-walk-cursor.is-click {
+  animation: ov-walk-press 280ms ease;
+}
+
+.ov-walk-ripple {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgb(255 255 255 / 0.75);
+  animation: ov-walk-ripple 380ms ease-out;
+}
+
+@keyframes ov-walk-press {
+  40% {
+    transform: scale(0.86);
+  }
+}
+
+@keyframes ov-walk-ripple {
+  to {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.ov-walk-hit {
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.ov-walk-hit.is-hot {
+  border-color: rgb(8 145 178 / 0.6);
+  background: rgb(8 145 178 / 0.12);
+}
+
+.ov-walk-toast {
+  animation: ov-walk-toast-in 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ov-walk-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-walk-cursor,
+  .ov-walk-hit,
+  .ov-walk-ripple {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .ov-walk-cursor {
+    display: none;
+  }
+}

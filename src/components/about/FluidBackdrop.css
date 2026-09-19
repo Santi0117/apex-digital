@@ -1,0 +1,16 @@
+.about-fluid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #050506;
+  pointer-events: none;
+}
+
+.about-fluid canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+}

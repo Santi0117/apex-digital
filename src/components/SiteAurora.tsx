@@ -23,7 +23,7 @@ export default function SiteAurora() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 opacity-[0.55]"
+      className="pointer-events-none fixed inset-0 z-0 opacity-70"
       aria-hidden
     >
       <Aurora

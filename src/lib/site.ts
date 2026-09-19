@@ -7,6 +7,7 @@ export const site = {
   email: "info@onvisiondigital.com",
   phone: "+506 6303-0204",
   whatsapp: "50663030204",
+  instagram: "https://www.instagram.com/onvisiondigital",
   location: "Costa Rica",
   region: "Costa Rica",
   trialDays: 15,

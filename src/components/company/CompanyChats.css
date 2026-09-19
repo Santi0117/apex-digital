@@ -1,0 +1,28 @@
+.ov-chats-pane {
+  min-height: 420px;
+}
+
+.ov-chats-row {
+  transition: background 180ms ease;
+}
+
+.ov-chats-row.is-on {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.ov-chats-bubble-in {
+  animation: ov-chats-in 280ms ease;
+}
+
+@keyframes ov-chats-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-chats-bubble-in {
+    animation: none;
+  }
+}

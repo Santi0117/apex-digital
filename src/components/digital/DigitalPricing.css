@@ -1,0 +1,477 @@
+/* DigitalPricing — soft, aligned with Digital page */
+
+.od-plans-section,
+.od-plans-section * {
+  box-sizing: border-box;
+}
+
+.od-plans-section {
+  max-width: 80rem;
+  padding-top: 4.5rem;
+  padding-bottom: 5.5rem;
+  color: #fff;
+}
+
+.od-plans-section .od-kicker {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.od-plans-top {
+  display: grid;
+  gap: 2.25rem;
+}
+
+@media (min-width: 960px) {
+  .od-plans-top {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3.5rem;
+    align-items: end;
+  }
+}
+
+.od-plans-intro {
+  max-width: 34rem;
+}
+
+.od-plans-heading {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 550;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.od-plans-lead {
+  margin: 1rem 0 0;
+  max-width: 42ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.od-plans-switch-wrap {
+  width: 100%;
+}
+
+.od-plans-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+@media (min-width: 720px) {
+  .od-plans-switch {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+}
+
+.od-plans-switch-btn {
+  position: relative;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0.85rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 520;
+  letter-spacing: -0.015em;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.od-plans-switch-btn:hover {
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.od-plans-switch-btn.is-on {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.od-plans-switch-n {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.od-plans-switch-btn:not(.is-on) .od-plans-switch-n {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.od-plans-switch-bar {
+  display: none;
+}
+
+.od-plans-panel {
+  margin-top: 2.5rem;
+}
+
+.od-plans-group-lead {
+  margin: 0 0 1.75rem;
+  max-width: 46ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.od-plans-grid {
+  display: grid;
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.od-plans-grid--1 {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 28rem;
+}
+
+.od-plans-grid--2 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 860px) {
+  .od-plans-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+}
+
+.od-plans-card {
+  position: relative;
+  height: auto;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  padding: 1.55rem 1.35rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 80% at 8% 0%, rgba(255, 255, 255, 0.06), transparent 52%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.035), transparent 45%),
+    #070707;
+  color: #fff;
+  overflow: hidden;
+  transition:
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+@media (min-width: 768px) {
+  .od-plans-card {
+    padding: 1.85rem 1.65rem 1.55rem;
+  }
+}
+
+.od-plans-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.28),
+    transparent 70%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.od-plans-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.od-plans-card.is-hot {
+  border-color: rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(120% 80% at 8% 0%, rgba(255, 255, 255, 0.08), transparent 55%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.055), transparent 48%),
+    #090909;
+}
+
+.od-plans-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.od-plans-card-index {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.od-plans-badge {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.od-plans-card-top h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-transform: none;
+}
+
+.od-plans-tagline {
+  margin: 0.55rem 0 0;
+  max-width: 30ch;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.od-plans-card-price {
+  margin-top: 1.45rem;
+  padding: 1.1rem 0 0.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.od-plans-amount {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.od-plans-amount--once {
+  margin-top: 0.65rem;
+}
+
+.od-plans-alt {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 560;
+  color: rgb(255 255 255 / 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+.od-plans-usd {
+  font-size: clamp(2.15rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.od-plans-period {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.od-plans-includes {
+  margin-top: 1.15rem;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.od-plans-includes-btn {
+  appearance: none;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.od-plans-includes-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.od-plans-includes-btn.is-open {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.od-plans-includes-chevron {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.45);
+  transition: transform 0.3s ease, color 0.25s ease;
+}
+
+.od-plans-includes-btn.is-open .od-plans-includes-chevron {
+  transform: rotate(180deg);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.od-plans-includes-panel {
+  overflow: hidden;
+}
+
+.od-plans-features {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0.15rem 0.15rem 0.1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.od-plans-features li {
+  display: grid;
+  grid-template-columns: 0.55rem 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.62rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.od-plans-features li:last-child {
+  border-bottom: 0;
+}
+
+.od-plans-mark {
+  width: 0.28rem;
+  height: 0.28rem;
+  margin-top: 0.48rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.od-plans-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.od-plans-pay {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #0a0a0a;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.76rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.od-plans-pay:hover {
+  background: #f4f4f4;
+  transform: translateY(-1px);
+}
+
+.od-plans-pay-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  background: transparent;
+  border: 0;
+  opacity: 0.7;
+}
+
+.od-plans-pay > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.od-plans-quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.25s ease;
+}
+
+.od-plans-quote:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.od-plans-custom {
+  margin: 2.5rem 0 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.od-plans-custom a {
+  color: #fff;
+  font-weight: 550;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  transition: border-color 0.25s ease;
+}
+
+.od-plans-custom a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.7);
+}

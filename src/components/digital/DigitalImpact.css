@@ -1,0 +1,330 @@
+.od-impact-section {
+  max-width: 80rem;
+}
+
+.od-impact-section .od-kicker {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.od-impact-grid {
+  margin-top: 2.75rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .od-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.od-impact-panel {
+  position: relative;
+  min-width: 0;
+  padding: 1.35rem 1.2rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 80% at 12% 0%, rgba(255, 255, 255, 0.04), transparent 55%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.03), transparent 40%),
+    #070707;
+  overflow: hidden;
+}
+
+.od-impact-panel--software {
+  background:
+    radial-gradient(110% 70% at 88% 0%, rgba(255, 255, 255, 0.05), transparent 50%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.025), transparent 42%),
+    #070707;
+}
+
+.od-impact-chart-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.od-impact-eyebrow {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.od-impact-panel--software .od-impact-eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.od-impact-chart-head h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.od-impact-sub {
+  margin: 0.35rem 0 0;
+  max-width: 28ch;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.od-impact-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.od-impact-metric-chip {
+  text-align: right;
+}
+
+.od-impact-metric-chip span {
+  display: block;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(120deg, #fff 20%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.od-impact-metric-chip small {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.od-impact-metric {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.od-impact-metric span {
+  display: block;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  color: #fff;
+  background: linear-gradient(120deg, #fff 20%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.od-impact-metric small {
+  display: block;
+  margin-top: 0.45rem;
+  max-width: 12ch;
+  margin-left: auto;
+  font-size: 0.66rem;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.od-impact-plot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.od-impact-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.od-impact-gridline {
+  stroke: rgba(255, 255, 255, 0.035);
+  stroke-width: 1;
+  stroke-dasharray: none;
+}
+
+.od-impact-line {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.od-impact-line--sales {
+  stroke-width: 1.6;
+  opacity: 0.92;
+}
+
+.od-impact-line--comms {
+  stroke-width: 1.35;
+  opacity: 0.55;
+}
+
+.od-impact-dot {
+  fill: #070707;
+  stroke-width: 1.25;
+}
+
+.od-impact-dot--comms {
+  stroke: rgba(255, 255, 255, 0.45);
+  fill: #070707;
+}
+
+.od-impact-dot--live {
+  fill: #fff;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1;
+  filter: none;
+}
+
+.od-impact-xlabel {
+  fill: rgba(255, 255, 255, 0.32);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.od-impact-bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.55rem;
+  align-items: end;
+  height: 13.5rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.15rem 0;
+  border-bottom: 0;
+}
+
+.od-impact-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.od-impact-bar-pair {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+}
+
+.od-impact-bar {
+  display: block;
+  width: 42%;
+  max-width: 1.15rem;
+  min-height: 4px;
+  border-radius: 999px;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.od-impact-bar--ghost {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.od-impact-bar--soft {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.35));
+  box-shadow: none;
+}
+
+.od-impact-bar--soft.is-peak {
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.42));
+  box-shadow: none;
+}
+
+.od-impact-bar-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.od-impact-legend {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+}
+
+.od-impact-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.od-impact-swatch {
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.od-impact-swatch--glow {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: none;
+}
+
+.od-impact-swatch--comms {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.od-impact-swatch--soft {
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.od-impact-swatch--ghost {
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.od-impact-note {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .od-impact-bar,
+  .od-impact-dot--live {
+    transition: none !important;
+    animation: none !important;
+  }
+}
