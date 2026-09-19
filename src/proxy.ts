@@ -17,7 +17,10 @@ function isSistemaHost(host: string) {
  * Next.js 16: Middleware was renamed to Proxy (`proxy.ts`).
  */
 export function proxy(request: NextRequest) {
-  const host = request.headers.get("host") ?? "";
+  const host =
+    request.headers.get("x-forwarded-host") ??
+    request.headers.get("host") ??
+    request.nextUrl.hostname;
   if (!isSistemaHost(host)) {
     return NextResponse.next();
   }
@@ -28,7 +31,8 @@ export function proxy(request: NextRequest) {
   if (pathname === "/" || pathname === "") {
     const url = request.nextUrl.clone();
     url.pathname = "/activar";
-    return NextResponse.rewrite(url);
+    // Redirect (not rewrite) so a stale CDN HIT of `/` cannot keep serving Digital.
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();

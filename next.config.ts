@@ -7,11 +7,36 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   /**
+   * sistema.onvisiondigital.com home → Activar (verticales).
+   * beforeFiles so it wins over the prerendered `/` page + CDN cache.
+   */
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/",
+          has: [{ type: "host", value: "sistema.onvisiondigital.com" }],
+          destination: "/activar",
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+  /**
    * Legacy anchors / paths from mi-portafolio (onvisiondigital.com)
    * → new multi-page IA.
    */
   async redirects() {
     return [
+      // sistema subdomain home → Activar verticales
+      {
+        source: "/",
+        has: [{ type: "host", value: "sistema.onvisiondigital.com" }],
+        destination: "/activar",
+        permanent: false,
+      },
+
       // Old single-page sections → Digital
       { source: "/servicios", destination: "/digital", permanent: true },
       { source: "/planes", destination: "/digital#planes", permanent: true },
