@@ -8,7 +8,7 @@ export default function Comparison() {
         <ScrollReveal className="mx-auto mb-14 max-w-2xl text-center">
           <p className="section-eyebrow mb-4 justify-center">Comparativa</p>
           <h2 className="section-title mb-4 text-white">
-            Onvision vs Alegra vs Facturele
+            Onvision vs otros
           </h2>
           <p className="section-lead text-white/70">
             El mercado pelea por facturación barata. Nadie más ofrece verticales
@@ -24,8 +24,8 @@ export default function Comparison() {
                   <tr className="bg-black/40 text-white">
                     <th className="p-5 font-medium text-white/45">Aspecto</th>
                     <th className="p-5 font-bold text-cyan-300">Onvision</th>
-                    <th className="p-5 font-medium text-white/45">Alegra</th>
-                    <th className="p-5 font-medium text-white/45">Facturele</th>
+                    <th className="p-5 font-medium text-white/45">Otros</th>
+                    <th className="p-5 font-medium text-white/45">Otros</th>
                   </tr>
                 </thead>
                 <tbody>
