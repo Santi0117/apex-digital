@@ -330,7 +330,23 @@ html.ov-preloader-lock body {
   object-position: center center;
   border: 0;
   outline: none;
-  background: transparent;
+  background: #000;
+  /* Negro del video → transparente sobre el fondo; solo queda el glow del ojo */
+  mix-blend-mode: screen;
+  /* Solo difumina el borde del frame, sin recortar las puntas del ojo */
+  -webkit-mask-image: radial-gradient(
+    ellipse 92% 88% at 50% 50%,
+    #000 62%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 92% 88% at 50% 50%,
+    #000 62%,
+    transparent 100%
+  );
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .ov-preloader__mark {

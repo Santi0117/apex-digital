@@ -93,8 +93,8 @@ export default function PremiumPreloader() {
           preload="auto"
           // No controls — cinematic intro
         >
-          <source src="/preload-eye.webm?v=3" type="video/webm" />
-          <source src="/preload-eye.mp4?v=3" type="video/mp4" />
+          <source src="/preload-eye.webm?v=4" type="video/webm" />
+          <source src="/preload-eye.mp4?v=4" type="video/mp4" />
         </video>
       </div>
       <p className="ov-preloader__mark">onvision</p>
