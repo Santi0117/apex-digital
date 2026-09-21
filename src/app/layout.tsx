@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
+import PremiumPreloader from "@/components/PremiumPreloader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <PremiumPreloader />
         <CustomCursor />
         {children}
       </body>
