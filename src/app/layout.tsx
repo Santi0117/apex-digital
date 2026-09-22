@@ -55,7 +55,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem("ov-preloader-seen")==="1")document.documentElement.classList.add("ov-preloader-skip")}catch(e){}`,
+            __html: `try{if(sessionStorage.getItem("ov-preloader-seen-v2")==="1")document.documentElement.classList.add("ov-preloader-skip")}catch(e){}`,
           }}
         />
       </head>
