@@ -273,6 +273,10 @@ body {
 }
 
 /* ——— Premium preloader (ojo Onvision) ——— */
+html.ov-preloader-skip .ov-preloader {
+  display: none !important;
+}
+
 html.ov-preloader-lock,
 html.ov-preloader-lock body {
   overflow: hidden;
