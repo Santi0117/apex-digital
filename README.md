@@ -2,14 +2,7 @@
 
 Landing page del SaaS multi-vertical para empresas en Costa Rica.
 
-## Desarrollo
 
-```bash
-npm install
-npm run dev
-```
-
-Abrí [http://localhost:3000](http://localhost:3000).
 
 ## Stack
 
